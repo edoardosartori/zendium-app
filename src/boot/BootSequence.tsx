@@ -3,51 +3,33 @@ import { timeline } from "./BootTimeLine";
 
 export default function BootSequence() {
 
-    const [lines, setLines] = useState<string[]>([]);
+    const [step, setStep] = useState(0);
 
     useEffect(() => {
 
-        let cancelled = false;
+        if (step >= timeline.length - 1)
+            return;
 
-        async function playBoot() {
+        const timer = setTimeout(() => {
+            setStep(step + 1);
+        }, timeline[step].duration);
 
-            for (const block of timeline) {
+        return () => clearTimeout(timer);
 
-                if (cancelled) return;
+    }, [step]);
 
-                setLines(prev => [
-                    ...prev,
-                    ...block.lines
-                ]);
-
-                await new Promise(resolve =>
-                    setTimeout(resolve, block.duration)
-                );
-            }
-        }
-
-        playBoot();
-
-        return () => {
-            cancelled = true;
-        };
-
-    }, []);
+    const event = timeline[step];
 
     return (
+
         <div className="boot-sequence">
 
-            {lines.map((line, index) => (
-
-                <div
-                    key={index}
-                    className="boot-line"
-                >
-                    {line}
-                </div>
-
-            ))}
+            <pre>
+                {JSON.stringify(event, null, 2)}
+            </pre>
 
         </div>
+
     );
+
 }

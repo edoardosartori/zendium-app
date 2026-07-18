@@ -1,46 +1,36 @@
 export const timeline = [
-  {
-    duration: 1200,
-    lines: [
-      "ZENDIUM BIOS v0.1",
-      "Initializing secure environment...",
-      "",
-      "CPU: AMD Ryzen detected",
-      "RAM: 32768 MB OK",
-      "GPU: NVIDIA detected",
-      ""
-    ]
-  },
 
-  {
-    duration: 1800,
-    lines: [
-      "[ OK ] Loading kernel...",
-      "[ OK ] Initializing memory...",
-      "[ OK ] Starting device manager...",
-      "[ OK ] Detecting displays...",
-      "[ OK ] Mounting filesystem..."
-    ]
-  },
+{
+    type:"logo",
+    duration:1000
+},
 
-  {
-    duration: 2200,
-    lines: [
-      "Scanning network interfaces...",
-      "eth0 ..... READY",
-      "wlan0 .... READY",
-      "Establishing encrypted channels...",
-      "DONE"
+{
+    type:"text",
+    duration:1800,
+    lines:[
+        "Initializing kernel...",
+        "Mounting filesystem..."
     ]
-  },
+},
 
-  {
-    duration: 1800,
-    lines: [
-      "Launching Zendium Core...",
-      "Loading interface...",
-      "",
-      "Welcome."
-    ]
-  }
+{
+    type:"hex",
+    duration:1500
+},
+
+{
+    type:"radar",
+    duration:2000
+},
+
+{
+    type:"vector",
+    duration:1800
+},
+
+{
+    type:"dashboard"
+}
+
 ];
