@@ -1,3 +1,5 @@
+import TypingText from "../core/utils/TypingText";
+
 export default function DashboardTransition() {
 
     console.log("dashboard rendered");
@@ -18,7 +20,9 @@ export default function DashboardTransition() {
             }}
         >
 
-            Loading dashboard...
+            <TypingText
+                text="Loading dashboard..."
+            />
 
         </div>
 

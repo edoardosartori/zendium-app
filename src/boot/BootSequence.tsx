@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 
 import { timeline } from "./BootTimeLine";
 
-import Logo from "../effects/Logo";
-import Kernel from "../effects/Kernel";
-import HexGrid from "../effects/HexGrid";
-import Radar from "../effects/Radar";
-import DashboardTransition from "../effects/DashboardTransition";
+import Logo from "../views/Logo";
+import HexGrid from "../views/HexGrid";
+import Radar from "../views/Radar";
+import DashboardTransition from "../views/DashboardTransition";
+
+import TerminalBoot from "./TerminalBoot";
 
 type Props = {
     onFinish: () => void;
@@ -16,39 +17,59 @@ export default function BootSequence({ onFinish }: Props) {
 
     const [step, setStep] = useState(0);
 
+    const event = timeline[step];
+
     useEffect(() => {
 
+        // Ultimo evento → termina la boot
         if (step >= timeline.length - 1) {
 
             const timer = setTimeout(() => {
 
                 onFinish();
 
-            }, timeline[step].duration);
+            }, event.duration ?? 0);
 
             return () => clearTimeout(timer);
 
         }
 
+        // Gli eventi "terminal" avanzano da soli
+        if (event.type === "terminal")
+            return;
+
         const timer = setTimeout(() => {
 
-            setStep((prev) => prev + 1);
+            setStep(prev => prev + 1);
 
-        }, timeline[step].duration);
+        }, event.duration ?? 0);
 
         return () => clearTimeout(timer);
 
-    }, [step, onFinish]);
-
-    const event = timeline[step];
+    }, [step, event, onFinish]);
 
     switch (event.type) {
 
         case "logo":
             return <Logo />;
 
-        case "kernel":
-            return <Kernel />;
+        case "terminal":
+
+            return (
+
+                <TerminalBoot
+
+                    lines={event.lines}
+
+                    onComplete={() => {
+
+                        setStep(prev => prev + 1);
+
+                    }}
+
+                />
+
+            );
 
         case "hex":
             return <HexGrid />;
