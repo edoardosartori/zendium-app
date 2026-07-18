@@ -2,6 +2,8 @@ import { useState } from "react";
 import BootSequence from "./boot/BootSequence";
 import Dashboard from "./dashboard/Dashboard";
 
+console.log("App rendered");
+
 export default function Boot() {
 
     const [finished, setFinished] = useState(false);

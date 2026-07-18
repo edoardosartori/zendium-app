@@ -1,19 +1,28 @@
-import Intro from "./Intro";
-import BootSequence from "./BootSequence";
+import { useState } from "react";
+
 import "./Boot.css";
 
-export default function Boot(){
+import BootSequence from "./BootSequence";
+import Dashboard from "../dashboard/Dashboard";
 
-    return(
+console.log("Boot rendered");
 
+export default function Boot() {
+    
+    const [bootFinished, setBootFinished] = useState(false);
+
+    if (bootFinished) {
+        return <Dashboard />;
+    }
+
+    return (
         <div className="boot">
 
-            <Intro/>
-
-            <BootSequence/>
+            <BootSequence
+                onFinish={() => setBootFinished(true)}
+            />
 
         </div>
-
     );
 
 }

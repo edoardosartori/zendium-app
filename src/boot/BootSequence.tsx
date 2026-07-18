@@ -18,18 +18,22 @@ export default function BootSequence({ onFinish }: Props) {
 
     useEffect(() => {
 
-        // Ultimo evento raggiunto
         if (step >= timeline.length - 1) {
 
             const timer = setTimeout(() => {
+
                 onFinish();
+
             }, timeline[step].duration);
 
             return () => clearTimeout(timer);
+
         }
 
         const timer = setTimeout(() => {
+
             setStep((prev) => prev + 1);
+
         }, timeline[step].duration);
 
         return () => clearTimeout(timer);
@@ -57,5 +61,7 @@ export default function BootSequence({ onFinish }: Props) {
 
         default:
             return null;
+
     }
+
 }

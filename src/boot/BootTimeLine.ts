@@ -1,36 +1,28 @@
 export const timeline = [
 
-{
-    type:"logo",
-    duration:1000
-},
+    {
+        type: "logo",
+        duration: 1500
+    },
 
-{
-    type:"text",
-    duration:1800,
-    lines:[
-        "Initializing kernel...",
-        "Mounting filesystem..."
-    ]
-},
+    {
+        type: "kernel",
+        duration: 2500
+    },
 
-{
-    type:"hex",
-    duration:1500
-},
+    {
+        type: "hex",
+        duration: 1500
+    },
 
-{
-    type:"radar",
-    duration:2000
-},
+    {
+        type: "radar",
+        duration: 2000
+    },
 
-{
-    type:"vector",
-    duration:1800
-},
-
-{
-    type:"dashboard"
-}
+    {
+        type: "dashboard",
+        duration: 1500
+    }
 
 ];
