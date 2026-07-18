@@ -1,7 +1,12 @@
-import Boot from "./boot/Boot";
+import { useState } from "react";
+import BootSequence from "./boot/BootSequence";
+import Dashboard from "./dashboard/Dashboard";
 
-export default function App(){
+export default function Boot() {
 
-    return <Boot/>;
+    const [finished, setFinished] = useState(false);
 
+    return finished
+        ? <Dashboard />
+        : <BootSequence onFinish={() => setFinished(true)} />;
 }
