@@ -1,5 +1,7 @@
 :root {
     --color-primary: #55ff55;
+    --color-background: #111;
+    ;
 }
 
 /* ---------- RESET ---------- */
@@ -54,6 +56,15 @@ button {
 }
 
 /* ---------- PERSISTENT SHELL ---------- */
+.panel {
+    width: 400px;
+    height: 250px;
+    color: var(--color-primary);
+    background: var(--color-background);
+    border: 1px solid var(--color-primary);
+    padding: 10px;
+}
+
 .persistent-shell {
     position: relative;
     border: 1px solid #55fff5;
@@ -71,36 +82,33 @@ button {
 
 .persistent-shell-panel {
     position: absolute;
-    width: 280px;
-    height: 120px;
     overflow: hidden;
     z-index: 100;
 }
 
 .persistent-shell-upper-left {
-    top: 20px;
-    left: 20px;
+    top: 0;
+    left: 0;
 }
 
 .persistent-shell-upper-right {
-    top: 20px;
-    right: 20px;
+    top: 0;
+    right: 0;
 }
 
 .persistent-shell-lower-left {
-    bottom: 20px;
-    left: 20px;
+    bottom: 0;
+    left: 0;
 }
 
 .persistent-shell-lower-right {
-    bottom: 20px;
-    right: 20px;
+    bottom: 0;
+    right: 0;
 }
 
 
 /* /////////////////////////////////////////////////////////////// */
 .text {
-    background: #000;
     color: var(--color-primary);
     width: 100vw;
     height: 100vh;
@@ -124,25 +132,45 @@ button {
     white-space: pre;
 }
 
-.panel {
-    width: 280px;
-    min-height: 120px;
-    color: var(--color-primary);
-    background: #111;
-    border: 1px solid var(--color-primary);
-    padding: 10px;
-}
-
 .icon {
     color: var(--color-primary);
     width: 500px;
     height: 500px;
     margin: 10px;
+    margin-bottom: 0;
     padding: 10px;
+    padding-bottom: 0;
+
 }
 
 .initial-icon {
     color: var(--color-primary);
     width: 1000px;
     height: 1000px;
+}
+
+/* ---------- TERMINAL ---------- */
+.terminal-view {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.terminal-icon {
+    color: var(--color-primary);
+    width: 400px;
+    height: 400px;
+}
+
+.terminal-container {
+    width: min(900px, 90%);
+    height: 500px;
+    margin-top: 0;
+    background: var(--color-background);
+    border: 1px solid var(--color-primary);
+    padding: 20px;
+    padding-top: 0;
+    overflow: hidden;
 }

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import ThemableIcon from "@assets/themeable-icon.svg?react";
+import ThemeableIcon from "@assets/themeable-icon.svg?react";
 
 type Props = {
   onComplete: () => void;
@@ -16,7 +16,7 @@ export default function Logo({ onComplete }: Props) {
 
   return (
     <div className="text">
-      <ThemableIcon className="initial-icon" />
+      <ThemeableIcon className="initial-icon" />
     </div>
   );
 }

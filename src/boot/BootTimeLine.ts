@@ -5,7 +5,7 @@ export type BootEvent =
   | { type: "system-info" }
   | { type: "news" }
   | { type: "init-terminal" }
-  | { type: "dashboard" };
+  | { type: "terminal" };
 
 export const timeline: BootEvent[] = [
   { type: "logo" },
@@ -14,5 +14,5 @@ export const timeline: BootEvent[] = [
   { type: "system-info" },
   { type: "news" },
   { type: "init-terminal" },
-  { type: "dashboard" }
+  { type: "terminal" }
 ];

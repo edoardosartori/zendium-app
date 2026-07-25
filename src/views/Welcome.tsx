@@ -9,7 +9,7 @@ export default function Welcome({ onComplete }: Props) {
   useEffect(() => {
     const timer = setTimeout(() => {
       onComplete();
-    }, 10000);
+    }, 9500);
 
     return () => clearTimeout(timer);
   }, [onComplete]);

@@ -1,10 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import TypingText from "../core/utils/TypingText";
-import ThemableIcon from "@assets/themeable-icon.svg?react";
+import ThemeableIcon from "@assets/themeable-icon.svg?react";
 
-type SystemInfoData = Awaited<
-  ReturnType<typeof window.zendium.system.getInfo>
->;
+type SystemInfoData = Awaited<ReturnType<typeof window.zendium.system.getInfo>>;
 
 type Props = {
   onComplete: () => void;
@@ -25,23 +23,15 @@ export default function SystemInfo({ onComplete }: Props) {
 
   const lines = info
     ? [
-        `CPU: ${info.cpu}`,
-        `CORES: ${info.cpuCores}`,
-        `RAM: ${info.ramFree} / ${info.ramTotal}`,
-        `ARCH: ${info.architecture}`,
-        `KERNEL: ${info.kernel}`,
         `HOSTNAME: ${info.hostname}`,
         `OS: ${info.operatingSystem}`,
+        `CPU: ${info.cpu}`,
+        `CORES: ${info.cpuCores}`,
+        `RAM: ${info.ramFree} free / ${info.ramTotal} total`,
+        `ARCH: ${info.architecture}`,
+        `KERNEL: ${info.kernel}`,
       ]
     : [];
-
-  if (!info) {
-    return (
-      <div className="text">
-        <TypingText text="Loading system information..." />
-      </div>
-    );
-  }
 
   const handleLineComplete = () => {
     const isLastLine = currentLine === lines.length - 1;
@@ -68,14 +58,12 @@ export default function SystemInfo({ onComplete }: Props) {
   return (
     <div className="text">
       <div>
-        <ThemableIcon className="icon" />
+        <ThemeableIcon className="icon" />
       </div>
 
       <div>
         {lines.slice(0, currentLine).map((line, index) => (
-          <div key={`${line}-${index}`}>
-            {line}
-          </div>
+          <div key={`${line}-${index}`}>{line}</div>
         ))}
 
         {currentLine < lines.length && (
