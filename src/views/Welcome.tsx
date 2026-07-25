@@ -1,15 +1,32 @@
+import { useEffect } from "react";
 import TypingText from "../core/utils/TypingText";
-import ThemableIcon from "@assets/themeable-icon.svg?react";
 
 type Props = {
   onComplete: () => void;
 };
 
 export default function Welcome({ onComplete }: Props) {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      onComplete();
+    }, 10000);
+
+    return () => clearTimeout(timer);
+  }, [onComplete]);
+
   return (
-    <div className="text">
-      <ThemableIcon className="logo" />
-      <TypingText text="WELCOME" />
+    <div className="welcome-text">
+      <div className="welcome-logo">
+        <TypingText
+          speed={15}
+          text={` ██╗    ██╗███████╗██╗      ██████╗  ██████╗ ███╗   ███╗███████╗
+ ██║    ██║██╔════╝██║     ██╔════╝ ██╔═══██╗████╗ ████║██╔════╝
+ ██║ █╗ ██║█████╗  ██║     ██║      ██║   ██║██╔████╔██║█████╗
+ ██║███╗██║██╔══╝  ██║     ██║      ██║   ██║██║╚██╔╝██║██╔══╝
+ ╚███╔███╔╝███████╗███████╗╚██████╗ ╚██████╔╝██║ ╚═╝ ██║███████╗
+  ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝  ╚═════╝ ╚═╝     ╚═╝╚══════╝`}
+        />
+      </div>
     </div>
   );
 }

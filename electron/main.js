@@ -14,7 +14,7 @@ ipcMain.handle("system:getInfo", () => {
 console.time("Electron - used system:getInfo");
 
 function createWindow() {
-  console.timeLog("Electron", "createWindow");
+  //console.timeLog("Electron", "createWindow");
 
   const win = new BrowserWindow({
     fullscreen: true,
@@ -32,11 +32,11 @@ function createWindow() {
   });
 
   win.once("ready-to-show", () => {
-    console.timeLog("Electron", "ready-to-show");
+    // console.timeLog("Electron", "ready-to-show");
     win.show();
   });
 
-  win.webContents.on("did-start-loading", () => {
+/*   win.webContents.on("did-start-loading", () => {
     console.timeLog("Electron", "did-start-loading");
   });
 
@@ -46,11 +46,11 @@ function createWindow() {
 
   win.webContents.on("did-finish-load", () => {
     console.timeLog("Electron", "did-finish-load");
-  });
+  }); 
 
   win.webContents.on("did-stop-loading", () => {
     console.timeEnd("Electron");
-  });
+  });*/
 
   if (isDev) {
     console.log("Loading DEV server...");
@@ -63,7 +63,7 @@ function createWindow() {
 }
 
 app.whenReady().then(() => {
-  console.timeLog("Electron", "app ready");
+  // console.timeLog("Electron", "app ready");
   createWindow();
 });
 

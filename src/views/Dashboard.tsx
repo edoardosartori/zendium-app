@@ -7,7 +7,7 @@ type Props = {
 export default function Dashboard({ onComplete }: Props) {
   return (
     <div className="text">
-      <ThemableIcon className="logo" />
+      <ThemableIcon className="icon" />
       DASHBOARD
     </div>
   );

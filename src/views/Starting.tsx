@@ -1,15 +1,22 @@
+import { useEffect } from "react";
 import TypingText from "../core/utils/TypingText";
-import ThemableIcon from "@assets/themeable-icon.svg?react";
 
 type Props = {
   onComplete: () => void;
 };
 
 export default function Starting({ onComplete }: Props) {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      onComplete();
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, [onComplete]);
+
   return (
     <div className="text">
-      <ThemableIcon className="logo" />
-      <TypingText text="Starting........" />
+      <TypingText text="Starting......." />
     </div>
   );
 }

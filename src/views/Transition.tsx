@@ -1,11 +1,12 @@
 import { useEffect } from "react";
+import TypingText from "../core/utils/TypingText";
 import ThemableIcon from "@assets/themeable-icon.svg?react";
 
 type Props = {
   onComplete: () => void;
 };
 
-export default function Logo({ onComplete }: Props) {
+export default function Transition({ onComplete }: Props) {
   useEffect(() => {
     const timer = setTimeout(() => {
       onComplete();
@@ -16,9 +17,10 @@ export default function Logo({ onComplete }: Props) {
 
   return (
     <div className="text">
-      <ThemableIcon className="initial-icon" />
+      <ThemableIcon className="logo" />
+      <TypingText text="TRANSITION" />
     </div>
   );
 }
 
-console.log("logo rendered");
+console.log("transition rendered");

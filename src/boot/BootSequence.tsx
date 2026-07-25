@@ -10,8 +10,7 @@ import SystemInfo from "@views/SystemInfo";
 import News from "@views/News";
 import InitTerminal from "@views/InitTerminal";
 import Dashboard from "@views/Dashboard";
-
-import DashboardTransition from "@views/DashboardTransition";
+import Transition from "@views/Transition";
 
 type Props = {
   onFinish: () => void;
@@ -20,46 +19,35 @@ type Props = {
 export default function BootSequence({ onFinish }: Props) {
   const [step, setStep] = useState(0);
   const event = timeline[step];
-
-  useEffect(() => {
-    if (event.type === "dashboard") {
+  const handleComplete = () => {
+    if (step >= timeline.length - 1) {
+      onFinish();
       return;
     }
-
-    if (step >= timeline.length - 1) {
-      const timer = setTimeout(() => {
-        onFinish();
-      }, event.duration);
-
-      return () => clearTimeout(timer);
-    }
-
-    const timer = setTimeout(() => {
-      setStep((prev) => prev + 1);
-    }, event.duration);
-
-    return () => clearTimeout(timer);
-  }, [step, event, onFinish]);
+    setStep((prev) => prev + 1);
+  };
 
   switch (event.type) {
     case "logo":
-      return <Logo onComplete={() => setStep((prev) => prev + 1)} />;
+      return <Logo onComplete={handleComplete} />;
+
     case "starting":
-      return <Starting onComplete={() => setStep((prev) => prev + 1)} />;
+      return <Starting onComplete={handleComplete} />;
+
     case "welcome":
-      return <Welcome onComplete={() => setStep((prev) => prev + 1)} />;
+      return <Welcome onComplete={handleComplete} />;
+
     case "system-info":
-      return <SystemInfo onComplete={() => setStep((prev) => prev + 1)} />;
+      return <SystemInfo onComplete={handleComplete} />;
+
     case "news":
-      return <News onComplete={() => setStep((prev) => prev + 1)} />;
+      return <News onComplete={handleComplete} />;
+
     case "init-terminal":
-      return (
-        <InitTerminal onComplete={() => setStep((prev) => prev + 1)} />
-      );
+      return <InitTerminal onComplete={handleComplete} />;
+
     case "dashboard":
-      return (
-        <Dashboard onComplete={() => setStep((prev) => prev + 1)} />
-      );
+      return <Dashboard onComplete={handleComplete} />;
 
     default:
       return null;

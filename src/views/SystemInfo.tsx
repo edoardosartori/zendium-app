@@ -1,16 +1,20 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import TypingText from "../core/utils/TypingText";
 import ThemableIcon from "@assets/themeable-icon.svg?react";
 
-type SystemInfo = Awaited<ReturnType<typeof window.zendium.system.getInfo>>;
+type SystemInfoData = Awaited<
+  ReturnType<typeof window.zendium.system.getInfo>
+>;
 
 type Props = {
   onComplete: () => void;
 };
 
 export default function SystemInfo({ onComplete }: Props) {
-  const [info, setInfo] = useState<SystemInfo | null>(null);
+  const [info, setInfo] = useState<SystemInfoData | null>(null);
   const [currentLine, setCurrentLine] = useState(0);
+
+  const completionStarted = useRef(false);
 
   useEffect(() => {
     window.zendium.system.getInfo().then((data) => {
@@ -18,6 +22,18 @@ export default function SystemInfo({ onComplete }: Props) {
       setInfo(data);
     });
   }, []);
+
+  const lines = info
+    ? [
+        `CPU: ${info.cpu}`,
+        `CORES: ${info.cpuCores}`,
+        `RAM: ${info.ramFree} / ${info.ramTotal}`,
+        `ARCH: ${info.architecture}`,
+        `KERNEL: ${info.kernel}`,
+        `HOSTNAME: ${info.hostname}`,
+        `OS: ${info.operatingSystem}`,
+      ]
+    : [];
 
   if (!info) {
     return (
@@ -27,36 +43,46 @@ export default function SystemInfo({ onComplete }: Props) {
     );
   }
 
-  const lines = [
-    `CPU: ${info.cpu}`,
-    `CORES: ${info.cpuCores}`,
-    `RAM: ${info.ramFree} / ${info.ramTotal}`,
-    `ARCH: ${info.architecture}`,
-    `KERNEL: ${info.kernel}`,
-    `HOSTNAME: ${info.hostname}`,
-    `OS: ${info.operatingSystem}`,
-  ];
+  const handleLineComplete = () => {
+    const isLastLine = currentLine === lines.length - 1;
+
+    if (isLastLine) {
+      if (completionStarted.current) {
+        return;
+      }
+
+      completionStarted.current = true;
+
+      setTimeout(() => {
+        onComplete();
+      }, 3000);
+
+      return;
+    }
+
+    setTimeout(() => {
+      setCurrentLine((prev) => prev + 1);
+    }, 150);
+  };
 
   return (
     <div className="text">
       <div>
+        <ThemableIcon className="icon" />
+      </div>
+
+      <div>
         {lines.slice(0, currentLine).map((line, index) => (
-          <div key={index}>{line}</div>
+          <div key={`${line}-${index}`}>
+            {line}
+          </div>
         ))}
 
         {currentLine < lines.length && (
           <TypingText
+            key={currentLine}
             text={lines[currentLine]}
-            onComplete={() => {
-              setTimeout(() => {
-                const nextLine = currentLine + 1;
-                setCurrentLine(nextLine);
-
-                if (nextLine >= lines.length) {
-                  onComplete();
-                }
-              }, 150);
-            }}
+            onComplete={handleLineComplete}
           />
         )}
       </div>
