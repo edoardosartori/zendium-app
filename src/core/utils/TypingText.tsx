@@ -16,7 +16,7 @@ export default function TypingText({
 
     text,
 
-    speed = 50,
+    speed = 60,
 
     onComplete
 

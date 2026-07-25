@@ -26,7 +26,9 @@ function createWindow() {
         show: false,
 
         webPreferences: {
-            contextIsolation: true
+            preload: path.join(__dirname, "preload.js"),
+            contextIsolation: true,
+            nodeIntegration: false
         }
 
     });
@@ -43,7 +45,7 @@ function createWindow() {
 
     });
 
-    // win.webContents.openDevTools(); # apre automaticamente i devTools per test
+    win.webContents.openDevTools(); // apre automaticamente i devTools per test
 
     win.webContents.on("did-start-loading", () => {
 
