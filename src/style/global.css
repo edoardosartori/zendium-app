@@ -155,6 +155,11 @@ body {
 }
 
 /* ---------- TERMINAL ---------- */
+.system-text {
+    font-size: x-large;
+}
+
+/* ---------- TERMINAL ---------- */
 .terminal-icon {
     color: var(--color-primary);
     width: 400px;

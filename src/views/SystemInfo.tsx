@@ -23,6 +23,7 @@ export default function SystemInfo({ onComplete }: Props) {
 
   const lines = info
     ? [
+        // SYSTEM
         `HOSTNAME: ${info.hostname}`,
         `OS: ${info.operatingSystem}`,
         `CPU: ${info.cpu}`,
@@ -30,6 +31,32 @@ export default function SystemInfo({ onComplete }: Props) {
         `RAM: ${info.ramFree} free / ${info.ramTotal} total`,
         `ARCH: ${info.architecture}`,
         `KERNEL: ${info.kernel}`,
+        `GPU: ${info.gpu}`,
+
+        // BATTERY
+        `BATTERY: ${
+          info.battery
+            ? `${info.battery.percent}% | ${
+                info.battery.acConnected ? "AC POWER" : "ON BATTERY"
+              }`
+            : "NOT AVAILABLE"
+        }`,
+
+        // NETWORK
+        ...info.network.map(
+          (network) => `NETWORK: ${network.interface} | Wi-Fi | ${network.ip}`,
+        ),
+
+        // STORAGE
+        ...info.storage.map(
+          (storage) =>
+            `STORAGE: ${storage.used} / ${storage.total} | ${storage.usedPercent} USED`,
+        ),
+
+        // ExternalDISPLAY
+        `DISPLAY: ${
+          info.externalDisplay ? "EXTERNAL CONNECTED" : "NO EXTERNAL DISPLAY"
+        }`,
       ]
     : [];
 
@@ -57,11 +84,12 @@ export default function SystemInfo({ onComplete }: Props) {
 
   return (
     <div className="text">
+      {" "}
       <div>
-        <ThemeableIcon className="icon" />
+        {" "}
+        <ThemeableIcon className="icon" />{" "}
       </div>
-
-      <div>
+      <div className="system-text">
         {lines.slice(0, currentLine).map((line, index) => (
           <div key={`${line}-${index}`}>{line}</div>
         ))}

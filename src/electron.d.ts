@@ -17,10 +17,13 @@ declare global {
           operatingSystem: string;
           gpu: string;
           storage: {
-            name: string;
-            size: string;
-            type: string;
+            mount: string;
+            total: string;
+            used: string;
+            available: string;
+            usedPercent: string;
           }[];
+          externalDisplay: boolean;
           network: {
             interface: string;
             ip: string;
@@ -30,7 +33,7 @@ declare global {
             percent: number;
             charging: boolean;
             acConnected: boolean;
-            timeRemaining: number;
+            timeRemaining: number | null;
           } | null;
         }>;
       };

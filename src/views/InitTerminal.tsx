@@ -9,14 +9,14 @@ export default function Init({ onComplete }: Props) {
   useEffect(() => {
     const timer = setTimeout(() => {
       onComplete();
-    }, 2000);
+    }, 3200);
 
     return () => clearTimeout(timer);
   }, [onComplete]);
 
   return (
     <div className="text">
-      <TypingText text="INIT TERMINAL...." />
+      <TypingText text="INIT TERMINAL{pause:800}.{pause:800}.{pause:800}.{pause:800}...." />
     </div>
   );
 }
