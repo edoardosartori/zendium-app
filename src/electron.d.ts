@@ -14,6 +14,21 @@ declare global {
           hostname: string;
           platform: string;
           operatingSystem: string;
+          gpu: string;
+          storage: {
+            name: string;
+            size: string;
+            type: string;
+          }[];
+          network: {
+            interface: string;
+            ip: string;
+            mac: string;
+          }[];
+          battery: {
+            percent: number;
+            charging: boolean;
+          } | null;
         }>;
       };
     };

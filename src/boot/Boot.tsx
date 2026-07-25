@@ -8,21 +8,15 @@ import Dashboard from "../dashboard/Dashboard";
 console.log("Boot rendered");
 
 export default function Boot() {
-    
-    const [bootFinished, setBootFinished] = useState(false);
+  const [bootFinished, setBootFinished] = useState(false);
 
-    if (bootFinished) {
-        return <Dashboard />;
-    }
+  if (bootFinished) {
+    return <Dashboard />;
+  }
 
-    return (
-        <div className="boot">
-
-            <BootSequence
-                onFinish={() => setBootFinished(true)}
-            />
-
-        </div>
-    );
-
+  return (
+    <div className="boot">
+      <BootSequence onFinish={() => setBootFinished(true)} />
+    </div>
+  );
 }

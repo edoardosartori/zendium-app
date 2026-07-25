@@ -17,7 +17,8 @@
   "dependencies": {
     "framer-motion": "^11.18.2",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "systeminformation": "^5.33.1"
   },
   "devDependencies": {
     "@types/react": "^18.3.12",
@@ -33,11 +34,9 @@
   "build": {
     "appId": "com.zendium.app",
     "productName": "Zendium",
-
     "directories": {
       "output": "release"
     },
-
     "linux": {
       "target": [
         "AppImage"

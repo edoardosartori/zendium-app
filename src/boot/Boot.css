@@ -1,37 +1,32 @@
 html,
 body,
-#root{
-
-    margin:0;
-    width:100%;
-    height:100%;
-    background:#000;
-    color:#00ff88;
-    font-family:monospace;
+#root {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  color: #00ff88;
+  font-family: monospace;
 }
 
-.boot{
-
-    width:100%;
-    height:100%;
-    padding:40px;
-    box-sizing:border-box;
+.boot {
+  width: 100%;
+  height: 100%;
+  padding: 40px;
+  box-sizing: border-box;
 }
 
-.intro{
-
-    margin-bottom:40px;
+.intro {
+  margin-bottom: 40px;
 }
 
-.intro h1{
-
-    font-size:64px;
-    margin:0;
-    letter-spacing:12px;
+.intro h1 {
+  font-size: 64px;
+  margin: 0;
+  letter-spacing: 12px;
 }
 
-.boot-sequence{
-
-    font-size:18px;
-    line-height:1.8;
+.boot-sequence {
+  font-size: 18px;
+  line-height: 1.8;
 }

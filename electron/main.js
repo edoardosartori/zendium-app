@@ -1,29 +1,17 @@
 import { app, BrowserWindow, ipcMain } from "electron";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import os from "node:os";
+
+import { getSystemInfo } from "./system.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const isDev = !app.isPackaged;
 
 ipcMain.handle("system:getInfo", () => {
-  const totalRam = os.totalmem();
-  const freeRam = os.freemem();
-
-  return {
-    cpu: os.cpus()[0]?.model ?? "Unknown CPU",
-    cpuCores: os.cpus().length,
-    ramTotal: `${(totalRam / 1024 / 1024 / 1024).toFixed(1)} GB`,
-    ramFree: `${(freeRam / 1024 / 1024 / 1024).toFixed(1)} GB`,
-    architecture: os.arch(),
-    kernel: os.release(),
-    hostname: os.hostname(),
-    platform: os.platform(),
-    operatingSystem: `${os.type()} ${os.release()}`,
-  };
+    return getSystemInfo();
 });
 
-console.time("Electron");
+console.time("Electron - used system:getInfo");
 
 function createWindow() {
   console.timeLog("Electron", "createWindow");
@@ -66,6 +54,7 @@ function createWindow() {
   if (isDev) {
     console.log("Loading DEV server...");
     win.loadURL("http://localhost:8080");
+    win.webContents.openDevTools();
   } else {
     console.log("Loading production build...");
     win.loadFile(path.join(__dirname, "../dist/index.html"));
