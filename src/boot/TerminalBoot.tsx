@@ -18,19 +18,7 @@ export default function TerminalBoot({ lines, onComplete }: Props) {
   if (currentLine >= lines.length) return null;
 
   return (
-    <div
-      style={{
-        width: "100%",
-        height: "100%",
-        background: "#000",
-        color: "#55ff55",
-        fontFamily: "monospace",
-        fontSize: "22px",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
+    <div className="text">
       <div
         style={{
           width: "900px",

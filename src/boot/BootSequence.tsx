@@ -50,11 +50,11 @@ export default function BootSequence({ onFinish }: Props) {
         />
       );
 
-    case "hex":
+/*     case "hex":
       return <HexGrid />;
 
     case "radar":
-      return <Radar />;
+      return <Radar />; */
 
     case "dashboard":
       return <DashboardTransition />;

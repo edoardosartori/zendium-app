@@ -29,19 +29,7 @@ export default function SystemBoot({ onComplete }: Props) {
 
   if (!lines) {
     return (
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          background: "#000",
-          color: "#55ff55",
-          fontFamily: "monospace",
-          fontSize: "22px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+      <div className="text">
         Reading system information...
       </div>
     );

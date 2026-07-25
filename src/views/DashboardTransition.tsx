@@ -14,22 +14,8 @@ export default function DashboardTransition() {
     });
   }, []);
 
-  console.log("dashboard transition rendered");
-
   return (
-    <div
-      style={{
-        background: "#000",
-        color: "#55ff55",
-        width: "100vw",
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        fontSize: "40px",
-        fontFamily: "monospace",
-      }}
-    >
+    <div className="text">
       {info ? (
         <div>
           <div>CPU: {info.cpu}</div>
@@ -46,3 +32,5 @@ export default function DashboardTransition() {
     </div>
   );
 }
+
+console.log("dashboard transition rendered");

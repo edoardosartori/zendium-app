@@ -1,56 +1,117 @@
 /* ---------- RESET ---------- */
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 /* ---------- ROOT ---------- */
-
 html,
 body,
 #root {
-    width:100%;
-    height:100%;
-    overflow:hidden;
-    background:#000;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
 }
 
 /* ---------- BODY ---------- */
-
 body {
-    font-family:
-        "JetBrains Mono",
-        "Fira Code",
-        monospace;
-    color:#55ff55;
-    user-select:none;
-    -webkit-font-smoothing:antialiased;
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+    color: #55ff55;
+    user-select: none;
+    -webkit-font-smoothing: antialiased;
 }
 
 /* ---------- LINKS ---------- */
-
 a {
-    color:inherit;
-    text-decoration:none;
+    color: inherit;
+    text-decoration: none;
 }
 
 /* ---------- BUTTONS ---------- */
-
 button {
-    border:none;
-    outline:none;
-    background:none;
-    font:inherit;
-    color:inherit;
-
+    border: none;
+    outline: none;
+    background: none;
+    font: inherit;
+    color: inherit;
 }
 
 /* ---------- VIEWS ---------- */
-
 .cursor {
-    animation:blink 1s steps(1) infinite;
+    animation: blink 1s steps(1) infinite;
 }
-@keyframes blink{
-    50%{opacity:0;}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+/* ---------- TEXT ---------- */
+.text {
+    background: #000;
+    color: #55ff55;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    font-family: monospace;
+}
+
+/* ---------- PANEL ---------- */
+.panel {
+    width: 280px;
+    min-height: 120px;
+    color: #55ff55;
+    background: #111;
+    border: 1px solid #55ff55;
+    padding: 10px;
+}
+
+/* ---------- PERSISTENT SHELL ---------- */
+.persistent-shell {
+    position: relative;
+    border: 1px solid #55fff5;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+}
+
+.persistent-shell-center {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.persistent-shell-panel {
+    position: absolute;
+    width: 280px;
+    height: 120px;
+    overflow: hidden;
+    z-index: 100;
+}
+
+.persistent-shell-upper-left {
+    top: 20px;
+    left: 20px;
+}
+
+.persistent-shell-upper-right {
+    top: 20px;
+    right: 20px;
+}
+
+.persistent-shell-lower-left {
+    bottom: 20px;
+    left: 20px;
+}
+
+.persistent-shell-lower-right {
+    bottom: 20px;
+    right: 20px;
 }
