@@ -76,7 +76,7 @@ export default function Terminal() {
   }, []);
 
   return (
-    <div className="terminal-view">
+    <div className="central-view">
       <ThemeableIcon className="terminal-icon" />
       <div className="terminal-container">
         <div ref={terminalRef} className="terminal-instance" />

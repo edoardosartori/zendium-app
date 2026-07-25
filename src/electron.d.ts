@@ -12,6 +12,7 @@ declare global {
           architecture: string;
           kernel: string;
           hostname: string;
+          username: string;
           platform: string;
           operatingSystem: string;
           gpu: string;
@@ -28,6 +29,8 @@ declare global {
           battery: {
             percent: number;
             charging: boolean;
+            acConnected: boolean;
+            timeRemaining: number;
           } | null;
         }>;
       };

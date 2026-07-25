@@ -15,7 +15,7 @@ export default function Logo({ onComplete }: Props) {
   }, [onComplete]);
 
   return (
-    <div className="text">
+    <div className="central-view">
       <ThemeableIcon className="initial-icon" />
     </div>
   );

@@ -64,18 +64,23 @@ function createWindow() {
   // --------------------------------------------------
   // REAL BASH TERMINAL
   // --------------------------------------------------
-  const shell = process.env.SHELL || "/bin/bash";
 
-  terminalProcess = pty.spawn(shell, [], {
-    name: "xterm-color",
-    cols: 80,
-    rows: 24,
-    cwd: process.env.HOME || process.cwd(),
-    env: {
-      ...process.env,
-      TERM: "xterm-256color",
+  const shell = "/bin/bash";
+
+  terminalProcess = pty.spawn(
+    shell,
+    ["--rcfile", path.join(__dirname, "../scripts/zendium-bashrc")],
+    {
+      name: "xterm-256color",
+      cols: 80,
+      rows: 24,
+      cwd: process.env.HOME || process.cwd(),
+      env: {
+        ...process.env,
+        TERM: "xterm-256color",
+      },
     },
-  });
+  );
 
   terminalProcess.onData((data) => {
     if (!win.isDestroyed()) {

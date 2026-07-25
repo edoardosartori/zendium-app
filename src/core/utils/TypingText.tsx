@@ -1,62 +1,66 @@
 import { useEffect, useState } from "react";
-
 import { beep } from "../audio/Audio";
 
 type Props = {
-
-    text: string;
-
-    speed?: number;
-
-    onComplete?: () => void;
-
+  text: string;
+  speed?: number;
+  onComplete?: () => void;
+  showCursor?: boolean;
+  sound?: boolean;
 };
 
 export default function TypingText({
-
-    text,
-
-    speed = 60,
-
-    onComplete
-
+  text,
+  speed = 60,
+  onComplete,
+  showCursor = true,
+  sound = true,
 }: Props) {
+  const [value, setValue] = useState("");
 
-    const [value, setValue] = useState("");
+  useEffect(() => {
+    let i = 0;
+    let displayed = "";
+    let cancelled = false;
+    let timer: ReturnType<typeof setTimeout>;
 
-    useEffect(() => {
+    function tick() {
+      if (cancelled) return;
 
-        let i = 0;
+      if (i >= text.length) {
+        onComplete?.();
+        return;
+      }
 
-        const timer = setInterval(() => {
+      // pause like {pause:500}
+      const pauseMatch = text.slice(i).match(/^\{pause:(\d+)\}/);
+      if (pauseMatch) {
+        i += pauseMatch[0].length;
+        timer = setTimeout(tick, Number(pauseMatch[1]));
+        return;
+      }
 
-            if (i >= text.length) {
+      const char = text[i];
+      if (char !== "\n" && sound) beep();
 
-                clearInterval(timer);
+      displayed += char;
+      setValue(displayed);
+      i++;
+      timer = setTimeout(tick, speed);
+    }
 
-                onComplete?.();
+    tick();
 
-                return;
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
+    };
+  }, []);
 
-            }
-
-            beep();
-
-            setValue(text.slice(0, i + 1));
-
-            i++;
-
-        }, speed);
-
-        return () => clearInterval(timer);
-
-    }, []);
-
-    return (
-    <span>
-        {value}
-        <span className="cursor">█</span>
+  return (
+    <span style={{ whiteSpace: "pre" }}>
+      {value}
+      {showCursor && <span className="cursor">█</span>}
     </span>
-    );
-
+  );
 }
