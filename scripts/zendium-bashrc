@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+clear
+
+echo ""
+echo "Welcome back, $USER"
+echo ""
+
+echo "System ready."
+echo "Zendium environment loaded."
+echo ""
