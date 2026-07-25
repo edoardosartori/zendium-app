@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import TypingText from "../core/utils/TypingText";
+import ThemableIcon from "@assets/themeable-icon.svg?react";
 
 type SystemInfo = Awaited<ReturnType<typeof window.zendium.system.getInfo>>;
 
@@ -7,7 +8,7 @@ type Props = {
   onComplete: () => void;
 };
 
-export default function DashboardTransition({ onComplete }: Props) {
+export default function SystemInfo({ onComplete }: Props) {
   const [info, setInfo] = useState<SystemInfo | null>(null);
   const [currentLine, setCurrentLine] = useState(0);
 
@@ -63,4 +64,4 @@ export default function DashboardTransition({ onComplete }: Props) {
   );
 }
 
-console.log("dashboard transition rendered");
+console.log("system info rendered");

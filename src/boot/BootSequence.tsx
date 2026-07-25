@@ -1,11 +1,17 @@
 import { useEffect, useState } from "react";
+
 import { timeline } from "./BootTimeLine";
-import Logo from "../views/Logo";
-import HexGrid from "../views/HexGrid";
-import Radar from "../views/Radar";
-import DashboardTransition from "../views/DashboardTransition";
-import TerminalBoot from "./TerminalBoot";
-import SystemBoot from "./SystemBoot";
+//import TerminalBoot from "./TerminalBoot";
+
+import Logo from "@views/Logo";
+import Starting from "@views/Starting";
+import Welcome from "@views/Welcome";
+import SystemInfo from "@views/SystemInfo";
+import News from "@views/News";
+import InitTerminal from "@views/InitTerminal";
+import Dashboard from "@views/Dashboard";
+
+import DashboardTransition from "@views/DashboardTransition";
 
 type Props = {
   onFinish: () => void;
@@ -16,7 +22,7 @@ export default function BootSequence({ onFinish }: Props) {
   const event = timeline[step];
 
   useEffect(() => {
-    if (event.type === "system" || event.type === "terminal") {
+    if (event.type === "dashboard") {
       return;
     }
 
@@ -37,27 +43,23 @@ export default function BootSequence({ onFinish }: Props) {
 
   switch (event.type) {
     case "logo":
-      return <Logo />;
-
-    case "system":
-      return <SystemBoot onComplete={() => setStep((prev) => prev + 1)} />;
-
-    case "terminal":
+      return <Logo onComplete={() => setStep((prev) => prev + 1)} />;
+    case "starting":
+      return <Starting onComplete={() => setStep((prev) => prev + 1)} />;
+    case "welcome":
+      return <Welcome onComplete={() => setStep((prev) => prev + 1)} />;
+    case "system-info":
+      return <SystemInfo onComplete={() => setStep((prev) => prev + 1)} />;
+    case "news":
+      return <News onComplete={() => setStep((prev) => prev + 1)} />;
+    case "init-terminal":
       return (
-        <TerminalBoot
-          lines={event.lines}
-          onComplete={() => setStep((prev) => prev + 1)}
-        />
+        <InitTerminal onComplete={() => setStep((prev) => prev + 1)} />
       );
-
-/*     case "hex":
-      return <HexGrid />;
-
-    case "radar":
-      return <Radar />; */
-
     case "dashboard":
-      return <DashboardTransition />;
+      return (
+        <Dashboard onComplete={() => setStep((prev) => prev + 1)} />
+      );
 
     default:
       return null;

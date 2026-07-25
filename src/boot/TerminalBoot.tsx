@@ -1,35 +1,38 @@
-import { useEffect, useState } from "react";
-
+/* import { useEffect, useState } from "react";
 import TypingText from "../core/utils/TypingText";
 
 type Props = {
-  lines: string[];
-  onComplete?: () => void;
+  onComplete: () => void;
 };
 
-export default function TerminalBoot({ lines, onComplete }: Props) {
+const lines = [
+  "Initializing kernel........OK",
+  "Mounting filesystem........OK",
+  "Loading drivers........OK",
+  "Detecting hardware........OK",
+];
+
+export default function TerminalBoot({ onComplete }: Props) {
   const [currentLine, setCurrentLine] = useState(0);
+
   useEffect(() => {
     if (currentLine >= lines.length) {
-      onComplete?.();
+      onComplete();
     }
-  }, [currentLine, lines.length, onComplete]);
+  }, [currentLine, onComplete]);
 
-  if (currentLine >= lines.length) return null;
+  if (currentLine >= lines.length) {
+    return null;
+  }
 
   return (
     <div className="text">
-      <div
-        style={{
-          width: "900px",
-        }}
-      >
+      <div>
         {lines.slice(0, currentLine).map((line, index) => (
           <div key={index}>{line}</div>
         ))}
 
         <TypingText
-          key={currentLine}
           text={lines[currentLine]}
           onComplete={() => {
             setTimeout(() => {
@@ -41,3 +44,4 @@ export default function TerminalBoot({ lines, onComplete }: Props) {
     </div>
   );
 }
+ */

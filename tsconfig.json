@@ -6,6 +6,10 @@
     "moduleResolution": "bundler",
     "strict": true,
     "skipLibCheck": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@assets/*": ["./assets/*",],
+      "@views/*": ["./src/views/*",]
+    }
   }
 }

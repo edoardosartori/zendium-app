@@ -49,29 +49,6 @@ button {
     }
 }
 
-/* ---------- TEXT ---------- */
-.text {
-    background: #000;
-    color: #55ff55;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 40px;
-    font-family: monospace;
-}
-
-/* ---------- PANEL ---------- */
-.panel {
-    width: 280px;
-    min-height: 120px;
-    color: #55ff55;
-    background: #111;
-    border: 1px solid #55ff55;
-    padding: 10px;
-}
-
 /* ---------- PERSISTENT SHELL ---------- */
 .persistent-shell {
     position: relative;
@@ -114,4 +91,41 @@ button {
 .persistent-shell-lower-right {
     bottom: 20px;
     right: 20px;
+}
+
+
+/* /////////////////////////////////////////////////////////////// */
+.text {
+    background: #000;
+    color: #55ff55;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    font-family: monospace;
+}
+
+.panel {
+    width: 280px;
+    min-height: 120px;
+    color: #55ff55;
+    background: #111;
+    border: 1px solid #55ff55;
+    padding: 10px;
+}
+
+.logo {
+    color: #55ff55;
+    width: 500px;
+    height: 500px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.initial-logo {
+    color: #55ff55;
+    width: 1000px;
+    height: 1000px;
 }
