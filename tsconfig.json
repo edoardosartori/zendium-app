@@ -9,7 +9,8 @@
     "allowSyntheticDefaultImports": true,
     "paths": {
       "@assets/*": ["./assets/*",],
-      "@views/*": ["./src/views/*",]
+      "@views/*": ["./src/views/*",],
+      "@transitions/*": ["./src/transitions/*",]
     }
   }
 }

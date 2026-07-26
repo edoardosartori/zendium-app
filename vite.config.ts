@@ -12,6 +12,7 @@ export default defineConfig({
     alias: {
       "@assets": path.resolve(__dirname, "assets"),
       "@views": path.resolve(__dirname, "src/views"),
+      "@transitions": path.resolve(__dirname, "src/transitions")
     },
   },
 

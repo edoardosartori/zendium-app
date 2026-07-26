@@ -13,7 +13,6 @@ export default function Welcome({ onComplete }: Props) {
 
   useEffect(() => {
     window.zendium.system.getInfo().then((data) => {
-      console.log("WELCOME SYSTEM INFO:", data);
       setInfo(data);
     });
   }, []);

@@ -10,6 +10,8 @@ import News from "@views/News";
 import InitTerminal from "@views/InitTerminal";
 import Terminal from "@views/Terminal";
 
+import ScanTransition from "@transitions/ScanTransition";
+
 export default function BootSequence() {
   const [step, setStep] = useState(0);
 
@@ -44,6 +46,9 @@ export default function BootSequence() {
 
     case "terminal":
       return <Terminal />;
+
+    case "scan-transition":
+      return <ScanTransition onComplete={handleComplete}  />;
 
     default:
       return null;

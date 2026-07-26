@@ -1,0 +1,251 @@
+/* ---------- SCAN TRANSITION ---------- */
+
+.scan-transition {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--color-primary);
+    background: transparent;
+}
+
+.scan-transition-inner {
+    position: absolute;
+    inset: 0;
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: var(--color-primary);
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+}
+
+/* ---------- CENTRAL VISUAL ---------- */
+
+.scan-visual {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: scan-visual-exit 0.7s ease-in 7.3s forwards;
+}
+
+/* ---------- SCAN LINE ---------- */
+
+.scan-line {
+    position: absolute;
+    top: -10%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--color-primary);
+    box-shadow: 0 0 5px var(--color-primary), 0 0 15px var(--color-primary), 0 0 30px var(--color-primary);
+    animation: scan-line-move 1.2s ease-in-out forwards, scan-line-fade 1.2s ease-in-out forwards;
+}
+
+/* ---------- HUD ---------- */
+
+.scan-hud {
+    position: relative;
+    width: 320px;
+    height: 320px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ---------- RINGS ---------- */
+
+.scan-ring {
+    position: absolute;
+    border: 1px solid var(--color-primary);
+    border-radius: 50%;
+    opacity: 0;
+}
+
+.scan-ring-outer {
+    width: 320px;
+    height: 320px;
+    border-style: dashed;
+    animation: scan-ring-appear 0.4s ease-out 0.1s forwards, scan-ring-rotate 5s linear infinite;
+}
+
+.scan-ring-middle {
+    width: 245px;
+    height: 245px;
+    border-width: 2px;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    animation: scan-ring-appear 0.4s ease-out 0.2s forwards, scan-ring-rotate-reverse 3s linear infinite;
+}
+
+.scan-ring-inner {
+    width: 170px;
+    height: 170px;
+    border-style: dotted;
+    animation: scan-ring-appear 0.4s ease-out 0.3s forwards, scan-ring-rotate 2.5s linear infinite;
+}
+
+/* ---------- ICON ---------- */
+
+.scan-icon {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    opacity: 0;
+    transform: scale(0.5);
+    animation: scan-icon-appear 0.5s ease-out 0.25s forwards, scan-icon-pulse 1.5s ease-in-out 0.7s infinite;
+}
+
+.scan-icon svg {
+    width: 100%;
+    height: 100%;
+    color: var(--color-primary);
+    filter: drop-shadow(0 0 5px var(--color-primary)) drop-shadow(0 0 15px var(--color-primary));
+}
+
+/* ---------- CORNERS ---------- */
+
+.scan-corners {
+    position: absolute;
+    inset: 35px;
+    opacity: 0;
+    animation: scan-ring-appear 0.5s ease-out 0.4s forwards;
+}
+
+.corner {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-color: var(--color-primary);
+}
+
+.corner-top-left {
+    top: 0;
+    left: 0;
+    border-top: 2px solid;
+    border-left: 2px solid;
+}
+
+.corner-top-right {
+    top: 0;
+    right: 0;
+    border-top: 2px solid;
+    border-right: 2px solid;
+}
+
+.corner-bottom-left {
+    bottom: 0;
+    left: 0;
+    border-bottom: 2px solid;
+    border-left: 2px solid;
+}
+
+.corner-bottom-right {
+    bottom: 0;
+    right: 0;
+    border-bottom: 2px solid;
+    border-right: 2px solid;
+}
+
+/* ---------- TEXT ---------- */
+
+.scan-label {
+    position: absolute;
+    bottom: 80px;
+    font-size: 14px;
+    letter-spacing: 5px;
+    opacity: 0;
+    animation: scan-text-appear 0.5s ease-out 0.5s forwards;
+}
+
+.scan-status {
+    position: absolute;
+    bottom: 55px;
+    font-size: 10px;
+    letter-spacing: 3px;
+    opacity: 0;
+    animation: scan-text-appear 0.5s ease-out 0.7s forwards;
+}
+
+/* ---------- ANIMATIONS ---------- */
+
+@keyframes scan-line-move {
+    from { top: -10%; }
+    to { top: 110%; }
+}
+
+@keyframes scan-line-fade {
+    0% { opacity: 0; }
+    15% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@keyframes scan-ring-appear {
+    from {
+        opacity: 0;
+        transform: scale(0.6);
+    }
+    to {
+        opacity: 0.8;
+        transform: scale(1);
+    }
+}
+
+@keyframes scan-ring-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes scan-ring-rotate-reverse {
+    from { transform: rotate(360deg); }
+    to { transform: rotate(0deg); }
+}
+
+@keyframes scan-icon-appear {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes scan-icon-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+}
+
+@keyframes scan-text-appear {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------- TRANSITION EXIT ---------- */
+
+@keyframes scan-visual-exit {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
