@@ -38,11 +38,21 @@ declare global {
         }>;
       };
 
+      location: {
+        getCurrent(): Promise<{
+          available: true;
+          city: string;
+          country: string;
+          countryCode: string;
+          latitude: number;
+          longitude: number;
+          timezone: string;
+        }>;
+      };
+
       terminal: {
         write(data: string): void;
-
         onData(callback: (data: string) => void): () => void;
-
         resize(cols: number, rows: number): void;
       };
     };

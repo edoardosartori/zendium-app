@@ -5,6 +5,10 @@ import pty from "node-pty";
 
 import { getSystemInfo } from "./system.js";
 
+import { getCurrentLocation } from "./location.js";
+//import { getCurrentWeather } from "./weather.js";
+//import { getWorldNews, getItalyNews } from "./news.js";
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const isDev = !app.isPackaged;
 
@@ -13,21 +17,38 @@ let isQuitting = false;
 
 // --------------------------------------------------
 // SYSTEM INFO
-// --------------------------------------------------
-
 ipcMain.handle("system:getInfo", () => {
   return getSystemInfo();
 });
 
 // --------------------------------------------------
-// TERMINAL
-// --------------------------------------------------
+// LOCATION
+ipcMain.handle("location:getCurrent", async () => {
+  return getCurrentLocation();
+});
 
+// --------------------------------------------------
+// WEATHER
+ipcMain.handle("weather:getCurrent", async () => {
+  return getCurrentWeather();
+});
+
+// --------------------------------------------------
+// NEWS
+ipcMain.handle("news:getWorld", async () => {
+  return getWorldNews();
+});
+
+ipcMain.handle("news:getItaly", async () => {
+  return getItalyNews();
+});
+
+// --------------------------------------------------
+// TERMINAL
 ipcMain.on("terminal:write", (_event, data) => {
   if (!terminalProcess) {
     return;
   }
-
   terminalProcess.write(data);
 });
 
@@ -35,7 +56,6 @@ ipcMain.on("terminal:resize", (_event, { cols, rows }) => {
   if (!terminalProcess) {
     return;
   }
-
   if (cols > 0 && rows > 0) {
     terminalProcess.resize(cols, rows);
   }
@@ -43,8 +63,6 @@ ipcMain.on("terminal:resize", (_event, { cols, rows }) => {
 
 // --------------------------------------------------
 // WINDOW
-// --------------------------------------------------
-
 function createWindow() {
   const win = new BrowserWindow({
     fullscreen: true,
@@ -63,7 +81,6 @@ function createWindow() {
 
   // --------------------------------------------------
   // REAL BASH TERMINAL
-  // --------------------------------------------------
   const shell = process.env.SHELL || "/bin/bash";
 
   terminalProcess = pty.spawn(shell, [], {
@@ -92,33 +109,24 @@ function createWindow() {
 
   // --------------------------------------------------
   // WINDOW EVENTS
-  // --------------------------------------------------
-
   win.once("ready-to-show", () => {
     win.show();
   });
 
   // --------------------------------------------------
   // LOAD APPLICATION
-  // --------------------------------------------------
-
   if (isDev) {
     console.log("Loading DEV server...");
-
     win.loadURL("http://localhost:8080");
-
     win.webContents.openDevTools();
   } else {
     console.log("Loading production build...");
-
     win.loadFile(path.join(__dirname, "../dist/index.html"));
   }
 }
 
 // --------------------------------------------------
 // ELECTRON LIFECYCLE
-// --------------------------------------------------
-
 app.whenReady().then(() => {
   createWindow();
 });
@@ -131,7 +139,6 @@ app.on("window-all-closed", () => {
 
 app.on("before-quit", () => {
   isQuitting = true;
-
   if (terminalProcess) {
     terminalProcess.kill();
     terminalProcess = null;

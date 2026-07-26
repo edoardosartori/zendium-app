@@ -5,9 +5,21 @@ contextBridge.exposeInMainWorld("zendium", {
     getInfo: () => ipcRenderer.invoke("system:getInfo"),
   },
 
+  location: {
+    getCurrent: () => ipcRenderer.invoke("location:getCurrent"),
+  },
+
+  weather: {
+    getCurrent: () => ipcRenderer.invoke("weather:getCurrent"),
+  },
+
+  news: {
+    getWorld: () => ipcRenderer.invoke("news:getWorld"),
+    getItaly: () => ipcRenderer.invoke("news:getItaly"),
+  },
+
   terminal: {
     write: (data) => ipcRenderer.send("terminal:write", data),
-
     onData: (callback) => {
       const listener = (_event, data) => {
         callback(data);
