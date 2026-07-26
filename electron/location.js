@@ -24,10 +24,10 @@ export async function getCurrentLocation() {
       "https://ipwho.is/",
     );
 
-    console.log("LOCATION: response received", {
+    /* console.log("LOCATION: response received", {
       status: response.status,
       statusText: response.statusText,
-    });
+    }); */
 
     if (!response.ok) {
       const body = await response.text();

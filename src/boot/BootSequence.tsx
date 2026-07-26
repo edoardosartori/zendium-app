@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { timeline } from "./BootTimeLine";
 
@@ -18,16 +18,56 @@ import MatrixRainTransition from "@transitions/MatrixRainTransition";
 export default function BootSequence() {
   const [step, setStep] = useState(0);
 
+  const advancingRef = useRef(false);
+
   const event = timeline[step];
 
   const handleComplete = () => {
+    if (advancingRef.current) {
+      return;
+    }
+
     if (step >= timeline.length - 1) {
       return;
     }
 
+    advancingRef.current = true;
+
     setStep((prev) => prev + 1);
   };
 
+  // --------------------------------------------------
+  // RESET ADVANCE GUARD
+  useEffect(() => {
+    advancingRef.current = false;
+  }, [step]);
+
+  // --------------------------------------------------
+  // SKIP VIEW WITH KEYBOARD / MOUSE
+  useEffect(() => {
+    if (event.type === "terminal") {
+      return;
+    }
+
+    const handleKeyDown = () => {
+      handleComplete();
+    };
+
+    const handleMouseDown = () => {
+      handleComplete();
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("mousedown", handleMouseDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("mousedown", handleMouseDown);
+    };
+  }, [step, event.type]);
+
+  // --------------------------------------------------
+  // CURRENT VIEW
   switch (event.type) {
     case "logo":
       return <Logo onComplete={handleComplete} />;
@@ -45,23 +85,23 @@ export default function BootSequence() {
       return <Terminal />;
 
     case "scan-transition":
-      return <ScanTransition onComplete={handleComplete}  />;
+      return <ScanTransition onComplete={handleComplete} />;
 
     case "data-stream-transition":
-      return <DataStreamTransition onComplete={handleComplete}  />;
+      return <DataStreamTransition onComplete={handleComplete} />;
 
     case "grid-transition":
-      return <GridTransition onComplete={handleComplete}  />;
+      return <GridTransition onComplete={handleComplete} />;
 
     case "pulse-transition":
-      return <PulseTransition onComplete={handleComplete}  />;
+      return <PulseTransition onComplete={handleComplete} />;
 
     case "orbit-transition":
-      return <OrbitTransition onComplete={handleComplete}  />;
+      return <OrbitTransition onComplete={handleComplete} />;
 
     case "matrix-rain-transition":
-      return <MatrixRainTransition onComplete={handleComplete}  />;
-    
+      return <MatrixRainTransition onComplete={handleComplete} />;
+
     default:
       return null;
   }
