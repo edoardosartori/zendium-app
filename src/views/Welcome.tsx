@@ -11,15 +11,19 @@ export default function Welcome({ onComplete }: Props) {
   const [info, setInfo] = useState<SystemInfoData | null>(null);
   const [step, setStep] = useState(0);
 
-  useEffect(() => {
- /*  window.zendium.system.getInfo().then((data) => {
-    setInfo(data);
-  }); */
+/*   useEffect(() => {
+    window.zendium.system.getInfo().then((data) => {
+      setInfo(data);
+    });
+    
+    window.zendium.weather.getCurrent().then((weatherData) => {
+      console.log("WEATHER INFO:", weatherData);
+    });
 
-  window.zendium.location.getCurrent().then((data) => {
-    console.log("LOCATION INFO:", data);
-  });
-}, []);
+    window.zendium.news.getLatest().then((newsData) => {
+      console.log("NEWS INFO:", newsData);
+    });
+  }, []); */
 
   const now = new Date();
 

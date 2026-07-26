@@ -2,22 +2,34 @@ const { contextBridge, ipcRenderer } = require("electron");
 
 contextBridge.exposeInMainWorld("zendium", {
   system: {
-    getInfo: () => ipcRenderer.invoke("system:getInfo"),
+    //--------SYSTEM INFORMATION-------------------//
+    getInfo: () => {
+      //console.log("PRELOAD: system:getInfo called");
+      return ipcRenderer.invoke("system:getInfo");
+    }
   },
-
-  location: {
-    getCurrent: () => ipcRenderer.invoke("location:getCurrent"),
+  //--------LOCATION-------------------//
+   location: {
+    getCurrent: () => {
+      //console.log("PRELOAD: location:getCurrent called");
+      return ipcRenderer.invoke("location:getCurrent");
+    }
   },
-
+  //--------WEATHER-------------------//
   weather: {
-    getCurrent: () => ipcRenderer.invoke("weather:getCurrent"),
+    getCurrent: () => {
+      //console.log("PRELOAD: weather:getCurrent called");
+      return ipcRenderer.invoke("weather:getCurrent");
+    }
   },
-
+  //--------NEWS-------------------//
   news: {
-    getWorld: () => ipcRenderer.invoke("news:getWorld"),
-    getItaly: () => ipcRenderer.invoke("news:getItaly"),
+    getLatest: () => {
+      //console.log("PRELOAD: news:getLatest called");
+      return ipcRenderer.invoke("news:getLatest");
+    }
   },
-
+  //--------TERMINAL-------------------//
   terminal: {
     write: (data) => ipcRenderer.send("terminal:write", data),
     onData: (callback) => {

@@ -7,28 +7,50 @@
 
 /* ---------- LOGO ---------- */
 .logo-icon {
+    opacity: 0;
     transform: scale(0);
     transform-origin: center center;
+
+    filter:
+        drop-shadow(0 0 0 transparent) drop-shadow(0 0 0 transparent);
+
     animation: logo-scale-in-out 3.5s forwards;
 }
 
 /* ---------- LOGO ANIMATION ---------- */
 @keyframes logo-scale-in-out {
+
+    /* ENTER */
     0% {
+        opacity: 0;
         transform: scale(0);
+        filter:
+            drop-shadow(0 0 0 transparent) drop-shadow(0 0 0 transparent);
+    }
+
+    /* Arriva al centro */
+    25% {
+        opacity: 1;
+        transform: scale(1);
+        filter:
+            drop-shadow(0 0 8px var(--color-primary)) drop-shadow(0 0 25px var(--color-primary));
         animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    25% {
-        transform: scale(1);
-    }
-
+    /* Rimane visibile */
     75% {
+        opacity: 1;
         transform: scale(1);
-        animation-timing-function: cubic-bezier(0.55, 0, 0.78, 0);
+        filter:
+            drop-shadow(0 0 5px var(--color-primary)) drop-shadow(0 0 15px var(--color-primary));
     }
 
+    /* EXIT */
     100% {
+        opacity: 0;
         transform: scale(0);
+        filter:
+            drop-shadow(0 0 0 transparent) drop-shadow(0 0 0 transparent);
+        animation-timing-function: cubic-bezier(0.55, 0, 0.78, 0);
     }
 }

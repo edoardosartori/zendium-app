@@ -17,11 +17,26 @@ async function fetchWithTimeout(url, timeout = LOCATION_TIMEOUT) {
 }
 
 export async function getCurrentLocation() {
+  //console.log("LOCATION: getCurrentLocation() started");
+
   try {
-    const response = await fetchWithTimeout("https://ipapi.co/json/");
+    const response = await fetchWithTimeout(
+      "https://ipwho.is/",
+    );
+
+    console.log("LOCATION: response received", {
+      status: response.status,
+      statusText: response.statusText,
+    });
 
     if (!response.ok) {
-      console.error(`Location API error: HTTP ${response.status}`);
+      const body = await response.text();
+
+      console.error("Location API error:", {
+        status: response.status,
+        statusText: response.statusText,
+        body,
+      });
 
       return {
         available: false,
@@ -32,12 +47,13 @@ export async function getCurrentLocation() {
     const data = await response.json();
 
     if (
+      data?.success !== true ||
       typeof data?.city !== "string" ||
-      typeof data?.country_name !== "string" ||
+      typeof data?.country !== "string" ||
       typeof data?.latitude !== "number" ||
       typeof data?.longitude !== "number"
     ) {
-      console.error("Location API returned invalid data.");
+      //console.error("Location API returned invalid data.", data);
 
       return {
         available: false,
@@ -45,18 +61,22 @@ export async function getCurrentLocation() {
       };
     }
 
+    //console.log("LOCATION: valid data received");
+
     return {
       available: true,
       city: data.city,
-      country: data.country_name,
+      country: data.country,
       countryCode: data.country_code ?? null,
       latitude: data.latitude,
       longitude: data.longitude,
-      timezone: data.timezone ?? null,
+      timezone: data.timezone?.id ?? null,
     };
   } catch (error) {
     if (error?.name === "AbortError") {
-      console.error("Location API request timed out.");
+      console.error(
+        "Location API request timed out.",
+      );
 
       return {
         available: false,
@@ -64,7 +84,10 @@ export async function getCurrentLocation() {
       };
     }
 
-    console.error("Location request failed:", error);
+    console.error(
+      "Location request failed:",
+      error,
+    );
 
     return {
       available: false,

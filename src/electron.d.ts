@@ -50,6 +50,55 @@ declare global {
         }>;
       };
 
+      weather: {
+        getCurrent(): Promise<
+          | {
+              available: true;
+              location: {
+                city: string;
+                country: string;
+                countryCode: string | null;
+                latitude: number;
+                longitude: number;
+              };
+              weather: {
+                temperature: number;
+                apparentTemperature: number;
+                humidity: number;
+                windSpeed: number;
+                weatherCode: number;
+                minTemperature: number | null;
+                maxTemperature: number | null;
+              };
+            }
+          | {
+              available: false;
+              error:
+                | "LOCATION_UNAVAILABLE"
+                | "WEATHER_API_ERROR"
+                | "INVALID_WEATHER_DATA"
+                | "WEATHER_TIMEOUT"
+                | "WEATHER_OFFLINE";
+            }
+        >;
+      };
+
+      news: {
+        getLatest(): Promise<
+          | {
+              available: true;
+              world: string[];
+              italy: string[];
+            }
+          | {
+              available: false;
+              error: "NEWS_UNAVAILABLE";
+              world: string[];
+              italy: string[];
+            }
+        >;
+      };
+
       terminal: {
         write(data: string): void;
         onData(callback: (data: string) => void): () => void;

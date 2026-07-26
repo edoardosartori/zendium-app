@@ -6,8 +6,8 @@ import pty from "node-pty";
 import { getSystemInfo } from "./system.js";
 
 import { getCurrentLocation } from "./location.js";
-//import { getCurrentWeather } from "./weather.js";
-//import { getWorldNews, getItalyNews } from "./news.js";
+import { getCurrentWeather } from "./weather.js";
+import { getLatestNews } from "./news.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const isDev = !app.isPackaged;
@@ -21,26 +21,40 @@ ipcMain.handle("system:getInfo", () => {
   return getSystemInfo();
 });
 
-// --------------------------------------------------
+/* // --------------------------------------------------
 // LOCATION
 ipcMain.handle("location:getCurrent", async () => {
+  console.log("MAIN: LOCATION IPC CALLED");
   return getCurrentLocation();
 });
-
+ */
 // --------------------------------------------------
 // WEATHER
 ipcMain.handle("weather:getCurrent", async () => {
-  return getCurrentWeather();
+  //console.log("MAIN: weather:getCurrent called");
+  const location = await getCurrentLocation();
+  if (!location.available) {
+    console.error("MAIN: location unavailable", location);
+    return {
+      available: false,
+      error: "LOCATION_UNAVAILABLE",
+    };
+  }
+  const weather = await getCurrentWeather(location);
+  //console.log("MAIN: weather result:", weather);
+  return weather;
 });
 
 // --------------------------------------------------
 // NEWS
-ipcMain.handle("news:getWorld", async () => {
-  return getWorldNews();
-});
+ipcMain.handle("news:getLatest", async () => {
+  //console.log("MAIN: news:getLatest called");
 
-ipcMain.handle("news:getItaly", async () => {
-  return getItalyNews();
+  const result = await getLatestNews();
+
+  //console.log("MAIN: news result:", result);
+
+  return result;
 });
 
 // --------------------------------------------------
