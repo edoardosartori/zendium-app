@@ -10,11 +10,11 @@ export type BootEvent =
 
 export const timeline: BootEvent[] = [
   { type: "logo" },
-  //{ type: "starting" },
-  //{ type: "welcome" },
+  { type: "starting" },
+  { type: "welcome" },
   { type: "scan-transition" },
   { type: "system-info" },
-  //{ type: "news" },
-  //{ type: "init-terminal" },
-  //{ type: "terminal" }
+  { type: "news" },
+  { type: "init-terminal" },
+  { type: "terminal" }
 ];

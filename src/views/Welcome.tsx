@@ -52,6 +52,8 @@ export default function Welcome({ onComplete }: Props) {
  ╚███╔███╔╝███████╗███████╗╚██████╗ ╚██████╔╝██║ ╚═╝ ██║███████╗
   ╚══╝╚══╝ ╚══════╝╚══════╝╚═════╝  ╚═════╝ ╚═╝     ╚═╝╚══════╝`;
 
+  const USERNAME = info?.username?.toUpperCase() ?? "...";
+
   return (
     <div className="central-view">
       {/* LOGO */}
@@ -72,7 +74,7 @@ export default function Welcome({ onComplete }: Props) {
           <div className="welcome-text">
             <TypingText
               showCursor={false}
-              text={`Welcome back,{pause:800} ${info?.username ?? "..."}\n{pause:800} ${date}\n{pause:800} ${time}`}
+              text={`Welcome back,{pause:800} ${USERNAME}\n{pause:800} ${date}\n{pause:800} ${time}`}
               onComplete={handleWelcomeComplete}
             />
           </div>

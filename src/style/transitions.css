@@ -166,12 +166,15 @@
     animation: scan-text-appear 0.5s ease-out 0.5s forwards;
 }
 
-.scan-status {
+.transition-text {
     position: absolute;
     bottom: 55px;
-    font-size: 10px;
+    font-size: 20px;
     letter-spacing: 3px;
     opacity: 0;
+}
+
+.scan-status {
     animation: scan-text-appear 0.5s ease-out 0.7s forwards;
 }
 

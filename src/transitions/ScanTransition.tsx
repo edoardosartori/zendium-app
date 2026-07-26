@@ -43,7 +43,7 @@ export default function ScanTransition({ onComplete }: Props) {
           </div>
 
           {/* TEXT */}
-          <div className="scan-status">
+          <div className="transition-text scan-status">
             SCANNING
           </div>
 
