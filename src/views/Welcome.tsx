@@ -12,9 +12,9 @@ export default function Welcome({ onComplete }: Props) {
   const [step, setStep] = useState(0);
 
   useEffect(() => {
-  window.zendium.system.getInfo().then((data) => {
+ /*  window.zendium.system.getInfo().then((data) => {
     setInfo(data);
-  });
+  }); */
 
   window.zendium.location.getCurrent().then((data) => {
     console.log("LOCATION INFO:", data);

@@ -4,7 +4,8 @@ import UpperRightPanel from "./panels/UpperRightPanel";
 import LowerLeftPanel from "./panels/LowerLeftPanel";
 import LowerRightPanel from "./panels/LowerRightPanel";
 
-import "@style/persistent-shell.css";
+import "@style/layout/persistent-shell.css";
+import "@style/layout/panels.css";
 
 type Props = {
   children: ReactNode;
