@@ -6,6 +6,8 @@ import { Terminal as XTerm } from "@xterm/xterm";
 import { FitAddon } from "@xterm/addon-fit";
 import "@xterm/xterm/css/xterm.css";
 
+import "@style/views/terminal.css";
+
 export default function Terminal() {
   const terminalRef = useRef<HTMLDivElement | null>(null);
 
@@ -25,7 +27,7 @@ export default function Terminal() {
       },
       scrollback: 5000,
     });
-    
+
     const fitAddon = new FitAddon();
     xterm.loadAddon(fitAddon);
     xterm.open(terminalRef.current);
@@ -76,9 +78,9 @@ export default function Terminal() {
   }, []);
 
   return (
-    <div className="central-view">
-      <ThemeableIcon className="terminal-icon" />
-      <div className="terminal-container">
+    <div className="central-view terminal-view">
+      <ThemeableIcon className="terminal-icon terminal-view-icon" />
+      <div className="terminal-container terminal-view-container">
         <div ref={terminalRef} className="terminal-instance" />
       </div>
     </div>

@@ -1,5 +1,4 @@
 /* ---------- SCAN TRANSITION ---------- */
-
 .scan-transition {
     position: absolute;
     inset: 0;
@@ -22,7 +21,6 @@
 }
 
 /* ---------- CENTRAL VISUAL ---------- */
-
 .scan-visual {
     position: relative;
     width: 100%;
@@ -34,7 +32,6 @@
 }
 
 /* ---------- SCAN LINE ---------- */
-
 .scan-line {
     position: absolute;
     top: -10%;
@@ -47,7 +44,6 @@
 }
 
 /* ---------- HUD ---------- */
-
 .scan-hud {
     position: relative;
     width: 320px;
@@ -58,7 +54,6 @@
 }
 
 /* ---------- RINGS ---------- */
-
 .scan-ring {
     position: absolute;
     border: 1px solid var(--color-primary);
@@ -90,7 +85,6 @@
 }
 
 /* ---------- ICON ---------- */
-
 .scan-icon {
     position: relative;
     width: 100px;
@@ -112,7 +106,6 @@
 }
 
 /* ---------- CORNERS ---------- */
-
 .scan-corners {
     position: absolute;
     inset: 35px;
@@ -156,7 +149,6 @@
 }
 
 /* ---------- TEXT ---------- */
-
 .scan-label {
     position: absolute;
     bottom: 80px;
@@ -179,7 +171,6 @@
 }
 
 /* ---------- ANIMATIONS ---------- */
-
 @keyframes scan-line-move {
     from { top: -10%; }
     to { top: 110%; }
@@ -241,7 +232,6 @@
 }
 
 /* ---------- TRANSITION EXIT ---------- */
-
 @keyframes scan-visual-exit {
     from {
         opacity: 1;

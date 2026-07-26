@@ -3,14 +3,17 @@ import { useState } from "react";
 import { timeline } from "./BootTimeLine";
 
 import Logo from "@views/Logo";
-import Starting from "@views/Starting";
 import Welcome from "@views/Welcome";
 import SystemInfo from "@views/SystemInfo";
 import News from "@views/News";
-import InitTerminal from "@views/InitTerminal";
 import Terminal from "@views/Terminal";
 
 import ScanTransition from "@transitions/ScanTransition";
+import DataStreamTransition from "@transitions/DataStreamTransition";
+import GridTransition from "@transitions/GridTransition";
+import PulseTransition from "@transitions/PulseTransition";
+import OrbitTransition from "@transitions/OrbitTransition";
+import MatrixRainTransition from "@transitions/MatrixRainTransition";
 
 export default function BootSequence() {
   const [step, setStep] = useState(0);
@@ -29,9 +32,6 @@ export default function BootSequence() {
     case "logo":
       return <Logo onComplete={handleComplete} />;
 
-    case "starting":
-      return <Starting onComplete={handleComplete} />;
-
     case "welcome":
       return <Welcome onComplete={handleComplete} />;
 
@@ -41,15 +41,27 @@ export default function BootSequence() {
     case "news":
       return <News onComplete={handleComplete} />;
 
-    case "init-terminal":
-      return <InitTerminal onComplete={handleComplete} />;
-
     case "terminal":
       return <Terminal />;
 
     case "scan-transition":
       return <ScanTransition onComplete={handleComplete}  />;
 
+    case "data-stream-transition":
+      return <DataStreamTransition onComplete={handleComplete}  />;
+
+    case "grid-transition":
+      return <GridTransition onComplete={handleComplete}  />;
+
+    case "pulse-transition":
+      return <PulseTransition onComplete={handleComplete}  />;
+
+    case "orbit-transition":
+      return <OrbitTransition onComplete={handleComplete}  />;
+
+    case "matrix-rain-transition":
+      return <MatrixRainTransition onComplete={handleComplete}  />;
+    
     default:
       return null;
   }

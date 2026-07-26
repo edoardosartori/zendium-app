@@ -1,0 +1,34 @@
+
+/* ---------- TERMINAL ICON ---------- */
+.terminal-view-icon {
+    transform: scale(0);
+    transform-origin: center center;
+    animation: terminal-icon-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ---------- TERMINAL CONTAINER ---------- */
+.terminal-view-container {
+    transform: scale(0);
+    transform-origin: center center;
+    animation: terminal-container-in 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+}
+
+/* ---------- TERMINAL ICON IN ---------- */
+@keyframes terminal-icon-in {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+/* ---------- TERMINAL CONTAINER IN ---------- */
+@keyframes terminal-container-in {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}

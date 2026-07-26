@@ -90,6 +90,7 @@ export default function SystemInfo({ onComplete }: Props) {
         <ThemeableIcon className="icon" />{" "}
       </div>
       <div className="system-text">
+        <div>SYSTEM INFO:</div>
         {lines.slice(0, currentLine).map((line, index) => (
           <div key={`${line}-${index}`}>{line}</div>
         ))}

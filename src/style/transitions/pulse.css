@@ -1,0 +1,427 @@
+/* ---------- PULSE TRANSITION ---------- */
+.pulse-transition {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--color-primary);
+    background: transparent;
+}
+
+.pulse-transition-inner {
+    position: absolute;
+    inset: 0;
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: var(--color-primary);
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+}
+
+/* ---------- CENTRAL CORE ---------- */
+.pulse-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    animation: pulse-core-exit 0.8s ease-in 7.2s forwards;
+}
+
+/* ---------- CORE GLOW ---------- */
+.pulse-core-glow {
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    opacity: 0.08;
+    filter: blur(35px);
+    animation: pulse-glow 1.5s ease-in-out infinite;
+}
+
+/* ---------- CORE RINGS ---------- */
+.pulse-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid var(--color-primary);
+}
+
+.pulse-ring-outer {
+    width: 280px;
+    height: 280px;
+    border-style: dashed;
+    opacity: 0.45;
+    animation: pulse-ring-rotate 10s linear infinite;
+}
+
+.pulse-ring-middle {
+    width: 210px;
+    height: 210px;
+    border-width: 2px;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    opacity: 0.65;
+    animation: pulse-ring-rotate-reverse 5s linear infinite;
+}
+
+.pulse-ring-inner {
+    width: 140px;
+    height: 140px;
+    border-style: dotted;
+    opacity: 0.8;
+    animation: pulse-ring-rotate 3s linear infinite;
+}
+
+/* ---------- ICON ---------- */
+.pulse-core-icon {
+    position: relative;
+    width: 75px;
+    height: 75px;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transform: scale(0.4);
+    animation:
+        pulse-icon-appear 0.7s ease-out 0.5s forwards,
+        pulse-icon-beat 1.5s ease-in-out 1.2s infinite;
+}
+
+.pulse-core-icon svg {
+    width: 100%;
+    height: 100%;
+    color: var(--color-primary);
+    filter:
+        drop-shadow(0 0 5px var(--color-primary)) drop-shadow(0 0 15px var(--color-primary)) drop-shadow(0 0 30px var(--color-primary));
+}
+
+/* ---------- ENERGY WAVES ---------- */
+.pulse-wave {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    border: 1px solid var(--color-primary);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.pulse-wave-one {
+    animation: pulse-wave-expand 3s ease-out 1s infinite;
+}
+
+.pulse-wave-two {
+    animation: pulse-wave-expand 3s ease-out 2s infinite;
+}
+
+.pulse-wave-three {
+    animation: pulse-wave-expand 3s ease-out 3s infinite;
+}
+
+/* ---------- PARTICLES ---------- */
+.pulse-particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.pulse-particle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    box-shadow:
+        0 0 5px var(--color-primary),
+        0 0 12px var(--color-primary);
+    opacity: 0;
+    animation: pulse-particle-orbit 3s ease-in-out infinite;
+}
+
+.pulse-particle:nth-child(1) {
+    --angle: 0deg;
+    --distance: 180px;
+}
+
+.pulse-particle:nth-child(2) {
+    --angle: 15deg;
+    --distance: 240px;
+}
+
+.pulse-particle:nth-child(3) {
+    --angle: 30deg;
+    --distance: 150px;
+}
+
+.pulse-particle:nth-child(4) {
+    --angle: 45deg;
+    --distance: 280px;
+}
+
+.pulse-particle:nth-child(5) {
+    --angle: 60deg;
+    --distance: 200px;
+}
+
+.pulse-particle:nth-child(6) {
+    --angle: 75deg;
+    --distance: 320px;
+}
+
+.pulse-particle:nth-child(7) {
+    --angle: 90deg;
+    --distance: 170px;
+}
+
+.pulse-particle:nth-child(8) {
+    --angle: 105deg;
+    --distance: 260px;
+}
+
+.pulse-particle:nth-child(9) {
+    --angle: 120deg;
+    --distance: 190px;
+}
+
+.pulse-particle:nth-child(10) {
+    --angle: 135deg;
+    --distance: 300px;
+}
+
+.pulse-particle:nth-child(11) {
+    --angle: 150deg;
+    --distance: 220px;
+}
+
+.pulse-particle:nth-child(12) {
+    --angle: 165deg;
+    --distance: 340px;
+}
+
+.pulse-particle:nth-child(13) {
+    --angle: 180deg;
+    --distance: 180px;
+}
+
+.pulse-particle:nth-child(14) {
+    --angle: 195deg;
+    --distance: 250px;
+}
+
+.pulse-particle:nth-child(15) {
+    --angle: 210deg;
+    --distance: 160px;
+}
+
+.pulse-particle:nth-child(16) {
+    --angle: 225deg;
+    --distance: 290px;
+}
+
+.pulse-particle:nth-child(17) {
+    --angle: 240deg;
+    --distance: 210px;
+}
+
+.pulse-particle:nth-child(18) {
+    --angle: 255deg;
+    --distance: 330px;
+}
+
+.pulse-particle:nth-child(19) {
+    --angle: 270deg;
+    --distance: 175px;
+}
+
+.pulse-particle:nth-child(20) {
+    --angle: 285deg;
+    --distance: 270px;
+}
+
+.pulse-particle:nth-child(21) {
+    --angle: 300deg;
+    --distance: 200px;
+}
+
+.pulse-particle:nth-child(22) {
+    --angle: 315deg;
+    --distance: 310px;
+}
+
+.pulse-particle:nth-child(23) {
+    --angle: 330deg;
+    --distance: 230px;
+}
+
+.pulse-particle:nth-child(24) {
+    --angle: 345deg;
+    --distance: 350px;
+}
+
+/* ---------- STATUS ---------- */
+.pulse-status {
+    position: absolute;
+    bottom: 55px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+    animation: pulse-status-exit 0.5s ease-in 7.2s forwards;
+}
+
+.pulse-status-label {
+    font-size: 14px;
+    letter-spacing: 5px;
+    opacity: 0;
+    animation: pulse-text-appear 0.5s ease-out 1s forwards;
+}
+
+.pulse-status-substatus {
+    font-size: 10px;
+    letter-spacing: 3px;
+    opacity: 0;
+    animation: pulse-text-appear 0.5s ease-out 1.3s forwards;
+}
+
+/* ---------- GLOW ---------- */
+@keyframes pulse-glow {
+    0%,
+    100% {
+        opacity: 0.05;
+        transform: scale(0.8);
+    }
+    50% {
+        opacity: 0.2;
+        transform: scale(1.35);
+    }
+}
+
+/* ---------- RING ROTATION ---------- */
+@keyframes pulse-ring-rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse-ring-rotate-reverse {
+    from {
+        transform: rotate(360deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+/* ---------- ICON ---------- */
+@keyframes pulse-icon-appear {
+    from {
+        opacity: 0;
+        transform: scale(0.4);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pulse-icon-beat {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.12);
+    }
+}
+
+/* ---------- WAVES ---------- */
+@keyframes pulse-wave-expand {
+    0% {
+        opacity: 0.8;
+        transform: translate(-50%, -50%) scale(0.2);
+    }
+    70% {
+        opacity: 0.35;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(10);
+    }
+}
+
+/* ---------- PARTICLES ---------- */
+@keyframes pulse-particle-orbit {
+    0% {
+        opacity: 0;
+        transform:
+            rotate(var(--angle)) translateX(40px) scale(0.5);
+    }
+    20% {
+        opacity: 0.9;
+    }
+    70% {
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 0;
+        transform:
+            rotate(var(--angle)) translateX(var(--distance)) scale(1);
+    }
+}
+
+/* ---------- TEXT ---------- */
+@keyframes pulse-text-appear {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------- EXIT ---------- */
+@keyframes pulse-core-exit {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    70% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(0.25);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0);
+    }
+}
+
+@keyframes pulse-status-exit {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}

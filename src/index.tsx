@@ -1,9 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-import "./style/global.css";
-import "./style/views.css";
-import "./style/transitions.css";
+import "@style/global.css";
+import "@style/views/views.css";
 
 import App from "./App";
 

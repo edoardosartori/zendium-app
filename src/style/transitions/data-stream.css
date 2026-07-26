@@ -1,0 +1,254 @@
+/* ---------- DATA STREAM TRANSITION ---------- */
+.data-stream-transition {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--color-primary);
+    background: transparent;
+}
+
+.data-stream-transition-inner {
+    position: absolute;
+    inset: 0;
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: var(--color-primary);
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+}
+
+/* ---------- DATA STREAM ---------- */
+.data-stream {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: space-around;
+    overflow: hidden;
+    opacity: 0.35;
+}
+
+.data-column {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    font-size: 11px;
+    line-height: 1;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateY(-120%);
+    animation: data-column-flow 3s linear infinite;
+}
+
+.data-column span:nth-child(odd) {
+    opacity: 0.45;
+}
+
+.data-column span:nth-child(even) {
+    opacity: 0.8;
+}
+
+/* ---------- CENTRAL CORE ---------- */
+.data-core {
+    position: relative;
+    width: 360px;
+    height: 360px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: data-core-exit 0.8s ease-in 7.2s forwards;
+}
+
+/* ---------- CORE LINES ---------- */
+.core-lines {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: core-lines-rotate 8s linear infinite;
+}
+
+.core-line {
+    position: absolute;
+    width: 360px;
+    height: 1px;
+    background: var(--color-primary);
+    opacity: 0.35;
+    box-shadow: 0 0 8px var(--color-primary);
+}
+
+/* ---------- CORE RINGS ---------- */
+.core-ring {
+    position: absolute;
+    border: 1px solid var(--color-primary);
+    border-radius: 50%;
+}
+
+.core-ring-outer {
+    width: 320px;
+    height: 320px;
+    border-style: dashed;
+    opacity: 0.65;
+    animation: core-ring-rotate 8s linear infinite;
+}
+
+.core-ring-middle {
+    width: 240px;
+    height: 240px;
+    border-width: 2px;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    opacity: 0.8;
+    animation: core-ring-rotate-reverse 5s linear infinite;
+}
+
+.core-ring-inner {
+    width: 160px;
+    height: 160px;
+    border-style: dotted;
+    opacity: 0.9;
+    animation: core-ring-rotate 3s linear infinite;
+}
+
+/* ---------- ICON ---------- */
+.data-core-icon {
+    position: relative;
+    width: 85px;
+    height: 85px;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: data-core-pulse 1.5s ease-in-out infinite;
+}
+
+.data-core-icon svg {
+    width: 100%;
+    height: 100%;
+    color: var(--color-primary);
+    filter:
+        drop-shadow(0 0 5px var(--color-primary))
+        drop-shadow(0 0 15px var(--color-primary))
+        drop-shadow(0 0 30px var(--color-primary));
+}
+
+/* ---------- STATUS ---------- */
+.data-stream-status {
+    position: absolute;
+    bottom: 55px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+    animation: data-status-exit 0.5s ease-in 7.2s forwards;
+}
+
+.data-stream-label {
+    font-size: 14px;
+    letter-spacing: 5px;
+    opacity: 0;
+    animation: data-text-appear 0.5s ease-out 0.8s forwards;
+}
+
+.data-stream-substatus {
+    font-size: 10px;
+    letter-spacing: 3px;
+    opacity: 0;
+    animation: data-text-appear 0.5s ease-out 1.1s forwards;
+}
+
+/* ---------- DATA FLOW ---------- */
+@keyframes data-column-flow {
+    0% {
+        opacity: 0;
+        transform: translateY(-120%);
+    }
+    10% {
+        opacity: 0.8;
+    }
+    80% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(120%);
+    }
+}
+
+/* ---------- CORE ROTATION ---------- */
+@keyframes core-lines-rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes core-ring-rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes core-ring-rotate-reverse {
+    from {
+        transform: rotate(360deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+/* ---------- CORE PULSE ---------- */
+@keyframes data-core-pulse {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.08);
+    }
+}
+
+/* ---------- TEXT ---------- */
+@keyframes data-text-appear {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------- EXIT ---------- */
+@keyframes data-core-exit {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+
+@keyframes data-status-exit {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}

@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import ThemeableIcon from "@assets/themeable-icon.svg?react";
 
+import "@style/transitions/scan.css";
+
 type Props = {
   onComplete: () => void;
 };

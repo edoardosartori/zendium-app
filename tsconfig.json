@@ -10,7 +10,8 @@
     "paths": {
       "@assets/*": ["./assets/*",],
       "@views/*": ["./src/views/*",],
-      "@transitions/*": ["./src/transitions/*",]
+      "@transitions/*": ["./src/transitions/*",],
+      "@style/*": ["./src/style/*",]
     }
   }
 }

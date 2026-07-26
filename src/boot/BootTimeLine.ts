@@ -1,20 +1,26 @@
 export type BootEvent =
   | { type: "logo" }
-  | { type: "starting" }
   | { type: "welcome" }
   | { type: "system-info" }
   | { type: "news" }
-  | { type: "init-terminal" }
   | { type: "terminal" }
-  | { type: "scan-transition" };
+  | { type: "scan-transition" }
+  | { type: "data-stream-transition" }
+  | { type: "grid-transition" }
+  | { type: "pulse-transition" }
+  | { type: "orbit-transition" }
+  | { type: "matrix-rain-transition" };
 
 export const timeline: BootEvent[] = [
   { type: "logo" },
-  { type: "starting" },
+  { type: "data-stream-transition" },
+  { type: "pulse-transition" },
   { type: "welcome" },
   { type: "scan-transition" },
   { type: "system-info" },
+  { type: "orbit-transition" },
+  { type: "grid-transition" },
   { type: "news" },
-  { type: "init-terminal" },
-  { type: "terminal" }
+  { type: "matrix-rain-transition" },
+  { type: "terminal" },
 ];
