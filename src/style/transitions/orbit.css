@@ -107,15 +107,15 @@
 }
 
 .orbit-body-one span {
-    transform: translateX(200px);
+    transform: translateX(115px);
 }
 
 .orbit-body-two span {
-    transform: translateX(165px);
+    transform: translateX(95px);
 }
 
 .orbit-body-three span {
-    transform: translateX(125px);
+    transform: translateX(60px);
 }
 
 @keyframes orbit-body-one {

@@ -11,7 +11,8 @@
       "@assets/*": ["./assets/*",],
       "@views/*": ["./src/views/*",],
       "@transitions/*": ["./src/transitions/*",],
-      "@style/*": ["./src/style/*",]
+      "@style/*": ["./src/style/*",],
+      "@utils/*": ["./src/core/utils/*",]
     }
   }
 }

@@ -57,8 +57,7 @@ export default function MatrixRainTransition({ onComplete }: Props) {
           </div>
         </div>
         <div className="matrix-status">
-          <div className="matrix-status-label">SYSTEM MATRIX</div>
-          <div className="matrix-status-substatus">INITIALIZING</div>
+          <div className="matrix-status-label">TERMINAL INITIALIZING</div>
         </div>
       </div>
     </div>

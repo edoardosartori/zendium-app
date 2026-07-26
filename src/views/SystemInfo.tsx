@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import TypingText from "../core/utils/TypingText";
+import TypingText from "@utils/TypingText";
 import ThemeableIcon from "@assets/themeable-icon.svg?react";
 
 type SystemInfoData = Awaited<ReturnType<typeof window.zendium.system.getInfo>>;

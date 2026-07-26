@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import TypingText from "../core/utils/TypingText";
+import TypingText from "@utils/TypingText";
 
 type SystemInfoData = Awaited<ReturnType<typeof window.zendium.system.getInfo>>;
 

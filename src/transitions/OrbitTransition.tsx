@@ -38,7 +38,7 @@ export default function OrbitTransition({ onComplete }: Props) {
           </div>
         </div>
         <div className="orbit-status">
-          <div className="orbit-status-label">SYSTEM ORBITAL</div>
+          <div className="orbit-status-label">RETRIVING DATA</div>
           <div className="orbit-status-substatus">ALIGNING CORE</div>
         </div>
       </div>
