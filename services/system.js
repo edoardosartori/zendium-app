@@ -11,6 +11,7 @@ export async function getSystemInfo() {
   const freeRam = os.freemem();
 
   return {
+    uptimeSeconds: os.uptime(),
     cpu: cpus[0]?.model ?? "Unknown CPU",
     cpuCores: cpus.length,
     username: os.userInfo().username,

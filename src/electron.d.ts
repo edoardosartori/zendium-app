@@ -118,7 +118,7 @@ declare global {
         >;
       };
 
-      filesystem: {
+      fileExplorer: {
         readDir(dirPath: string): Promise<
           | {
               available: true;

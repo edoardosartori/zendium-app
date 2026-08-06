@@ -50,8 +50,8 @@ contextBridge.exposeInMainWorld("zendium", {
     },
   },
 
-  //--------FILESYSTEM-------------------//
-  filesystem: {
+  //--------FILEEXPLORER-------------------//
+  fileExplorer: {
     readDir: (dirPath) => {
       return ipcRenderer.invoke("fs:readDir", dirPath);
     },

@@ -17,7 +17,7 @@ export function getTerminalCwd(pid) {
       cwd,
     };
   } catch (error) {
-    console.error("FILESYSTEM: failed to read terminal cwd:", error);
+    console.error("FILEEXPLORER: failed to read terminal cwd:", error);
 
     return {
       available: false,
@@ -50,7 +50,7 @@ export async function readDirectory(dirPath) {
       items,
     };
   } catch (error) {
-    console.error("FILESYSTEM: failed to read directory:", error);
+    console.error("FILEEXPLORER: failed to read directory:", error);
 
     return {
       available: false,

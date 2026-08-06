@@ -9,7 +9,7 @@ const TITLE_LINES = [
 const POLL_INTERVAL = 1500;
 
 type ReadDirResult = Awaited<
-  ReturnType<typeof window.zendium.filesystem.readDir>
+  ReturnType<typeof window.zendium.fileExplorer.readDir>
 >;
 type DirItem = Extract<ReadDirResult, { available: true }>["items"][number];
 
@@ -82,7 +82,7 @@ export default function UpperRightPanel() {
       lastCwdRef.current = cwdResult.cwd;
       setCwd(cwdResult.cwd);
 
-      const dirResult = await window.zendium.filesystem.readDir(cwdResult.cwd);
+      const dirResult = await window.zendium.fileExplorer.readDir(cwdResult.cwd);
 
       if (!mounted) return;
 

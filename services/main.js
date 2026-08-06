@@ -6,7 +6,7 @@ import pty from "node-pty";
 import { getSystemInfo } from "./system.js";
 import { getCurrentLocation } from "./location.js";
 import { getLiveData } from "./liveData.js";
-import { getTerminalCwd, readDirectory } from "./filesystem.js";
+import { getTerminalCwd, readDirectory } from "./fileExplorer.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const isDev = !app.isPackaged;
@@ -72,7 +72,7 @@ ipcMain.on("terminal:write", (_event, data) => {
 });
 
 // --------------------------------------------------
-// FILESYSTEM / FILE EXPLORER
+// FILEEXPLORER
 ipcMain.handle("terminal:getCwd", () => {
   if (!terminalProcess) {
     return { available: false, error: "NO_TERMINAL" };
