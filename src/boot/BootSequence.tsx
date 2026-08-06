@@ -15,13 +15,70 @@ import PulseTransition from "@transitions/PulseTransition";
 import OrbitTransition from "@transitions/OrbitTransition";
 import MatrixRainTransition from "@transitions/MatrixRainTransition";
 
-export default function BootSequence() {
+// --------------------------------------------------
+// PANEL STATE
+type PanelState = {
+  upperLeft: boolean;
+  upperRight: boolean;
+  lowerLeft: boolean;
+  lowerRight: boolean;
+};
+
+type Props = {
+  onPanelsChange: React.Dispatch<React.SetStateAction<PanelState>>;
+};
+
+// --------------------------------------------------
+// BOOT SEQUENCE
+export default function BootSequence({ onPanelsChange }: Props) {
   const [step, setStep] = useState(0);
 
   const advancingRef = useRef(false);
 
   const event = timeline[step];
 
+  // --------------------------------------------------
+  // PANEL TRIGGERS
+  useEffect(() => {
+    // ----------------------------------------------
+    // UPPER LEFT
+    // Enters when Welcome is reached.
+    // ----------------------------------------------
+    if (event.type === "welcome") {
+      onPanelsChange((current) => ({
+        ...current,
+        upperLeft: true,
+      }));
+    }
+
+    // ----------------------------------------------
+    // UPPER RIGHT
+    // Enters on the Matrix Rain transition
+    // immediately following News.
+    if (
+      event.type === "matrix-rain-transition" &&
+      timeline[step - 1]?.type === "news"
+    ) {
+      onPanelsChange((current) => ({
+        ...current,
+        upperRight: true,
+      }));
+    }
+
+    // ----------------------------------------------
+    // LOWER LEFT + LOWER RIGHT
+    // Both enter when Terminal is reached.
+    if (event.type === "terminal") {
+      onPanelsChange((current) => ({
+        ...current,
+        lowerLeft: true,
+        lowerRight: true,
+      }));
+    }
+  }, [event.type, step, onPanelsChange]);
+
+  // --------------------------------------------------
+  // ADVANCE TO NEXT VIEW
   const handleComplete = () => {
     if (advancingRef.current) {
       return;
@@ -45,6 +102,7 @@ export default function BootSequence() {
   // --------------------------------------------------
   // SKIP VIEW WITH KEYBOARD / MOUSE
   useEffect(() => {
+    // Terminal is the final view.
     if (event.type === "terminal") {
       return;
     }

@@ -1,7 +1,7 @@
 export default function UpperLeftPanel() {
   return (
     <div className="panel">
-      UPPER RIGHT
+      UPPER LEFT
     </div>
   );
 }

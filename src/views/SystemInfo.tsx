@@ -16,7 +16,7 @@ export default function SystemInfo({ onComplete }: Props) {
 
   useEffect(() => {
     window.zendium.system.getInfo().then((data) => {
-      console.log("SYSTEM INFO:", data);
+      //console.log("SYSTEM INFO:", data);
       setInfo(data);
     });
   }, []);

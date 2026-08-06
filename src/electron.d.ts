@@ -99,6 +99,15 @@ declare global {
         >;
       };
 
+      liveData: {
+        getLiveData(): Promise<{
+          weather: Awaited<
+            ReturnType<Window["zendium"]["weather"]["getCurrent"]>
+          >;
+          news: Awaited<ReturnType<Window["zendium"]["news"]["getLatest"]>>;
+        }>;
+      };
+
       terminal: {
         write(data: string): void;
         onData(callback: (data: string) => void): () => void;

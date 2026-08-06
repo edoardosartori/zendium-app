@@ -7,12 +7,14 @@
     "strict": true,
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
+    
     "paths": {
       "@assets/*": ["./assets/*",],
       "@views/*": ["./src/views/*",],
       "@transitions/*": ["./src/transitions/*",],
       "@style/*": ["./src/style/*",],
-      "@utils/*": ["./src/core/utils/*",]
+      "@utils/*": ["./src/core/utils/*",],
+      "@services/*": ["./services/*",]
     }
   }
 }

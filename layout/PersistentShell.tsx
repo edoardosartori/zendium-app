@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+
 import UpperLeftPanel from "./panels/UpperLeftPanel";
 import UpperRightPanel from "./panels/UpperRightPanel";
 import LowerLeftPanel from "./panels/LowerLeftPanel";
@@ -9,28 +10,50 @@ import "@style/layout/panels.css";
 
 type Props = {
   children: ReactNode;
-  panelsVisible?: boolean;
+  upperLeftVisible?: boolean;
+  upperRightVisible?: boolean;
+  lowerLeftVisible?: boolean;
+  lowerRightVisible?: boolean;
 };
 
 export default function PersistentShell({
   children,
-  panelsVisible = false,
+  upperLeftVisible = false,
+  upperRightVisible = false,
+  lowerLeftVisible = false,
+  lowerRightVisible = false,
 }: Props) {
   return (
-    <div className={`persistent-shell ${panelsVisible ? "panels-visible" : ""}`}>
-      <div className="persistent-shell-panel persistent-shell-upper-left">
+    <div className="persistent-shell">
+      <div
+        className={`persistent-shell-panel persistent-shell-upper-left ${
+          upperLeftVisible ? "panel-visible" : ""
+        }`}
+      >
         <UpperLeftPanel />
       </div>
 
-      <div className="persistent-shell-panel persistent-shell-upper-right">
+      <div
+        className={`persistent-shell-panel persistent-shell-upper-right ${
+          upperRightVisible ? "panel-visible" : ""
+        }`}
+      >
         <UpperRightPanel />
       </div>
 
-      <div className="persistent-shell-panel persistent-shell-lower-left">
+      <div
+        className={`persistent-shell-panel persistent-shell-lower-left ${
+          lowerLeftVisible ? "panel-visible" : ""
+        }`}
+      >
         <LowerLeftPanel />
       </div>
 
-      <div className="persistent-shell-panel persistent-shell-lower-right">
+      <div
+        className={`persistent-shell-panel persistent-shell-lower-right ${
+          lowerRightVisible ? "panel-visible" : ""
+        }`}
+      >
         <LowerRightPanel />
       </div>
 

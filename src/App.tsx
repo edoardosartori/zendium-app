@@ -1,21 +1,31 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+
 import BootSequence from "./boot/BootSequence";
 import PersistentShell from "../layout/PersistentShell";
 
+export type PanelState = {
+  upperLeft: boolean;
+  upperRight: boolean;
+  lowerLeft: boolean;
+  lowerRight: boolean;
+};
+
 export default function App() {
-  const [panelsVisible, setPanelsVisible] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setPanelsVisible(true);
-    }, 5000);
-
-    return () => clearTimeout(timer);
-  }, []);
+  const [panels, setPanels] = useState<PanelState>({
+    upperLeft: false,
+    upperRight: false,
+    lowerLeft: false,
+    lowerRight: false,
+  });
 
   return (
-    <PersistentShell panelsVisible={panelsVisible}>
-      <BootSequence />
+    <PersistentShell
+      upperLeftVisible={panels.upperLeft}
+      upperRightVisible={panels.upperRight}
+      lowerLeftVisible={panels.lowerLeft}
+      lowerRightVisible={panels.lowerRight}
+    >
+      <BootSequence onPanelsChange={setPanels} />
     </PersistentShell>
   );
 }

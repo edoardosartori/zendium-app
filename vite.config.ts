@@ -14,7 +14,8 @@ export default defineConfig({
       "@views": path.resolve(__dirname, "src/views"),
       "@transitions": path.resolve(__dirname, "src/transitions"),
       "@style": path.resolve(__dirname, "src/style"),
-      "@utils": path.resolve(__dirname, "src/core/utils")
+      "@utils": path.resolve(__dirname, "src/core/utils"),
+      "@services": path.resolve(__dirname, "services")
     },
   },
 

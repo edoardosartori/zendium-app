@@ -5,13 +5,23 @@
     background: var(--color-background);
     border: 1px solid var(--color-primary);
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
 }
 
 .panel--lower-left {
-  width: 330px;
-  height: 450px;
+    width: 330px;
+    height: 450px;
 }
 
+.panel--lower-right {
+    width: 400px;
+    height: 650px;
+}
+
+/* ---------- PANEL BASE ---------- */
 .persistent-shell-panel {
     position: absolute;
     overflow: hidden;
@@ -20,6 +30,7 @@
     pointer-events: none;
 }
 
+/* ---------- PANEL POSITIONS ---------- */
 .persistent-shell-upper-left {
     top: 0;
     left: 0;
@@ -45,23 +56,34 @@
 }
 
 /* ---------- PANEL ENTRY ---------- */
-.panels-visible .persistent-shell-upper-left {
-    animation: panel-upper-left-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+/*
+ * Ogni pannello entra indipendentemente.
+ *
+ * .panel-visible viene aggiunta dal PersistentShell
+ * quando il relativo trigger della BootSequence viene raggiunto.
+ */
+.panel-visible.persistent-shell-upper-left {
+    animation:
+        panel-upper-left-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-.panels-visible .persistent-shell-upper-right {
-    animation: panel-upper-right-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+.panel-visible.persistent-shell-upper-right {
+    animation:
+        panel-upper-right-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-.panels-visible .persistent-shell-lower-left {
-    animation: panel-lower-left-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+.panel-visible.persistent-shell-lower-left {
+    animation:
+        panel-lower-left-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-.panels-visible .persistent-shell-lower-right {
-    animation: panel-lower-right-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.45s forwards;
+.panel-visible.persistent-shell-lower-right {
+    animation:
+        panel-lower-right-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-.panels-visible .persistent-shell-panel {
+/* ---------- PANEL INTERACTION ---------- */
+.panel-visible {
     pointer-events: auto;
 }
 
@@ -110,13 +132,14 @@
     }
 }
 
+/* ---------- PANEL CONTENT ---------- */
 .panel-title {
-    padding: 1px;
     white-space: pre;
+    margin: 1px;
 }
 
 .panel-text {
     font-size: small;
-    padding: 3px;
-    padding-left: 8px;
+    text-align: left;
+    padding: 5px;
 }
