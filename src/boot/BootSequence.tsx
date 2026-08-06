@@ -37,41 +37,36 @@ export default function BootSequence({ onPanelsChange }: Props) {
 
   // --------------------------------------------------
   // PANEL TRIGGERS
+  // All panels enter once the Terminal is reached, staggered.
   useEffect(() => {
-    // ----------------------------------------------
-    // UPPER LEFT
-    // Enters when Welcome is reached.
-    // ----------------------------------------------
-    if (event.type === "welcome") {
-      onPanelsChange((current) => ({
-        ...current,
-        upperLeft: true,
-      }));
+    if (event.type !== "terminal") {
+      return;
     }
 
-    // ----------------------------------------------
-    // UPPER RIGHT
-    // Enters on the Matrix Rain transition
-    if (
-      event.type === "matrix-rain-transition"
-    ) {
-      onPanelsChange((current) => ({
-        ...current,
-        upperRight: true,
-      }));
-    }
+    const STAGGER_DELAY = 200;
 
-    // ----------------------------------------------
-    // LOWER LEFT + LOWER RIGHT
-    // Both enter when Terminal is reached.
-    if (event.type === "terminal") {
-      onPanelsChange((current) => ({
-        ...current,
-        lowerLeft: true,
-        lowerRight: true,
-      }));
-    }
-  }, [event.type, step, onPanelsChange]);
+    const timeouts: ReturnType<typeof setTimeout>[] = [];
+
+    const schedule = (delay: number, patch: Partial<PanelState>) => {
+      const id = setTimeout(() => {
+        onPanelsChange((current) => ({
+          ...current,
+          ...patch,
+        }));
+      }, delay);
+
+      timeouts.push(id);
+    };
+
+    schedule(STAGGER_DELAY * 0, { upperLeft: true });
+    schedule(STAGGER_DELAY * 1, { upperRight: true });
+    schedule(STAGGER_DELAY * 2, { lowerLeft: true });
+    schedule(STAGGER_DELAY * 3, { lowerRight: true });
+
+    return () => {
+      timeouts.forEach(clearTimeout);
+    };
+  }, [event.type, onPanelsChange]);
 
   // --------------------------------------------------
   // ADVANCE TO NEXT VIEW

@@ -36,7 +36,7 @@ const EXTENSION_COLORS: Record<string, string> = {
 };
 
 const DEFAULT_FILE_COLOR = "#55ff55";
-const DIR_COLOR = "#F0997B";
+const DIR_COLOR = "#81d7ff";
 
 function getFileColor(name: string): string {
   const parts = name.split(".");
