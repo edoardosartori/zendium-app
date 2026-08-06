@@ -112,6 +112,25 @@ declare global {
         write(data: string): void;
         onData(callback: (data: string) => void): () => void;
         resize(cols: number, rows: number): void;
+        getCwd(): Promise<
+          | { available: true; cwd: string }
+          | { available: false; error: "NO_TERMINAL" | "CWD_UNAVAILABLE" }
+        >;
+      };
+
+      filesystem: {
+        readDir(dirPath: string): Promise<
+          | {
+              available: true;
+              path: string;
+              items: {
+                name: string;
+                isDirectory: boolean;
+                isSymlink: boolean;
+              }[];
+            }
+          | { available: false; error: "READ_DIR_ERROR" }
+        >;
       };
     };
   }

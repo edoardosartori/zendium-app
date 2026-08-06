@@ -7,13 +7,17 @@
     padding: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     text-align: center;
 }
 
 .panel--upper-left {
     width: 350px;
     height: 300px;
+}
+
+.panel--upper-right {
+    width: 330px;
+    height: 380px;
 }
 
 .panel--lower-left {

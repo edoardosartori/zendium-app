@@ -44,5 +44,16 @@ contextBridge.exposeInMainWorld("zendium", {
     resize: (cols, rows) => {
       ipcRenderer.send("terminal:resize", { cols, rows });
     },
+
+    getCwd: () => {
+      return ipcRenderer.invoke("terminal:getCwd");
+    },
+  },
+
+  //--------FILESYSTEM-------------------//
+  filesystem: {
+    readDir: (dirPath) => {
+      return ipcRenderer.invoke("fs:readDir", dirPath);
+    },
   },
 });
