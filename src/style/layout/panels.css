@@ -11,6 +11,11 @@
     text-align: center;
 }
 
+.panel--upper-left {
+    width: 310px;
+    height: 350px;
+}
+
 .panel--lower-left {
     width: 330px;
     height: 450px;
@@ -18,7 +23,7 @@
 
 .panel--lower-right {
     width: 400px;
-    height: 650px;
+    height: 350px;
 }
 
 /* ---------- PANEL BASE ---------- */
