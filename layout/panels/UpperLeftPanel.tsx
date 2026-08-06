@@ -1,5 +1,4 @@
-import { useEffect, useRef, useState } from "react";
-import TypingText from "@utils/TypingText";
+import { useEffect, useState } from "react";
 
 const TITLE_LINES = [
   "╔══════════════════════════╗",
@@ -11,7 +10,6 @@ type SystemInfoData = Awaited<ReturnType<typeof window.zendium.system.getInfo>>;
 
 export default function UpperLeftPanel() {
   const [info, setInfo] = useState<SystemInfoData | null>(null);
-  const [currentLine, setCurrentLine] = useState(0);
 
   useEffect(() => {
     window.zendium.system.getInfo().then((data) => {
@@ -59,18 +57,6 @@ export default function UpperLeftPanel() {
       ]
     : [];
 
-  const handleLineComplete = () => {
-    const isLastLine = currentLine === lines.length - 1;
-
-    if (isLastLine) {
-      return;
-    }
-
-    setTimeout(() => {
-      setCurrentLine((prev) => prev + 1);
-    }, 150);
-  };
-
   return (
     <div className="panel panel--upper-left">
       <div className="panel-title">
@@ -80,18 +66,9 @@ export default function UpperLeftPanel() {
       </div>
 
       <div className="panel-text">
-        {lines.slice(0, currentLine).map((line, index) => (
+        {lines.map((line, index) => (
           <div key={`${line}-${index}`}>{line}</div>
         ))}
-
-        {currentLine < lines.length && (
-          <TypingText
-            key={currentLine}
-            text={lines[currentLine]}
-            onComplete={handleLineComplete}
-            sound={false}
-          />
-        )}
       </div>
     </div>
   );

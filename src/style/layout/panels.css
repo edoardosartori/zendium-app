@@ -12,18 +12,18 @@
 }
 
 .panel--upper-left {
-    width: 310px;
-    height: 350px;
+    width: 350px;
+    height: 300px;
 }
 
 .panel--lower-left {
     width: 330px;
-    height: 450px;
+    height: 460px;
 }
 
 .panel--lower-right {
     width: 400px;
-    height: 350px;
+    height: 400px;
 }
 
 /* ---------- PANEL BASE ---------- */

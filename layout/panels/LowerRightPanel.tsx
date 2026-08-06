@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import TypingText from "@utils/TypingText";
 
 const TITLE_LINES = [
   "╔══════════════════════════╗",
@@ -91,8 +90,8 @@ export default function LowerRightPanel() {
         ))}
       </div>
 
-      <div className="panel-text">
-        <TypingText key={text} text={text} showCursor={false} sound={false} />
+      <div className="panel-text" style={{ whiteSpace: "pre-wrap" }}>
+        {text}
       </div>
     </div>
   );
