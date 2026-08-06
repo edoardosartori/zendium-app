@@ -113,7 +113,7 @@ export default function UpperRightPanel() {
         ))}
       </div>
 
-      <div className="panel-text file-explorer">
+      <div className="panel-text file-explorer" key={cwd}>
         {cwd && <div className="file-explorer-path">{cwd}</div>}
 
         {error && <div className="file-explorer-error">{error}</div>}
@@ -122,8 +122,10 @@ export default function UpperRightPanel() {
           items.map((item, index) => (
             <div
               key={item.name}
+              className="file-explorer-item"
               style={{
                 color: item.isDirectory ? DIR_COLOR : getFileColor(item.name),
+                animationDelay: `${index * 80}ms`,
               }}
             >
               {getPrefix(index, items.length)}

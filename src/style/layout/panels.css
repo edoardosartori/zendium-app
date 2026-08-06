@@ -152,3 +152,20 @@
     text-align: left;
     padding: 5px;
 }
+
+/* ---------- FILE EXPLORER ANIMATION ---------- */
+.file-explorer-item {
+  opacity: 0;
+  animation: file-explorer-fade-in 300ms ease-out forwards;
+}
+
+@keyframes file-explorer-fade-in {
+  from {
+    opacity: 0;
+    transform: translateX(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
