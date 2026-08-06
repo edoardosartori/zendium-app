@@ -2,7 +2,6 @@ export type BootEvent =
   | { type: "logo" }
   | { type: "welcome" }
   | { type: "system-info" }
-  | { type: "news" }
   | { type: "terminal" }
   | { type: "scan-transition" }
   | { type: "data-stream-transition" }
@@ -20,7 +19,6 @@ export const timeline: BootEvent[] = [
   { type: "system-info" },
   { type: "orbit-transition" },
   { type: "grid-transition" },
-  { type: "news" },
   { type: "matrix-rain-transition" },
   { type: "terminal" },
 ];

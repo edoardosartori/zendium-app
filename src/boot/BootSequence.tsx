@@ -5,7 +5,6 @@ import { timeline } from "./BootTimeLine";
 import Logo from "@views/Logo";
 import Welcome from "@views/Welcome";
 import SystemInfo from "@views/SystemInfo";
-import News from "@views/News";
 import Terminal from "@views/Terminal";
 
 import ScanTransition from "@transitions/ScanTransition";
@@ -54,10 +53,8 @@ export default function BootSequence({ onPanelsChange }: Props) {
     // ----------------------------------------------
     // UPPER RIGHT
     // Enters on the Matrix Rain transition
-    // immediately following News.
     if (
-      event.type === "matrix-rain-transition" &&
-      timeline[step - 1]?.type === "news"
+      event.type === "matrix-rain-transition"
     ) {
       onPanelsChange((current) => ({
         ...current,
@@ -136,12 +133,11 @@ export default function BootSequence({ onPanelsChange }: Props) {
     case "system-info":
       return <SystemInfo onComplete={handleComplete} />;
 
-    case "news":
-      return <News onComplete={handleComplete} />;
-
     case "terminal":
       return <Terminal />;
 
+    // --------------------------------------------------
+    // TRANSITIONS
     case "scan-transition":
       return <ScanTransition onComplete={handleComplete} />;
 
