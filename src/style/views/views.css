@@ -18,11 +18,6 @@
     align-items: center;
 }
 
-/* ---------- NEWS VIEW ---------- */
-.news-text {
-    font-size: small;
-}
-
 /* /////////////////////////////////////////////////////////////// */
 .text {
     color: var(--color-primary);
@@ -80,7 +75,6 @@
     font-size: x-large;
 }
 
-/* ---------- TERMINAL ---------- */
 .terminal-icon {
     color: var(--color-primary);
     width: 400px;

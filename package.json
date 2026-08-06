@@ -1,7 +1,7 @@
 {
   "name": "zendium",
   "desktopName": "zendium",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "private": true,
   "type": "module",
   "main": "services/main.js",
@@ -38,13 +38,13 @@
   "build": {
     "appId": "com.zendium.app",
     "productName": "Zendium",
+    "icon": "assets/icon.png",
     "directories": {
       "output": "release"
     },
     "linux": {
-      "target": [
-        "AppImage"
-      ],
+      "target": "AppImage",
+      "icon": "assets/logo.png",
       "category": "Utility"
     }
   }
