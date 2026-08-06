@@ -4,7 +4,6 @@ import { timeline } from "./BootTimeLine";
 
 import Logo from "@views/Logo";
 import Welcome from "@views/Welcome";
-import SystemInfo from "@views/SystemInfo";
 import Terminal from "@views/Terminal";
 
 import ScanTransition from "@transitions/ScanTransition";
@@ -129,9 +128,6 @@ export default function BootSequence({ onPanelsChange }: Props) {
 
     case "welcome":
       return <Welcome onComplete={handleComplete} />;
-
-    case "system-info":
-      return <SystemInfo onComplete={handleComplete} />;
 
     case "terminal":
       return <Terminal />;
