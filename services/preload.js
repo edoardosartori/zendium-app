@@ -1,37 +1,34 @@
 const { contextBridge, ipcRenderer } = require("electron");
 
 contextBridge.exposeInMainWorld("zendium", {
+  //--------SYSTEM INFORMATION-------------------//
   system: {
-    //--------SYSTEM INFORMATION-------------------//
     getInfo: () => {
       //console.log("PRELOAD: system:getInfo called");
       return ipcRenderer.invoke("system:getInfo");
-    }
+    },
   },
+
   //--------LOCATION-------------------//
-   location: {
+  location: {
     getCurrent: () => {
       //console.log("PRELOAD: location:getCurrent called");
       return ipcRenderer.invoke("location:getCurrent");
-    }
+    },
   },
-  //--------WEATHER-------------------//
-  weather: {
-    getCurrent: () => {
-      //console.log("PRELOAD: weather:getCurrent called");
-      return ipcRenderer.invoke("weather:getCurrent");
-    }
+
+  //--------LIVE DATA-------------------//
+  liveData: {
+    getLiveData: () => {
+      //console.log("PRELOAD: liveData:getLiveData called");
+      return ipcRenderer.invoke("liveData:getLiveData");
+    },
   },
-  //--------NEWS-------------------//
-  news: {
-    getLatest: () => {
-      //console.log("PRELOAD: news:getLatest called");
-      return ipcRenderer.invoke("news:getLatest");
-    }
-  },
+
   //--------TERMINAL-------------------//
   terminal: {
     write: (data) => ipcRenderer.send("terminal:write", data),
+
     onData: (callback) => {
       const listener = (_event, data) => {
         callback(data);
@@ -43,6 +40,7 @@ contextBridge.exposeInMainWorld("zendium", {
         ipcRenderer.removeListener("terminal:data", listener);
       };
     },
+
     resize: (cols, rows) => {
       ipcRenderer.send("terminal:resize", { cols, rows });
     },

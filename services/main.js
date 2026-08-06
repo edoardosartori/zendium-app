@@ -4,10 +4,8 @@ import { fileURLToPath } from "node:url";
 import pty from "node-pty";
 
 import { getSystemInfo } from "./system.js";
-
 import { getCurrentLocation } from "./location.js";
-import { getCurrentWeather } from "./weather.js";
-import { getLatestNews } from "./news.js";
+import { getLiveData } from "./liveData.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const isDev = !app.isPackaged;
@@ -55,6 +53,12 @@ ipcMain.handle("news:getLatest", async () => {
   //console.log("MAIN: news result:", result);
 
   return result;
+});
+
+// --------------------------------------------------
+// LIVE DATA
+ipcMain.handle("liveData:getLiveData", async () => {
+  return await getLiveData();
 });
 
 // --------------------------------------------------

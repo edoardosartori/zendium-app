@@ -1,10 +1,13 @@
-// services/liveData.js
-import { getCurrentWeather } from "./weather";
-import { getLatestNews } from "./news";
+import { getCurrentLocation } from "./location.js";
+
+import { getCurrentWeather } from "./weather.js";
+import { getLatestNews } from "./news.js";
 
 export async function getLiveData() {
+  const location = await getCurrentLocation();
+
   const [weather, news] = await Promise.all([
-    getCurrentWeather(),
+    getCurrentWeather(location.available ? location : null),
     getLatestNews(),
   ]);
 

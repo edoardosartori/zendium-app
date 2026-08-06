@@ -6,11 +6,9 @@ type Props = {
   onComplete: () => void;
 };
 
-type WeatherData = Awaited<
-  ReturnType<typeof window.zendium.weather.getCurrent>
->;
-
-type NewsData = Awaited<ReturnType<typeof window.zendium.news.getLatest>>;
+type LiveData = Awaited<ReturnType<typeof window.zendium.liveData.getLiveData>>;
+type WeatherData = LiveData["weather"];
+type NewsData = LiveData["news"];
 
 function getWeatherDescription(code: number) {
   if (code === 0) return "CLEAR SKY";
@@ -34,10 +32,8 @@ export default function News({ onComplete }: Props) {
 
     const loadData = async () => {
       try {
-        const [weatherData, newsData] = await Promise.all([
-          window.zendium.weather.getCurrent(),
-          window.zendium.news.getLatest(),
-        ]);
+        const { weather: weatherData, news: newsData } =
+          await window.zendium.liveData.getLiveData();
 
         //console.log("RENDERER WEATHER:", weatherData);
         //console.log("RENDERER NEWS:", newsData);
@@ -89,7 +85,7 @@ HIGH: ${weather.maxTemperature ?? "--"}°C`;
           text += "NO ITALY NEWS AVAILABLE";
         }
 
-/*         console.log("NEWS: display text ready");
+        /*         console.log("NEWS: display text ready");
         console.log(text); */
 
         setNewsText(text);
@@ -97,9 +93,7 @@ HIGH: ${weather.maxTemperature ?? "--"}°C`;
         console.error("NEWS: request failed:", error);
 
         if (mounted) {
-          setNewsText(
-            "WEATHER DATA UNAVAILABLE\n\nNEWS UNAVAILABLE",
-          );
+          setNewsText("WEATHER DATA UNAVAILABLE\n\nNEWS UNAVAILABLE");
         }
       }
     };
