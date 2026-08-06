@@ -7,10 +7,10 @@ import Welcome from "@views/Welcome";
 import Terminal from "@views/Terminal";
 
 import ScanTransition from "@transitions/ScanTransition";
-import DataStreamTransition from "@transitions/DataStreamTransition";
+// import DataStreamTransition from "@transitions/DataStreamTransition";
 import GridTransition from "@transitions/GridTransition";
 import PulseTransition from "@transitions/PulseTransition";
-import OrbitTransition from "@transitions/OrbitTransition";
+// import OrbitTransition from "@transitions/OrbitTransition";
 import MatrixRainTransition from "@transitions/MatrixRainTransition";
 
 // --------------------------------------------------
@@ -131,9 +131,10 @@ export default function BootSequence({ onPanelsChange }: Props) {
     // TRANSITIONS
     case "scan-transition":
       return <ScanTransition onComplete={handleComplete} />;
-
+/* 
     case "data-stream-transition":
       return <DataStreamTransition onComplete={handleComplete} />;
+  */
 
     case "grid-transition":
       return <GridTransition onComplete={handleComplete} />;
@@ -141,9 +142,9 @@ export default function BootSequence({ onPanelsChange }: Props) {
     case "pulse-transition":
       return <PulseTransition onComplete={handleComplete} />;
 
-    case "orbit-transition":
+/*     case "orbit-transition":
       return <OrbitTransition onComplete={handleComplete} />;
-
+ */
     case "matrix-rain-transition":
       return <MatrixRainTransition onComplete={handleComplete} />;
 

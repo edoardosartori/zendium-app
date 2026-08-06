@@ -50,7 +50,7 @@ export default function PulseTransition({ onComplete }: Props) {
 
         {/* STATUS */}
         <div className="pulse-status">
-          <div className="pulse-status-label">SYSTEM ONLINE</div>
+          <div className="pulse-status-label">LOADING ZENDIUM SYSTEM</div>
         </div>
       </div>
     </div>
