@@ -1,8 +1,15 @@
 import HudCorners from "./HudCorners";
 
 const COMMANDS = [
+  "git add . - stage all changes",
+  "git commit -m 'name' - save changes",
+  "git push - upload changes",
+  "npm run dist - create distribution",
+  "npm run build - build application",
+  "npm run dev:electron - start development",
   "pwd - current directory",
-  "ls - list files + -la fpr details",
+  "ls - list files",
+  "ls -la -list files with details",
   "cd .. - go up one level",
   "cd ~ - go to home",
   "cd - - go to previous directory",
@@ -16,7 +23,7 @@ const COMMANDS = [
   "head file.txt - show first lines",
   'find . -name "*.txt" - search files',
   'grep "text" file.txt - search in file',
-  "code . - open VS Code",
+  "code - open VS Code",
   "firefox - open Firefox",
   "nautilus . - open file manager",
   "gedit file.txt - open text editor",
@@ -26,6 +33,7 @@ const COMMANDS = [
   "whois domain.com - domain info",
   "ip a - show IP addresses",
   "history - show command history",
+  "clear - clear terminal",
 ];
 
 const TITLE_LINES = [
@@ -43,7 +51,7 @@ export default function LowerLeftPanel() {
           <div key={i}>{line}</div>
         ))}
       </div>
-      <div className="panel-text glow-text--subtle">
+      <div className="panel-text glow-text--subtle scrollable">
         {COMMANDS.map((cmd, i) => (
           <div key={i}>{cmd}</div>
         ))}
@@ -55,4 +63,3 @@ export default function LowerLeftPanel() {
 if (import.meta.env.DEV) {
   console.log("LowerLeftPanel rendered");
 }
-

@@ -117,7 +117,7 @@ export default function UpperRightPanel() {
         ))}
       </div>
 
-      <div className="panel-text glow-text--subtle file-explorer" key={cwd}>
+      <div className="panel-text glow-text--subtle file-explorer scrollable" key={cwd}>
         {cwd && <div className="file-explorer-path">{cwd}</div>}
 
         {error && <div className="file-explorer-error">{error}</div>}

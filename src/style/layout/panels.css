@@ -1,49 +1,49 @@
 .panel {
     margin: 4px;
-    width: 400px;
-    height: 250px;
+    width: clamp(280px, 20vw, 420px);
+    height: clamp(180px, 23vh, 260px);
     color: var(--color-primary);
     background: var(--color-background);
-    padding: 10px;
+    padding: 0.6rem;
     display: flex;
     flex-direction: column;
     text-align: center;
-    border-radius: 15pt;
+    border-radius: 1rem;
 }
 
 .panel--upper-left {
-    width: 350px;
-    height: 320px;
+    width: clamp(260px, 18vw, 370px);
+    height: clamp(230px, 30vh, 340px);
 }
 
 .panel--upper-right {
-    width: 330px;
-    height: 400px;
+    width: clamp(250px, 17vw, 350px);
+    height: clamp(300px, 37vh, 420px);
 }
 
 .panel--lower-left {
-    width: 330px;
-    height: 500px;
+    width: clamp(250px, 17vw, 350px);
+    height: clamp(340px, 46vh, 520px);
 }
 
 .panel--lower-right {
-    width: 400px;
-    height: 400px;
+    width: clamp(280px, 20vw, 420px);
+    height: clamp(280px, 37vh, 420px);
 }
 
 .panel--clock {
-    width: 300px;
-    height: 70px;
+    width: clamp(220px, 16vw, 320px);
+    height: clamp(60px, 7vh, 80px);
 }
 
 .panel--theme {
-    width: 100px;
-    height: 50px;
+    width: clamp(80px, 5vw, 110px);
+    height: clamp(40px, 5vh, 55px);
     display: flex;
     justify-content: center;
     border: none;
     flex-direction: row;
-    gap: 10px;
+    gap: 0.6rem;
     background-color: transparent;
 }
 
@@ -82,13 +82,13 @@
 }
 
 .persistent-shell-clock {
-    top: 30%;
+    top: 35%;
     left: 0;
     transform: translate(-100%, -50%);
 }
 
 .persistent-shell-theme {
-    top: 35%;
+    top: 40%;
     left: 0;
     transform: translate(-100%, -50%);
 }
@@ -221,10 +221,22 @@
     padding: 5px;
 }
 
+/* ---------- FILE EXPLORER SCROLL ---------- */
+.scrollable {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+}
+
+.scrollable::-webkit-scrollbar {
+    display: none;
+}
+
 /* ---------- FILE EXPLORER ANIMATION ---------- */
 .file-explorer-item {
     opacity: 0;
     animation: file-explorer-fade-in 300ms ease-out forwards;
+    overflow-y: auto
 }
 
 @keyframes file-explorer-fade-in {
@@ -253,22 +265,22 @@
 
 /* ---------- THEME PANEL CONTENT ---------- */
 .theme-swatch {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.3);
-  cursor: pointer;
-  padding: 0;
-  transition: transform 0.15s ease, border-color 0.15s ease;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.15s ease, border-color 0.15s ease;
 }
 
 .theme-swatch:hover {
-  transform: scale(1.15);
+    transform: scale(1.15);
 }
 
 .theme-swatch--active {
-  border-color: #fff;
-  box-shadow: 0 0 0 2px var(--color-background), 0 0 0 3px currentColor;
+    border-color: #fff;
+    box-shadow: 0 0 0 2px var(--color-background), 0 0 0 3px currentColor;
 }
 
 
@@ -278,7 +290,7 @@
     border: none;
     border-radius: 0;
 }
- 
+
 .corner {
     position: absolute;
     width: 32px;
@@ -286,42 +298,42 @@
     border: 2px solid var(--color-primary);
     pointer-events: none;
 }
- 
+
 .corner--tl {
     top: 0px;
     left: 0px;
     border-right: none;
     border-bottom: none;
 }
- 
+
 .corner--tr {
     top: 0px;
     right: 0px;
     border-left: none;
     border-bottom: none;
 }
- 
+
 .corner--bl {
     bottom: 0px;
     left: 0px;
     border-right: none;
     border-top: none;
 }
- 
+
 .corner--br {
     bottom: 0px;
     right: 0px;
     border-left: none;
     border-top: none;
 }
- 
+
 /* ---------- GLOW TEXT ---------- */
 .glow-text {
     text-shadow:
         0 0 4px var(--color-primary),
         0 0 12px var(--color-primary);
 }
- 
+
 .glow-text--subtle {
     text-shadow: 0 0 2px var(--color-primary);
 }
