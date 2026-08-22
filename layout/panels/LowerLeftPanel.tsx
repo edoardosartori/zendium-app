@@ -36,7 +36,7 @@ const TITLE_LINES = [
 
 export default function LowerLeftPanel() {
   return (
-    <div className="panel panel--upper-left panel--hud">
+    <div className="panel panel--lower-left panel--hud">
       <HudCorners />
       <div className="panel-title glow-text">
         {TITLE_LINES.map((line, i) => (

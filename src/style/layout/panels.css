@@ -13,17 +13,17 @@
 
 .panel--upper-left {
     width: 350px;
-    height: 300px;
+    height: 320px;
 }
 
 .panel--upper-right {
     width: 330px;
-    height: 380px;
+    height: 400px;
 }
 
 .panel--lower-left {
     width: 330px;
-    height: 460px;
+    height: 500px;
 }
 
 .panel--lower-right {
@@ -281,8 +281,8 @@
  
 .corner {
     position: absolute;
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
     border: 2px solid var(--color-primary);
     pointer-events: none;
 }

@@ -109,7 +109,7 @@ export default function UpperRightPanel() {
   }, []);
 
   return (
-    <div className="panel panel--upper-left panel--hud">
+    <div className="panel panel--upper-right panel--hud">
       <HudCorners />
       <div className="panel-title glow-text">
         {TITLE_LINES.map((line, i) => (
