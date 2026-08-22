@@ -11,7 +11,7 @@ import ScanTransition from "@transitions/ScanTransition";
 import GridTransition from "@transitions/GridTransition";
 import PulseTransition from "@transitions/PulseTransition";
 // import OrbitTransition from "@transitions/OrbitTransition";
-import MatrixRainTransition from "@transitions/MatrixRainTransition";
+// import MatrixRainTransition from "@transitions/MatrixRainTransition";
 
 // --------------------------------------------------
 // PANEL STATE
@@ -20,6 +20,7 @@ type PanelState = {
   upperRight: boolean;
   lowerLeft: boolean;
   lowerRight: boolean;
+  clock: boolean;
 };
 
 type Props = {
@@ -62,6 +63,7 @@ export default function BootSequence({ onPanelsChange }: Props) {
     schedule(STAGGER_DELAY * 1, { upperRight: true });
     schedule(STAGGER_DELAY * 2, { lowerLeft: true });
     schedule(STAGGER_DELAY * 3, { lowerRight: true });
+    schedule(STAGGER_DELAY * 4, { clock: true });
 
     return () => {
       timeouts.forEach(clearTimeout);
@@ -131,10 +133,9 @@ export default function BootSequence({ onPanelsChange }: Props) {
     // TRANSITIONS
     case "scan-transition":
       return <ScanTransition onComplete={handleComplete} />;
-/* 
-    case "data-stream-transition":
-      return <DataStreamTransition onComplete={handleComplete} />;
-  */
+
+    //case "data-stream-transition":
+    // return <DataStreamTransition onComplete={handleComplete} />;
 
     case "grid-transition":
       return <GridTransition onComplete={handleComplete} />;
@@ -142,11 +143,11 @@ export default function BootSequence({ onPanelsChange }: Props) {
     case "pulse-transition":
       return <PulseTransition onComplete={handleComplete} />;
 
-/*     case "orbit-transition":
-      return <OrbitTransition onComplete={handleComplete} />;
- */
-    case "matrix-rain-transition":
-      return <MatrixRainTransition onComplete={handleComplete} />;
+    //case "orbit-transition":
+    // return <OrbitTransition onComplete={handleComplete} />;
+
+    //case "matrix-rain-transition":
+    //  return <MatrixRainTransition onComplete={handleComplete} />;
 
     default:
       return null;

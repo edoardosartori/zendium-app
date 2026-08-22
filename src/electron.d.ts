@@ -5,6 +5,7 @@ declare global {
     zendium: {
       system: {
         getInfo(): Promise<{
+          uptimeSeconds: number;
           cpu: string;
           cpuCores: number;
           ramTotal: string;

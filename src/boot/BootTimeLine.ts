@@ -5,9 +5,9 @@ export type BootEvent =
   | { type: "scan-transition" }
   // | { type: "data-stream-transition" }
   | { type: "grid-transition" }
-  | { type: "pulse-transition" }
+  | { type: "pulse-transition" };
   // | { type: "orbit-transition" }
-  | { type: "matrix-rain-transition" };
+  // | { type: "matrix-rain-transition" };
 
 export const timeline: BootEvent[] = [
   { type: "logo" },
@@ -17,6 +17,6 @@ export const timeline: BootEvent[] = [
   { type: "scan-transition" },
   // { type: "orbit-transition" },
   { type: "grid-transition" },
-  { type: "matrix-rain-transition" },
+  // { type: "matrix-rain-transition" },
   { type: "terminal" },
 ];

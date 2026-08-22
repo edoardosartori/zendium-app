@@ -8,7 +8,7 @@
     display: flex;
     flex-direction: column;
     text-align: center;
-    border-radius: 5%;
+    border-radius: 15pt;
 }
 
 .panel--upper-left {
@@ -29,6 +29,22 @@
 .panel--lower-right {
     width: 400px;
     height: 400px;
+}
+
+.panel--clock {
+    width: 300px;
+    height: 70px;
+}
+
+.clock-time {
+    font-size: 32px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.clock-uptime {
+    font-size: 13px;
+    opacity: 0.6;
 }
 
 /* ---------- PANEL BASE ---------- */
@@ -65,6 +81,12 @@
     transform: translate(100%, 100%);
 }
 
+.persistent-shell-clock {
+    top: 35%;
+    left: 0;
+    transform: translate(-100%, -50%);
+}
+
 /* ---------- PANEL ENTRY ---------- */
 /*
  * Ogni pannello entra indipendentemente.
@@ -92,6 +114,24 @@
         panel-lower-right-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
+/* ---------- CLOCK ENTRY ---------- */
+.panel-visible.persistent-shell-clock {
+    animation:
+        panel-clock-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes panel-clock-in {
+    from {
+        opacity: 0;
+        transform: translate(-100%, -50%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(0, -50%);
+    }
+}
+
 /* ---------- PANEL INTERACTION ---------- */
 .panel-visible {
     pointer-events: auto;
@@ -103,6 +143,7 @@
         opacity: 0;
         transform: translate(-100%, -100%);
     }
+
     to {
         opacity: 1;
         transform: translate(0, 0);
@@ -114,6 +155,7 @@
         opacity: 0;
         transform: translate(100%, -100%);
     }
+
     to {
         opacity: 1;
         transform: translate(0, 0);
@@ -125,6 +167,7 @@
         opacity: 0;
         transform: translate(-100%, 100%);
     }
+
     to {
         opacity: 1;
         transform: translate(0, 0);
@@ -136,6 +179,7 @@
         opacity: 0;
         transform: translate(100%, 100%);
     }
+
     to {
         opacity: 1;
         transform: translate(0, 0);
@@ -156,17 +200,18 @@
 
 /* ---------- FILE EXPLORER ANIMATION ---------- */
 .file-explorer-item {
-  opacity: 0;
-  animation: file-explorer-fade-in 300ms ease-out forwards;
+    opacity: 0;
+    animation: file-explorer-fade-in 300ms ease-out forwards;
 }
 
 @keyframes file-explorer-fade-in {
-  from {
-    opacity: 0;
-    transform: translateX(-4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+    from {
+        opacity: 0;
+        transform: translateX(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
