@@ -38,12 +38,12 @@ export default function LowerLeftPanel() {
   return (
     <div className="panel panel--upper-left panel--hud">
       <HudCorners />
-      <div className="panel-title">
+      <div className="panel-title glow-text">
         {TITLE_LINES.map((line, i) => (
           <div key={i}>{line}</div>
         ))}
       </div>
-      <div className="panel-text">
+      <div className="panel-text glow-text--subtle">
         {COMMANDS.map((cmd, i) => (
           <div key={i}>{cmd}</div>
         ))}
@@ -52,4 +52,7 @@ export default function LowerLeftPanel() {
   );
 }
 
-console.log("LowerLeftPanel rendered");
+if (import.meta.env.DEV) {
+  console.log("LowerLeftPanel rendered");
+}
+

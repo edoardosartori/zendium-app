@@ -87,4 +87,7 @@ export default function Terminal() {
   );
 }
 
-console.log("terminal rendered");
+if (import.meta.env.DEV) {
+  console.log("terminal rendered");
+}
+

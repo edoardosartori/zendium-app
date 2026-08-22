@@ -81,4 +81,7 @@ export default function UpperLeftPanel() {
   );
 }
 
-console.log("UpperLeftPanel rendered");
+if (import.meta.env.DEV) {
+  console.log("UpperLeftPanel rendered");
+}
+

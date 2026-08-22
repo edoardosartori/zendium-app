@@ -82,3 +82,7 @@ export default function PersistentShell({
     </div>
   );
 }
+
+if (import.meta.env.DEV) {
+  console.log("PersistentShell rendered");
+}

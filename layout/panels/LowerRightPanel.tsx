@@ -86,17 +86,20 @@ export default function LowerRightPanel() {
   return (
     <div className="panel panel--lower-right panel--hud">
       <HudCorners />
-      <div className="panel-title">
+      <div className="panel-title glow-text">
         {TITLE_LINES.map((line, i) => (
           <div key={i}>{line}</div>
         ))}
       </div>
 
-      <div className="panel-text" style={{ whiteSpace: "pre-wrap" }}>
+      <div className="panel-text glow-text--subtle" style={{ whiteSpace: "pre-wrap" }}>
         {text}
       </div>
     </div>
   );
 }
 
-console.log("LowerRightPanel rendered");
+if (import.meta.env.DEV) {
+  console.log("LowerRightPanel rendered");
+}
+

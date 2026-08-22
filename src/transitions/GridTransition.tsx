@@ -85,4 +85,6 @@ export default function GridTransition({ onComplete }: Props) {
   );
 }
 
-console.log("grid transition rendered");
+if (import.meta.env.DEV) {
+  console.log("grid transition rendered");
+}

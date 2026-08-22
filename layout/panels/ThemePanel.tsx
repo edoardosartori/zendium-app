@@ -31,4 +31,7 @@ export default function ThemePanel() {
   );
 }
 
-console.log("ThemePanel rendered");
+if (import.meta.env.DEV) {
+  console.log("ThemePanel rendered");
+}
+

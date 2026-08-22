@@ -23,4 +23,6 @@ export default function Logo({ onComplete }: Props) {
   );
 }
 
-console.log("logo rendered");
+if (import.meta.env.DEV) {
+  console.log("logo rendered");
+}

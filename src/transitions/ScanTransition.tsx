@@ -55,4 +55,6 @@ export default function ScanTransition({ onComplete }: Props) {
   );
 }
 
-console.log("scan transition rendered");
+if (import.meta.env.DEV) {
+  console.log("scan transition rendered");
+}

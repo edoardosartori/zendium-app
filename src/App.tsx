@@ -36,4 +36,7 @@ export default function App() {
   );
 }
 
-console.log("App rendered");
+if (import.meta.env.DEV) {
+  console.log("App rendered");
+}
+

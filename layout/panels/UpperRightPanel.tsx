@@ -111,13 +111,13 @@ export default function UpperRightPanel() {
   return (
     <div className="panel panel--upper-left panel--hud">
       <HudCorners />
-      <div className="panel-title">
+      <div className="panel-title glow-text">
         {TITLE_LINES.map((line, i) => (
           <div key={i}>{line}</div>
         ))}
       </div>
 
-      <div className="panel-text file-explorer" key={cwd}>
+      <div className="panel-text glow-text--subtle file-explorer" key={cwd}>
         {cwd && <div className="file-explorer-path">{cwd}</div>}
 
         {error && <div className="file-explorer-error">{error}</div>}
@@ -142,4 +142,7 @@ export default function UpperRightPanel() {
   );
 }
 
-console.log("UpperRightPanel rendered");
+if (import.meta.env.DEV) {
+  console.log("UpperRightPanel rendered");
+}
+

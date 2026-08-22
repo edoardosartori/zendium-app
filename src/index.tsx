@@ -6,8 +6,10 @@ import "@style/views/views.css";
 
 import App from "./App";
 
-console.time("React startup");
-console.log("index.tsx loaded");
+if (import.meta.env.DEV) {
+  console.time("React startup");
+  console.log("index.tsx loaded");
+}
 
 ReactDOM.createRoot(document.getElementById("root")!).render(<App />);
 

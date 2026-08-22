@@ -64,4 +64,6 @@ export default function MatrixRainTransition({ onComplete }: Props) {
   );
 }
 
-console.log("matrix rain transition rendered");
+if (import.meta.env.DEV) {
+  console.log("matrix rain transition rendered");
+}

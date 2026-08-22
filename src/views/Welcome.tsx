@@ -84,4 +84,7 @@ export default function Welcome({ onComplete }: Props) {
   );
 }
 
-console.log("welcome rendered");
+if (import.meta.env.DEV) {
+  console.log("welcome rendered");
+}
+

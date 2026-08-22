@@ -57,4 +57,6 @@ export default function PulseTransition({ onComplete }: Props) {
   );
 }
 
-console.log("pulse transition rendered");
+if (import.meta.env.DEV) {
+  console.log("pulse transition rendered");
+}
