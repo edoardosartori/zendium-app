@@ -6,37 +6,32 @@ import LowerLeftPanel from "./panels/LowerLeftPanel";
 import LowerRightPanel from "./panels/LowerRightPanel";
 
 import ClockPanel from "./panels/ClockPanel";
+import ThemePanel from "./panels/ThemePanel";
 
 import "@style/layout/persistent-shell.css";
 import "@style/layout/panels.css";
 
 type Props = {
   children: ReactNode;
-  clockVisible?: boolean;
   upperLeftVisible?: boolean;
   upperRightVisible?: boolean;
   lowerLeftVisible?: boolean;
   lowerRightVisible?: boolean;
+  clockVisible?: boolean;
+  themeVisible?: boolean;
 };
 
 export default function PersistentShell({
   children,
-  clockVisible = false,
   upperLeftVisible = false,
   upperRightVisible = false,
   lowerLeftVisible = false,
   lowerRightVisible = false,
+  clockVisible = false,
+  themeVisible = false,
 }: Props) {
   return (
     <div className="persistent-shell">
-      <div
-        className={`persistent-shell-panel persistent-shell-clock ${
-          clockVisible ? "panel-visible" : ""
-        }`}
-      >
-        <ClockPanel />
-      </div>
-
       <div
         className={`persistent-shell-panel persistent-shell-upper-left ${
           upperLeftVisible ? "panel-visible" : ""
@@ -67,6 +62,20 @@ export default function PersistentShell({
         }`}
       >
         <LowerRightPanel />
+      </div>
+      <div
+        className={`persistent-shell-panel persistent-shell-clock ${
+          clockVisible ? "panel-visible" : ""
+        }`}
+      >
+        <ClockPanel />
+      </div>
+      <div
+        className={`persistent-shell-panel persistent-shell-theme ${
+          themeVisible ? "panel-visible" : ""
+        }`}
+      >
+        <ThemePanel />
       </div>
 
       <main className="persistent-shell-center">{children}</main>

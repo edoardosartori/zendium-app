@@ -9,6 +9,7 @@ export type PanelState = {
   lowerLeft: boolean;
   lowerRight: boolean;
   clock: boolean;
+  theme: boolean;
 };
 
 export default function App() {
@@ -18,6 +19,7 @@ export default function App() {
     lowerLeft: false,
     lowerRight: false,
     clock: false,
+    theme: false,
   });
 
   return (
@@ -27,6 +29,7 @@ export default function App() {
       lowerLeftVisible={panels.lowerLeft}
       lowerRightVisible={panels.lowerRight}
       clockVisible={panels.clock}
+      themeVisible={panels.theme}
     >
       <BootSequence onPanelsChange={setPanels} />
     </PersistentShell>

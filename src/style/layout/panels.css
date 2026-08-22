@@ -36,15 +36,15 @@
     height: 70px;
 }
 
-.clock-time {
-    font-size: 32px;
-    font-weight: bold;
-    letter-spacing: 2px;
-}
-
-.clock-uptime {
-    font-size: 13px;
-    opacity: 0.6;
+.panel--theme {
+    width: 100px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    border: none;
+    flex-direction: row;
+    gap: 10px;
+    background-color: transparent;
 }
 
 /* ---------- PANEL BASE ---------- */
@@ -82,6 +82,12 @@
 }
 
 .persistent-shell-clock {
+    top: 30%;
+    left: 0;
+    transform: translate(-100%, -50%);
+}
+
+.persistent-shell-theme {
     top: 35%;
     left: 0;
     transform: translate(-100%, -50%);
@@ -120,16 +126,9 @@
         panel-clock-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-@keyframes panel-clock-in {
-    from {
-        opacity: 0;
-        transform: translate(-100%, -50%);
-    }
-
-    to {
-        opacity: 1;
-        transform: translate(0, -50%);
-    }
+.panel-visible.persistent-shell-theme {
+    animation:
+        panel-theme-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 /* ---------- PANEL INTERACTION ---------- */
@@ -186,6 +185,30 @@
     }
 }
 
+@keyframes panel-clock-in {
+    from {
+        opacity: 0;
+        transform: translate(-100%, -50%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(0, -50%);
+    }
+}
+
+@keyframes panel-theme-in {
+    from {
+        opacity: 0;
+        transform: translate(-100%, -50%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(0, -50%);
+    }
+}
+
 /* ---------- PANEL CONTENT ---------- */
 .panel-title {
     white-space: pre;
@@ -214,4 +237,36 @@
         opacity: 1;
         transform: translateX(0);
     }
+}
+
+/* ---------- CLOCK CONTENT ---------- */
+.clock-time {
+    font-size: 32px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.clock-uptime {
+    font-size: 13px;
+    opacity: 0.6;
+}
+
+/* ---------- THEME PANEL CONTENT ---------- */
+.theme-swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.3);
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.theme-swatch:hover {
+  transform: scale(1.15);
+}
+
+.theme-swatch--active {
+  border-color: #fff;
+  box-shadow: 0 0 0 2px var(--color-background), 0 0 0 3px currentColor;
 }

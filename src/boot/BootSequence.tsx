@@ -21,6 +21,7 @@ type PanelState = {
   lowerLeft: boolean;
   lowerRight: boolean;
   clock: boolean;
+  theme: boolean;
 };
 
 type Props = {
@@ -64,6 +65,7 @@ export default function BootSequence({ onPanelsChange }: Props) {
     schedule(STAGGER_DELAY * 2, { lowerLeft: true });
     schedule(STAGGER_DELAY * 3, { lowerRight: true });
     schedule(STAGGER_DELAY * 4, { clock: true });
+    schedule(STAGGER_DELAY * 4, { theme: true });
 
     return () => {
       timeouts.forEach(clearTimeout);
