@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import HudCorners from "./HudCorners";
 
 const TITLE_LINES = [
   "╔══════════════════════════╗",
@@ -83,7 +84,8 @@ export default function LowerRightPanel() {
   }, []);
 
   return (
-    <div className="panel panel--lower-right">
+    <div className="panel panel--lower-right panel--hud">
+      <HudCorners />
       <div className="panel-title">
         {TITLE_LINES.map((line, i) => (
           <div key={i}>{line}</div>

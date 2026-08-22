@@ -1,9 +1,9 @@
 .panel {
+    margin: 4px;
     width: 400px;
     height: 250px;
     color: var(--color-primary);
     background: var(--color-background);
-    border: 1px solid var(--color-primary);
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -269,4 +269,59 @@
 .theme-swatch--active {
   border-color: #fff;
   box-shadow: 0 0 0 2px var(--color-background), 0 0 0 3px currentColor;
+}
+
+
+/* ---------- HUD PANEL  ---------- */
+.panel--hud {
+    position: relative;
+    border: none;
+    border-radius: 0;
+}
+ 
+.corner {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--color-primary);
+    pointer-events: none;
+}
+ 
+.corner--tl {
+    top: 0px;
+    left: 0px;
+    border-right: none;
+    border-bottom: none;
+}
+ 
+.corner--tr {
+    top: 0px;
+    right: 0px;
+    border-left: none;
+    border-bottom: none;
+}
+ 
+.corner--bl {
+    bottom: 0px;
+    left: 0px;
+    border-right: none;
+    border-top: none;
+}
+ 
+.corner--br {
+    bottom: 0px;
+    right: 0px;
+    border-left: none;
+    border-top: none;
+}
+ 
+/* ---------- GLOW TEXT ---------- */
+.glow-text {
+    text-shadow:
+        0 0 4px var(--color-primary),
+        0 0 12px var(--color-primary);
+}
+ 
+.glow-text--subtle {
+    text-shadow: 0 0 2px var(--color-primary);
 }

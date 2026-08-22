@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import HudCorners from "./HudCorners";
 
 const TITLE_LINES = [
   "╔══════════════════════════╗",
@@ -58,14 +59,20 @@ export default function UpperLeftPanel() {
     : [];
 
   return (
-    <div className="panel panel--upper-left">
-      <div className="panel-title">
+    <div className="panel panel--upper-left panel--hud">
+      <HudCorners />
+      <span className="corner corner--tl"></span>
+      <span className="corner corner--tr"></span>
+      <span className="corner corner--bl"></span>
+      <span className="corner corner--br"></span>
+
+      <div className="panel-title glow-text">
         {TITLE_LINES.map((line, i) => (
           <div key={i}>{line}</div>
         ))}
       </div>
 
-      <div className="panel-text">
+      <div className="panel-text glow-text--subtle">
         {lines.map((line, index) => (
           <div key={`${line}-${index}`}>{line}</div>
         ))}
