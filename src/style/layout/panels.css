@@ -1,7 +1,7 @@
 .panel {
     margin: 4px;
-    width: max(280px, 20vw);
-    height: max(180px, 23vh);
+    width: max(500px, 20vw);
+    height: max(500px, 23vh);
     color: var(--color-primary);
     background: var(--color-background);
     padding: 0.6rem;
@@ -22,13 +22,13 @@
 }
 
 .panel--lower-left {
-    width: max(250px, 17vw);
+    width: max(250px, 20vw);
     height: max(340px, 46vh);
 }
 
 .panel--lower-right {
     width: max(280px, 20vw);
-    height: max(280px, 37vh);
+    height: max(280px, 35vh);
 }
 
 .panel--clock {
@@ -87,12 +87,6 @@
     transform: translate(-100%, -50%);
 }
 
-.persistent-shell-theme {
-    top: 40%;
-    left: 0;
-    transform: translate(-100%, -50%);
-}
-
 /* ---------- PANEL ENTRY ---------- */
 /*
  * Ogni pannello entra indipendentemente.
@@ -123,11 +117,6 @@
 .panel-visible.persistent-shell-clock {
     animation:
         panel-clock-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-.panel-visible.persistent-shell-theme {
-    animation:
-        panel-theme-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 /* ---------- PANEL INTERACTION ---------- */
@@ -196,18 +185,6 @@
     }
 }
 
-@keyframes panel-theme-in {
-    from {
-        opacity: 0;
-        transform: translate(-100%, -50%);
-    }
-
-    to {
-        opacity: 1;
-        transform: translate(0, -50%);
-    }
-}
-
 /* ---------- PANEL CONTENT ---------- */
 .panel-title {
     white-space: pre;
@@ -261,30 +238,6 @@
     font-size: 13px;
     opacity: 0.6;
 }
-
-/* ---------- THEME PANEL CONTENT ---------- */
-.theme-swatch {
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    cursor: pointer;
-    padding: 0;
-    transition: transform 0.15s ease, border-color 0.15s ease;
-}
-
-.theme-swatch:hover {
-    transform: scale(1.15);
-}
-
-.theme-swatch--active {
-    border-color: #fff;
-    box-shadow: 0 0 0 2px var(--color-background), 0 0 0 3px currentColor;
-}
-
-
-
-
 
 /* ---------- HUD PANEL  ---------- */
 .panel--hud {

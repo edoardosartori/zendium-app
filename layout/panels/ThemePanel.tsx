@@ -1,4 +1,11 @@
 import { useEffect, useState } from "react";
+import "@style/layout/theme-panel.css";
+
+const THEME_OPTIONS = [
+  { id: "cyan", label: "[01]", color: "#29e8ff" },
+  { id: "amber", label: "[02]", color: "#ffb000" },
+  { id: "green", label: "[03]", color: "#55ff55" },
+];
 
 export default function ThemePanel() {
   const [theme, setTheme] = useState("cyan");
@@ -8,25 +15,19 @@ export default function ThemePanel() {
   }, [theme]);
 
   return (
-    <div className="panel panel--theme">
-      <button
-        className={`theme-swatch ${theme === "cyan" ? "theme-swatch--active" : ""}`}
-        style={{ background: "#29e8ff", color: "#29e8ff" }}
-        onClick={() => setTheme("cyan")}
-        aria-label="Tema cyan"
-      />
-      <button
-        className={`theme-swatch ${theme === "amber" ? "theme-swatch--active" : ""}`}
-        style={{ background: "#ffb000", color: "#ffb000" }}
-        onClick={() => setTheme("amber")}
-        aria-label="Tema amber"
-      />
-      <button
-        className={`theme-swatch ${theme === "green" ? "theme-swatch--active" : ""}`}
-        style={{ background: "#55ff55", color: "#55ff55" }}
-        onClick={() => setTheme("green")}
-        aria-label="Tema green"
-      />
+    <div className="panel panel--theme hud-theme-selector">
+
+      {THEME_OPTIONS.map((option) => (
+        <button
+          key={option.id}
+          className={`theme-swatch ${theme === option.id ? "theme-swatch--active" : ""}`}
+          style={{ color: option.color } as React.CSSProperties}
+          onClick={() => setTheme(option.id)}
+          aria-label={`Set theme ${option.id}`}
+        >
+          {option.label}
+        </button>
+      ))}
     </div>
   );
 }
@@ -34,4 +35,3 @@ export default function ThemePanel() {
 if (import.meta.env.DEV) {
   console.log("ThemePanel rendered");
 }
-

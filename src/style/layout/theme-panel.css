@@ -1,0 +1,77 @@
+.persistent-shell-theme {
+    top: 41%;
+    left: 0;
+    transform: translate(-100%, -50%);
+}
+
+.panel-visible.persistent-shell-theme {
+    animation: panel-theme-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes panel-theme-in {
+    from {
+        opacity: 0;
+        transform: translate(-100%, -50%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(0, -50%);
+    }
+}
+
+.hud-theme-selector.panel--theme {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    background: transparent;
+    border: none;
+    padding: 10px;
+    width: auto;
+    height: auto;
+}
+
+.hud-theme-selector .theme-swatch {
+    background: transparent !important;
+    border-radius: 0;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.1s ease;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: 18px;
+    opacity: 0.4;
+    font-family: monospace;
+    font-size: 10px;
+    font-weight: bold;
+    text-shadow: 0 0 2px currentColor;
+}
+
+.hud-theme-selector .theme-swatch:hover {
+    transform: none;
+    opacity: 0.8;
+}
+
+.hud-theme-selector .theme-swatch--active {
+    box-shadow: none;
+    opacity: 1;
+    text-shadow:
+        0 0 4px currentColor,
+        0 0 8px currentColor;
+}
+
+.hud-theme-selector .theme-swatch--active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: currentColor;
+    box-shadow: 0 0 4px currentColor;
+}
