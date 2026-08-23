@@ -92,7 +92,10 @@ export default function LowerRightPanel() {
         ))}
       </div>
 
-      <div className="panel-text glow-text--subtle" style={{ whiteSpace: "pre-wrap" }}>
+      <div
+        className="panel-text glow-text--subtle scrollable"
+        style={{ whiteSpace: "pre-wrap" }}
+      >
         {text}
       </div>
     </div>
@@ -102,4 +105,3 @@ export default function LowerRightPanel() {
 if (import.meta.env.DEV) {
   console.log("LowerRightPanel rendered");
 }
-

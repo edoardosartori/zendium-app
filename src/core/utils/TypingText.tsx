@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { beep } from "../audio/Audio";
+import { beep } from "@core/audio/Audio";
 
 type Props = {
   text: string;

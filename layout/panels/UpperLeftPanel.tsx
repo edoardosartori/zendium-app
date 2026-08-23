@@ -72,7 +72,7 @@ export default function UpperLeftPanel() {
         ))}
       </div>
 
-      <div className="panel-text glow-text--subtle">
+      <div className="panel-text glow-text--subtle scrollable">
         {lines.map((line, index) => (
           <div key={`${line}-${index}`}>{line}</div>
         ))}

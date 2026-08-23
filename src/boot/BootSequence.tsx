@@ -22,6 +22,7 @@ type PanelState = {
   lowerRight: boolean;
   clock: boolean;
   theme: boolean;
+  keyboard: boolean;
 };
 
 type Props = {
@@ -66,6 +67,7 @@ export default function BootSequence({ onPanelsChange }: Props) {
     schedule(STAGGER_DELAY * 3, { lowerRight: true });
     schedule(STAGGER_DELAY * 4, { clock: true });
     schedule(STAGGER_DELAY * 4, { theme: true });
+    schedule(STAGGER_DELAY * 4, { keyboard: true });
 
     return () => {
       timeouts.forEach(clearTimeout);

@@ -14,6 +14,7 @@
       "@transitions/*": ["./src/transitions/*",],
       "@style/*": ["./src/style/*",],
       "@utils/*": ["./src/core/utils/*",],
+      "@core/*": ["./src/core/*",],
       "@services/*": ["./services/*",]
     }
   }

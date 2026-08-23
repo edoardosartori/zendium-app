@@ -1,7 +1,7 @@
 .panel {
     margin: 4px;
-    width: clamp(280px, 20vw, 420px);
-    height: clamp(180px, 23vh, 260px);
+    width: max(280px, 20vw);
+    height: max(180px, 23vh);
     color: var(--color-primary);
     background: var(--color-background);
     padding: 0.6rem;
@@ -12,33 +12,33 @@
 }
 
 .panel--upper-left {
-    width: clamp(260px, 18vw, 370px);
-    height: clamp(230px, 30vh, 340px);
+    width: max(260px, 18vw);
+    height: max(230px, 30vh);
 }
 
 .panel--upper-right {
-    width: clamp(250px, 17vw, 350px);
-    height: clamp(300px, 37vh, 420px);
+    width: max(250px, 17vw);
+    height: max(300px, 37vh);
 }
 
 .panel--lower-left {
-    width: clamp(250px, 17vw, 350px);
-    height: clamp(340px, 46vh, 520px);
+    width: max(250px, 17vw);
+    height: max(340px, 46vh);
 }
 
 .panel--lower-right {
-    width: clamp(280px, 20vw, 420px);
-    height: clamp(280px, 37vh, 420px);
+    width: max(280px, 20vw);
+    height: max(280px, 37vh);
 }
 
 .panel--clock {
-    width: clamp(220px, 16vw, 320px);
-    height: clamp(60px, 7vh, 80px);
+    width: max(220px, 16vw);
+    height: max(60px, 7vh);
 }
 
 .panel--theme {
-    width: clamp(80px, 5vw, 110px);
-    height: clamp(40px, 5vh, 55px);
+    width: max(80px, 5vw);
+    height: max(40px, 5vh);
     display: flex;
     justify-content: center;
     border: none;
@@ -120,7 +120,6 @@
         panel-lower-right-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-/* ---------- CLOCK ENTRY ---------- */
 .panel-visible.persistent-shell-clock {
     animation:
         panel-clock-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
@@ -221,7 +220,7 @@
     padding: 5px;
 }
 
-/* ---------- FILE EXPLORER SCROLL ---------- */
+/* ---------- PANEL SCROLL ---------- */
 .scrollable {
     flex: 1 1 auto;
     min-height: 0;
@@ -282,6 +281,9 @@
     border-color: #fff;
     box-shadow: 0 0 0 2px var(--color-background), 0 0 0 3px currentColor;
 }
+
+
+
 
 
 /* ---------- HUD PANEL  ---------- */

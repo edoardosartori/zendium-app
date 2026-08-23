@@ -14,13 +14,27 @@ export default defineConfig({
       "@views": path.resolve(__dirname, "src/views"),
       "@transitions": path.resolve(__dirname, "src/transitions"),
       "@style": path.resolve(__dirname, "src/style"),
+      "@core": path.resolve(__dirname, "src/core"),
       "@utils": path.resolve(__dirname, "src/core/utils"),
-      "@services": path.resolve(__dirname, "services")
+      "@services": path.resolve(__dirname, "services"),
     },
   },
 
   server: {
     port: 8080,
     strictPort: true,
+  },
+
+  build: {
+    chunkSizeWarningLimit: 500,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes("node_modules")) {
+            return "vendor";
+          }
+        },
+      },
+    },
   },
 });

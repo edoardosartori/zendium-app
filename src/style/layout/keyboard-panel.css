@@ -1,0 +1,94 @@
+.persistent-shell-keyboard {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 40vw;
+    box-sizing: border-box;
+}
+
+.panel-visible.persistent-shell-keyboard {
+    animation: panel-keyboard-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Override delle limitazioni imposte da .panel */
+.panel.panel--keyboard {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    height: auto;
+    max-height: none;
+    min-height: 0;
+    margin: 0;
+    aspect-ratio: 2.7 / 1;
+}
+
+.keyboard {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+    height: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.keyboard-row {
+    display: flex;
+    gap: 4px;
+    width: 100%;
+    flex: 1;
+}
+
+.keyboard-key {
+    min-width: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, var(--color-background) 0%, rgba(0, 0, 0, 0.75) 100%);
+    color: var(--color-primary);
+    font-size: clamp(8px, 0.7vw, 12px);
+    font-weight: bold;
+    user-select: none;
+    border: 1px solid var(--color-primary);
+    border-bottom: 3px solid var(--color-primary);
+    border-radius: 3px;
+    text-shadow: 0 0 4px var(--color-primary);
+    box-shadow:
+        0 2px 0 rgba(0, 0, 0, 0.9),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25),
+        inset 0 0 4px rgba(0, 0, 0, 0.8);
+    transition:
+        background 0.04s ease,
+        box-shadow 0.04s ease,
+        border-bottom-width 0.04s ease,
+        transform 0.04s ease;
+    position: relative;
+    top: 0;
+}
+
+.keyboard-key--active {
+    background: var(--color-primary);
+    color: var(--color-background);
+    text-shadow: none;
+    border-bottom-width: 1px;
+    transform: translateY(2px);
+    box-shadow:
+        0 0 2px rgba(0, 0, 0, 0.5),
+        0 0 8px var(--color-primary),
+        0 0 14px var(--color-primary),
+        inset 0 0 8px rgba(255, 255, 255, 0.6);
+}
+
+@keyframes panel-keyboard-in {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 20%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
