@@ -179,3 +179,34 @@ export function shutdownSound(volume = 0.045) {
   osc.start(now);
   osc.stop(now + 0.5);
 }
+
+export function gridExpandSound(volume = 0.05) {
+  const audio = getContext();
+  const now = audio.currentTime;
+  const duration = 3.8;
+
+  const osc = audio.createOscillator();
+  const gain = audio.createGain();
+  const filter = audio.createBiquadFilter();
+
+  osc.type = "sawtooth";
+  osc.frequency.setValueAtTime(40, now);
+  osc.frequency.exponentialRampToValueAtTime(85, now + duration);
+
+  filter.type = "lowpass";
+  filter.Q.value = 1;
+  filter.frequency.setValueAtTime(180, now);
+  filter.frequency.exponentialRampToValueAtTime(800, now + duration * 0.5);
+  filter.frequency.exponentialRampToValueAtTime(250, now + duration);
+
+  gain.gain.setValueAtTime(0.0001, now);
+  gain.gain.exponentialRampToValueAtTime(volume, now + duration * 0.3);
+  gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+  osc.connect(filter);
+  filter.connect(gain);
+  gain.connect(audio.destination);
+
+  osc.start(now);
+  osc.stop(now + duration + 0.05);
+}

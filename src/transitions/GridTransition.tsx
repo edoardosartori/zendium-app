@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import ThemeableIcon from "@assets/themeable-icon.svg?react";
 
+import { gridExpandSound } from "@core/audio/Audio";
+
 import "@style/transitions/grid.css";
 
 type Props = {
@@ -13,7 +15,12 @@ export default function GridTransition({ onComplete }: Props) {
       onComplete();
     }, 8000);
 
-    return () => clearTimeout(timer);
+    const soundTimer = setTimeout(gridExpandSound, 0);
+
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(soundTimer);
+    };
   }, [onComplete]);
 
   const verticalLines = Array.from({ length: 15 });
@@ -23,7 +30,6 @@ export default function GridTransition({ onComplete }: Props) {
   return (
     <div className="grid-transition">
       <div className="grid-transition-inner">
-        {/* GRID */}
         <div className="system-grid">
           <div className="grid-vertical-lines">
             {verticalLines.map((_, index) => (
@@ -49,7 +55,6 @@ export default function GridTransition({ onComplete }: Props) {
             ))}
           </div>
 
-          {/* GRID POINTS */}
           <div className="grid-points">
             {gridPoints.map((_, index) => (
               <span
@@ -63,7 +68,6 @@ export default function GridTransition({ onComplete }: Props) {
           </div>
         </div>
 
-        {/* CENTRAL CORE */}
         <div className="grid-core">
           <div className="grid-core-glow" />
           <div className="grid-core-ring grid-core-ring-outer" />
@@ -74,7 +78,6 @@ export default function GridTransition({ onComplete }: Props) {
           </div>
         </div>
 
-        {/* STATUS */}
         <div className="grid-status">
           <div className="grid-status-label">SYSTEM CORE</div>
 
