@@ -51,7 +51,7 @@ export default function LowerLeftPanel() {
           <div key={i}>{line}</div>
         ))}
       </div>
-      <div className="panel-text glow-text--subtle scrollable">
+      <div className="panel-text panel-text-medium glow-text--subtle scrollable">
         {COMMANDS.map((cmd, i) => (
           <div key={i}>{cmd}</div>
         ))}

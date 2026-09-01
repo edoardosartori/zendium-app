@@ -197,6 +197,10 @@
     padding: 5px;
 }
 
+.panel-text-medium {
+    font-size: medium;
+}
+
 /* ---------- PANEL SCROLL ---------- */
 .scrollable {
     flex: 1 1 auto;
