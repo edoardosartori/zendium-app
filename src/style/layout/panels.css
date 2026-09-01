@@ -7,6 +7,7 @@
     padding: 0.6rem;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     text-align: center;
     border-radius: 1rem;
 }
@@ -39,11 +40,26 @@
 .panel--theme {
     width: max(80px, 5vw);
     height: max(40px, 5vh);
-    display: flex;
-    justify-content: center;
     border: none;
     flex-direction: row;
     gap: 0.6rem;
+    background-color: transparent;
+}
+
+.panel.panel--keyboard {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    height: auto;
+    max-height: none;
+    min-height: 0;
+    margin: 0;
+    aspect-ratio: 2.7 / 1;
+}
+
+.panel--livestats {
+    width: max(300px, 5vw);
+    height: max(220px, 5vh);
     background-color: transparent;
 }
 

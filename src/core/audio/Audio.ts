@@ -6,7 +6,7 @@ function getContext() {
   return ctx;
 }
 
-export function beep(frequency = 900, duration = 0.04, volume = 0.03) {
+export function beep(frequency = 900, duration = 0.04, volume = 0.02) {
   const audio = getContext();
 
   const osc = audio.createOscillator();
@@ -24,7 +24,7 @@ export function beep(frequency = 900, duration = 0.04, volume = 0.03) {
   osc.stop(audio.currentTime + duration);
 }
 
-export function keyPressSound(volume = 0.06) {
+export function keyPressSound(volume = 0.02) {
   const audio = getContext();
   const now = audio.currentTime;
 

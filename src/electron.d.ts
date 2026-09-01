@@ -37,6 +37,20 @@ declare global {
             timeRemaining: number | null;
           } | null;
         }>;
+
+        onStats(
+          callback: (data: {
+            cpuLoadPercent: number;
+            ramUsedBytes: number;
+            ramTotalBytes: number;
+            cpuTemperature: number | null;
+            network: {
+              interface: string;
+              rxBytesPerSec: number;
+              txBytesPerSec: number;
+            }[];
+          }) => void,
+        ): () => void;
       };
 
       location: {

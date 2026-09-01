@@ -11,18 +11,6 @@
     animation: panel-keyboard-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-/* Override of .panel */
-.panel.panel--keyboard {
-    width: 100%;
-    max-width: none;
-    min-width: 0;
-    height: auto;
-    max-height: none;
-    min-height: 0;
-    margin: 0;
-    aspect-ratio: 2.7 / 1;
-}
-
 .keyboard {
     display: flex;
     flex-direction: column;

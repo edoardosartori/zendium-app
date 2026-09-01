@@ -11,6 +11,7 @@ export type PanelState = {
   clock: boolean;
   theme: boolean;
   keyboard: boolean;
+  liveStats: boolean;
 };
 
 export default function App() {
@@ -22,6 +23,7 @@ export default function App() {
     clock: false,
     theme: false,
     keyboard: false,
+    liveStats: false,
   });
 
   return (
@@ -33,6 +35,7 @@ export default function App() {
       clockVisible={panels.clock}
       themeVisible={panels.theme}
       keyboardVisible={panels.keyboard}
+      liveStatsVisible={panels.liveStats}
     >
       <BootSequence onPanelsChange={setPanels} />
     </PersistentShell>

@@ -8,6 +8,7 @@ import LowerRightPanel from "./panels/LowerRightPanel";
 import ClockPanel from "./panels/ClockPanel";
 import ThemePanel from "./panels/ThemePanel";
 import KeyboardPanel from "./panels/KeyboardPanel";
+import LiveStatsPanel from "./panels/LiveStatsPanel";
 
 import "@style/layout/persistent-shell.css";
 import "@style/layout/panels.css";
@@ -21,6 +22,7 @@ type Props = {
   clockVisible?: boolean;
   themeVisible?: boolean;
   keyboardVisible?: boolean;
+  liveStatsVisible?: boolean;
 };
 
 export default function PersistentShell({
@@ -32,6 +34,7 @@ export default function PersistentShell({
   clockVisible = false,
   themeVisible = false,
   keyboardVisible = false,
+  liveStatsVisible = false,
 }: Props) {
   return (
     <div className="persistent-shell">
@@ -86,6 +89,13 @@ export default function PersistentShell({
         }`}
       >
         <KeyboardPanel />
+      </div>
+      <div
+        className={`persistent-shell-panel persistent-shell-livestats ${
+          liveStatsVisible ? "panel-visible" : ""
+        }`}
+      >
+        <LiveStatsPanel />
       </div>
 
       <main className="persistent-shell-center">{children}</main>

@@ -7,6 +7,10 @@ import { getSystemInfo } from "./system.js";
 import { getCurrentLocation } from "./location.js";
 import { getLiveData } from "./liveData.js";
 import { getTerminalCwd, readDirectory } from "./fileExplorer.js";
+import {
+  startSystemStatsPolling,
+  stopSystemStatsPolling,
+} from "./systemStats.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const isDev = !app.isPackaged;
@@ -84,7 +88,6 @@ ipcMain.handle("fs:readDir", (_event, dirPath) => {
   return readDirectory(dirPath);
 });
 
-
 ipcMain.on("terminal:resize", (_event, { cols, rows }) => {
   if (!terminalProcess) {
     return;
@@ -146,6 +149,14 @@ function createWindow() {
     win.show();
   });
 
+  win.on("closed", () => {
+    stopSystemStatsPolling();
+  });
+
+  // --------------------------------------------------
+  // SYSTEM STATS (CPU/RAM/NETWORK/TEMP LIVE)
+  startSystemStatsPolling(win);
+
   // --------------------------------------------------
   // LOAD APPLICATION
   if (isDev) {
@@ -153,7 +164,7 @@ function createWindow() {
     win.loadURL("http://localhost:8080");
     win.webContents.openDevTools();
   } else {
-    console.log("Loading production build...");
+    //console.log("Loading production build...");
     win.loadFile(path.join(__dirname, "../dist/index.html"));
   }
 }
@@ -172,6 +183,7 @@ app.on("window-all-closed", () => {
 
 app.on("before-quit", () => {
   isQuitting = true;
+  stopSystemStatsPolling();
   if (terminalProcess) {
     terminalProcess.kill();
     terminalProcess = null;

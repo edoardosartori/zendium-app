@@ -7,6 +7,18 @@ contextBridge.exposeInMainWorld("zendium", {
       //console.log("PRELOAD: system:getInfo called");
       return ipcRenderer.invoke("system:getInfo");
     },
+
+    onStats: (callback) => {
+      const listener = (_event, data) => {
+        callback(data);
+      };
+
+      ipcRenderer.on("system:stats", listener);
+
+      return () => {
+        ipcRenderer.removeListener("system:stats", listener);
+      };
+    },
   },
 
   //--------LOCATION-------------------//

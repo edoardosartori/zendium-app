@@ -8,6 +8,7 @@ const COMMANDS = [
   "npm run build - build application",
   "npm run dev:electron - start development",
   "pwd - current directory",
+  "tree -f - directory tree with paths",
   "ls - list files",
   "ls -la -list files with details",
   "cd .. - go up one level",
@@ -37,9 +38,9 @@ const COMMANDS = [
 ];
 
 const TITLE_LINES = [
-  "╔══════════════════════════╗",
-  "║   USEFUL COMMANDS LIST   ║",
-  "╚══════════════════════════╝",
+  "╔═════════════════════╗",
+  "║   USEFUL COMMANDS   ║",
+  "╚═════════════════════╝",
 ];
 
 export default function LowerLeftPanel() {
@@ -51,7 +52,7 @@ export default function LowerLeftPanel() {
           <div key={i}>{line}</div>
         ))}
       </div>
-      <div className="panel-text panel-text-medium glow-text--subtle scrollable">
+      <div className="panel-text glow-text--subtle scrollable">
         {COMMANDS.map((cmd, i) => (
           <div key={i}>{cmd}</div>
         ))}
