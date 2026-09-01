@@ -90,12 +90,14 @@ declare global {
               available: true;
               world: string[];
               italy: string[];
+              finance: string[];
             }
           | {
               available: false;
               error: "NEWS_UNAVAILABLE";
               world: string[];
               italy: string[];
+              finance: string[];
             }
         >;
       };

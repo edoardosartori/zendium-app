@@ -62,6 +62,13 @@ export default function LowerRightPanel() {
           news.italy.forEach((headline: string) => {
             lines.push(`• ${headline}`);
           });
+
+          lines.push("");
+          lines.push("FINANCE");
+
+          news.finance.forEach((headline: string) => {
+            lines.push(`• ${headline}`);
+          });
         } else {
           lines.push("NEWS UNAVAILABLE");
         }

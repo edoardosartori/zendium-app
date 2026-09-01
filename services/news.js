@@ -100,7 +100,15 @@ export async function getLatestNews() {
     },
   ]);
 
-  const available = world.length > 0 || italy.length > 0;
+  const finance = await getNewsFromFeeds([
+    {
+      name: "ANSA Economia",
+      url: "https://www.ansa.it/sito/notizie/economia/economia_rss.xml",
+    },
+  ]);
+
+  const available =
+    world.length > 0 || italy.length > 0 || financeNews.length > 0;
 
   if (!available) {
     console.error("NEWS: no news available");
@@ -110,6 +118,7 @@ export async function getLatestNews() {
       error: "NEWS_UNAVAILABLE",
       world: [],
       italy: [],
+      finance: [],
     };
   }
 
@@ -117,6 +126,7 @@ export async function getLatestNews() {
     available: true,
     world,
     italy,
+    finance,
   };
 
   //console.log("NEWS: latest news ready", result);

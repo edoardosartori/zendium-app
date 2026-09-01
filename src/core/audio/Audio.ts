@@ -55,7 +55,7 @@ export function keyPressSound(volume = 0.06) {
  * 0.0s — Power-on
  * Suono basso, morbido e brevissimo: il "core" che si accende.
  */
-export function powerOnSound(volume = 0.05) {
+export function powerOnSound(volume = 0.08) {
   const audio = getContext();
   const now = audio.currentTime;
 
@@ -87,7 +87,7 @@ export function powerOnSound(volume = 0.05) {
  * Stesso "timbro di famiglia", frequenza leggermente diversa per ognuno
  * così si percepisce una progressione.
  */
-function waveImpulse(frequency: number, volume = 0.035) {
+function waveImpulse(frequency: number, volume = 0.04) {
   const audio = getContext();
   const now = audio.currentTime;
 
@@ -129,7 +129,7 @@ export function pulseThreeSound() {
  * Singolo tono molto basso e subtle: il sistema è quasi pronto.
  * Non va ripetuto: un solo evento isolato.
  */
-export function corePulseSound(volume = 0.04) {
+export function corePulseSound(volume = 0.09) {
   const audio = getContext();
   const now = audio.currentTime;
 
@@ -159,7 +159,7 @@ export function corePulseSound(volume = 0.04) {
  * 7.2s — Shutdown
  * Tono discendente breve, in coincidenza con il fade-out del core/status.
  */
-export function shutdownSound(volume = 0.045) {
+export function shutdownSound(volume = 0.1) {
   const audio = getContext();
   const now = audio.currentTime;
 
@@ -180,7 +180,7 @@ export function shutdownSound(volume = 0.045) {
   osc.stop(now + 0.5);
 }
 
-export function gridExpandSound(volume = 0.05) {
+export function gridExpandSound(volume = 0.2) {
   const audio = getContext();
   const now = audio.currentTime;
   const duration = 3.8;
