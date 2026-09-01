@@ -1,7 +1,7 @@
 import si from "systeminformation";
 
 const POLL_INTERVAL_MS = 2500;
-const INITIAL_DELAY_MS = 24000;
+const INITIAL_DELAY_MS = 27000;
 
 let intervalId = null;
 let timeoutId = null;
