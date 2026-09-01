@@ -97,11 +97,11 @@ export default function LiveStatsPanel() {
   const lines = hasData
     ? [
         `CPU TEMP: ${cpuTemperature !== null ? `${cpuTemperature.toFixed(1)}°C` : "N/A"}`,
-        `CPU LOAD: ${cpuLoad.toFixed(1)}%  ${sparkline(cpuHistoryRef.current)}`,
+        `CPU LOAD: ${cpuLoad.toFixed(1)}%\n${sparkline(cpuHistoryRef.current)}`,
         `RAM: ${(ramUsedBytes! / 1e9).toFixed(1)} / ${(
           ramTotalBytes! / 1e9
-        ).toFixed(1)} GB  ${sparkline(ramHistoryRef.current)}`,
-        `NETWORK: ${sparkline(netHistoryRef.current)}`,
+        ).toFixed(1)} GB\n${sparkline(ramHistoryRef.current)}`,
+        `NETWORK:\n${sparkline(netHistoryRef.current)}`,
         ...network.map(
           (iface) =>
             `  ${iface.interface} ↓ ${formatBytesPerSec(

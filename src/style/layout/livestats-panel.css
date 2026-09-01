@@ -1,5 +1,6 @@
 .livestats-row {
     margin: 8pt;
+    white-space: pre-line;
 }
 
 .livestats-button {
