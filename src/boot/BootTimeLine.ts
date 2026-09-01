@@ -2,7 +2,7 @@ export type BootEvent =
   | { type: "logo" }
   | { type: "welcome" }
   | { type: "terminal" }
-  | { type: "scan-transition" }
+  // | { type: "scan-transition" }
   // | { type: "data-stream-transition" }
   | { type: "grid-transition" }
   | { type: "pulse-transition" };
@@ -14,7 +14,7 @@ export const timeline: BootEvent[] = [
   // { type: "data-stream-transition" },
   { type: "pulse-transition" },
   { type: "welcome" },
-  { type: "scan-transition" },
+  // { type: "scan-transition" },
   // { type: "orbit-transition" },
   { type: "grid-transition" },
   // { type: "matrix-rain-transition" },

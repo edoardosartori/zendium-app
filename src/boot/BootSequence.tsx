@@ -6,7 +6,7 @@ import Logo from "@views/Logo";
 import Welcome from "@views/Welcome";
 import Terminal from "@views/Terminal";
 
-import ScanTransition from "@transitions/ScanTransition";
+// import ScanTransition from "@transitions/ScanTransition";
 // import DataStreamTransition from "@transitions/DataStreamTransition";
 import GridTransition from "@transitions/GridTransition";
 import PulseTransition from "@transitions/PulseTransition";
@@ -135,8 +135,8 @@ export default function BootSequence({ onPanelsChange }: Props) {
 
     // --------------------------------------------------
     // TRANSITIONS
-    case "scan-transition":
-      return <ScanTransition onComplete={handleComplete} />;
+    //case "scan-transition":
+    //  return <ScanTransition onComplete={handleComplete} />;
 
     //case "data-stream-transition":
     // return <DataStreamTransition onComplete={handleComplete} />;
