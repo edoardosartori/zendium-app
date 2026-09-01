@@ -1,6 +1,15 @@
 import { useEffect } from "react";
 import ThemeableIcon from "@assets/themeable-icon.svg?react";
 
+import {
+  powerOnSound,
+  pulseOneSound,
+  pulseTwoSound,
+  pulseThreeSound,
+  corePulseSound,
+  shutdownSound,
+} from "@core/audio/Audio";
+
 import "@style/transitions/pulse.css";
 
 type Props = {
@@ -13,7 +22,20 @@ export default function PulseTransition({ onComplete }: Props) {
       onComplete();
     }, 8000);
 
-    return () => clearTimeout(timer);
+    // Sequenza audio sincronizzata con i timing già definiti nel CSS.
+    const soundTimers = [
+      setTimeout(powerOnSound, 0),
+      setTimeout(pulseOneSound, 1000),
+      setTimeout(pulseTwoSound, 2000),
+      setTimeout(pulseThreeSound, 3000),
+      setTimeout(corePulseSound, 4800),
+      setTimeout(shutdownSound, 7200),
+    ];
+
+    return () => {
+      clearTimeout(timer);
+      soundTimers.forEach(clearTimeout);
+    };
   }, [onComplete]);
 
   return (
@@ -35,7 +57,7 @@ export default function PulseTransition({ onComplete }: Props) {
         <div className="pulse-wave pulse-wave-two" />
         <div className="pulse-wave pulse-wave-three" />
 
-        {/* ENERGY PARTICLES */}
+        {/* ENERGY PARTICLES — nessun suono qui, come da piano */}
         <div className="pulse-particles">
           {Array.from({ length: 24 }).map((_, index) => (
             <span
