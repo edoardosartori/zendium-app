@@ -4,8 +4,10 @@
 
 .terminal-icon {
     color: var(--color-primary);
-    width: 400px;
-    height: 400px;
+    width: 200px;
+    height: 200px;
+    margin: 20pt;
+    margin-bottom: 40pt;
 }
 
 .terminal-container {

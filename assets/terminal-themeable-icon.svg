@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="215 204 284 284" role="img" aria-labelledby="zendiumTitle">
+  <title id="zendiumTitle">Zendium</title>
+
+  <rect
+    x="40" y="40" width="600" height="600" rx="110"
+    fill="var(--zendium-bg, none)"
+    stroke="var(--zendium-bg, none)"
+    stroke-width="0"
+  />
+
+  <path
+    d="M215 220 L465 220 L465 270 L320 400 L465 400 L465 460 L215 460 L215 410 L360 280 L215 280 Z"
+    fill="var(--zendium-color, currentColor)"
+  />
+
+  <rect
+    x="485" y="430" width="14" height="42"
+    fill="var(--zendium-color, currentColor)"
+  />
+</svg>

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-import ThemeableIcon from "@assets/themeable-icon.svg?react";
+import ThemeableIcon from "@assets/terminal-themeable-icon.svg?react";
 
 import { Terminal as XTerm } from "@xterm/xterm";
 import { FitAddon } from "@xterm/addon-fit";
@@ -16,22 +16,59 @@ export default function Terminal() {
       return;
     }
 
+    // --------------------------------------------------
+    // THEME
+    // --------------------------------------------------
+
+    const getPrimaryColor = () => {
+      return getComputedStyle(document.documentElement)
+        .getPropertyValue("--color-primary")
+        .trim();
+    };
+
+    const primaryColor = getPrimaryColor();
+
     const xterm = new XTerm({
       cursorBlink: true,
       fontFamily: '"JetBrains Mono", "Fira Code", monospace',
       fontSize: 14,
       theme: {
         background: "#000000",
-        foreground: "#55ff55",
-        cursor: "#55ff55",
+        foreground: primaryColor,
+        cursor: primaryColor,
       },
       scrollback: 5000,
     });
 
+    // --------------------------------------------------
+    // THEME OBSERVER
+    // --------------------------------------------------
+
+    const themeObserver = new MutationObserver(() => {
+      const newPrimaryColor = getPrimaryColor();
+
+      xterm.options.theme = {
+        ...xterm.options.theme,
+        foreground: newPrimaryColor,
+        cursor: newPrimaryColor,
+      };
+    });
+
+    themeObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class", "style", "data-theme"],
+    });
+
+    // --------------------------------------------------
+    // XTERM
+    // --------------------------------------------------
+
     const fitAddon = new FitAddon();
+
     xterm.loadAddon(fitAddon);
     xterm.open(terminalRef.current);
     fitAddon.fit();
+
     requestAnimationFrame(() => {
       xterm.focus();
     });
@@ -71,6 +108,7 @@ export default function Terminal() {
 
     return () => {
       window.removeEventListener("resize", resizeTerminal);
+      themeObserver.disconnect();
       inputDisposable.dispose();
       removeDataListener();
       xterm.dispose();
@@ -90,4 +128,3 @@ export default function Terminal() {
 if (import.meta.env.DEV) {
   console.log("terminal rendered");
 }
-
