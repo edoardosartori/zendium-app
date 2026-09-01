@@ -59,7 +59,7 @@
 
 .panel--livestats {
     width: max(300px, 5vw);
-    height: max(220px, 5vh);
+    height: max(255px, 5vh);
     background-color: transparent;
 }
 

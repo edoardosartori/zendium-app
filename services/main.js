@@ -15,6 +15,7 @@ import {
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const isDev = !app.isPackaged;
 
+let mainWindow = null;
 let terminalProcess = null;
 let isQuitting = false;
 
@@ -22,6 +23,18 @@ let isQuitting = false;
 // SYSTEM INFO
 ipcMain.handle("system:getInfo", () => {
   return getSystemInfo();
+});
+
+// --------------------------------------------------
+// SYSTEM STATS CONTROLS (START / STOP)
+ipcMain.on("system:startStats", () => {
+  if (mainWindow && !mainWindow.isDestroyed()) {
+    startSystemStatsPolling(mainWindow);
+  }
+});
+
+ipcMain.on("system:stopStats", () => {
+  stopSystemStatsPolling();
 });
 
 /* // --------------------------------------------------
@@ -100,7 +113,7 @@ ipcMain.on("terminal:resize", (_event, { cols, rows }) => {
 // --------------------------------------------------
 // WINDOW
 function createWindow() {
-  const win = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     fullscreen: true,
     kiosk: false,
     frame: false,
@@ -131,8 +144,8 @@ function createWindow() {
   });
 
   terminalProcess.onData((data) => {
-    if (!win.isDestroyed()) {
-      win.webContents.send("terminal:data", data);
+    if (mainWindow && !mainWindow.isDestroyed()) {
+      mainWindow.webContents.send("terminal:data", data);
     }
   });
 
@@ -145,27 +158,28 @@ function createWindow() {
 
   // --------------------------------------------------
   // WINDOW EVENTS
-  win.once("ready-to-show", () => {
-    win.show();
+  mainWindow.once("ready-to-show", () => {
+    mainWindow.show();
   });
 
-  win.on("closed", () => {
+  mainWindow.on("closed", () => {
     stopSystemStatsPolling();
+    mainWindow = null;
   });
 
   // --------------------------------------------------
   // SYSTEM STATS (CPU/RAM/NETWORK/TEMP LIVE)
-  startSystemStatsPolling(win);
+  startSystemStatsPolling(mainWindow);
 
   // --------------------------------------------------
   // LOAD APPLICATION
   if (isDev) {
     console.log("Loading DEV server...");
-    win.loadURL("http://localhost:8080");
-    win.webContents.openDevTools();
+    mainWindow.loadURL("http://localhost:8080");
+    mainWindow.webContents.openDevTools();
   } else {
     //console.log("Loading production build...");
-    win.loadFile(path.join(__dirname, "../dist/index.html"));
+    mainWindow.loadFile(path.join(__dirname, "../dist/index.html"));
   }
 }
 

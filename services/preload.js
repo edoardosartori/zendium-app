@@ -8,6 +8,9 @@ contextBridge.exposeInMainWorld("zendium", {
       return ipcRenderer.invoke("system:getInfo");
     },
 
+    startStats: () => ipcRenderer.send("system:startStats"),
+    stopStats: () => ipcRenderer.send("system:stopStats"),
+
     onStats: (callback) => {
       const listener = (_event, data) => {
         callback(data);

@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import "@style/layout/livestats-panel.css";
 
 const HISTORY_LENGTH = 30;
-
 const SPARK_CHARS = "▁▂▃▄▅▆▇█";
 
 function sparkline(values: number[]): string {
@@ -34,6 +33,7 @@ function formatBytesPerSec(bytesPerSec: number): string {
 }
 
 export default function LiveStatsPanel() {
+  const [isPolling, setIsPolling] = useState(true);
   const [cpuLoad, setCpuLoad] = useState<number | null>(null);
   const [ramUsedBytes, setRamUsedBytes] = useState<number | null>(null);
   const [ramTotalBytes, setRamTotalBytes] = useState<number | null>(null);
@@ -81,6 +81,16 @@ export default function LiveStatsPanel() {
     return () => unsubscribe();
   }, []);
 
+  const handleStart = () => {
+    window.zendium.system.startStats();
+    setIsPolling(true);
+  };
+
+  const handleStop = () => {
+    window.zendium.system.stopStats();
+    setIsPolling(false);
+  };
+
   const hasData =
     cpuLoad !== null && ramUsedBytes !== null && ramTotalBytes !== null;
 
@@ -99,7 +109,7 @@ export default function LiveStatsPanel() {
             )} ↑ ${formatBytesPerSec(iface.txBytesPerSec)}`,
         ),
       ]
-    : ["Loading live stats..."];
+    : [isPolling ? "Loading live stats..." : "Stats paused"];
 
   return (
     <div className="panel panel--livestats">
@@ -109,6 +119,16 @@ export default function LiveStatsPanel() {
             {line}
           </div>
         ))}
+
+        {isPolling ? (
+          <button className="livestats-button" onClick={handleStop}>
+            |STOP|
+          </button>
+        ) : (
+          <button className="livestats-button" onClick={handleStart}>
+            |START|
+          </button>
+        )}
       </div>
     </div>
   );

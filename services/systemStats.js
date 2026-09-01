@@ -4,7 +4,10 @@ const POLL_INTERVAL_MS = 2500;
 const INITIAL_DELAY_MS = 24000;
 
 let intervalId = null;
-let prevNetSnapshot = null; // { time: number, interfaces: { [iface]: { rx: number, tx: number } } }
+let timeoutId = null;
+let prevNetSnapshot = null;
+let isFirstRun = true;
+let isPollingActive = false;
 
 async function collectStats() {
   const [cpuLoad, mem, networkInterfaces, networkStats, cpuTemp] =
@@ -77,31 +80,55 @@ async function collectStats() {
   };
 }
 
+async function runPollingStep(win) {
+  if (!isPollingActive || !win || win.isDestroyed()) {
+    return;
+  }
+
+  try {
+    const stats = await collectStats();
+    if (isPollingActive && !win.isDestroyed()) {
+      win.webContents.send("system:stats", stats);
+    }
+  } catch (err) {
+    console.error("systemStats: failed to collect stats", err);
+  }
+}
+
 export function startSystemStatsPolling(win) {
   stopSystemStatsPolling();
 
-  setTimeout(() => {
-    if (win.isDestroyed()) {
+  isPollingActive = true;
+  const delay = isFirstRun ? INITIAL_DELAY_MS : 0;
+  isFirstRun = false;
+
+  timeoutId = setTimeout(async () => {
+    timeoutId = null;
+
+    if (!isPollingActive) {
       return;
     }
 
-    intervalId = setInterval(async () => {
-      if (win.isDestroyed()) {
-        stopSystemStatsPolling();
-        return;
-      }
+    await runPollingStep(win);
 
-      try {
-        const stats = await collectStats();
-        win.webContents.send("system:stats", stats);
-      } catch (err) {
-        console.error("systemStats: failed to collect stats", err);
-      }
+    if (!isPollingActive) {
+      return;
+    }
+
+    intervalId = setInterval(() => {
+      runPollingStep(win);
     }, POLL_INTERVAL_MS);
-  }, INITIAL_DELAY_MS);
+  }, delay);
 }
 
 export function stopSystemStatsPolling() {
+  isPollingActive = false;
+
+  if (timeoutId) {
+    clearTimeout(timeoutId);
+    timeoutId = null;
+  }
+
   if (intervalId) {
     clearInterval(intervalId);
     intervalId = null;

@@ -2,6 +2,21 @@
     margin: 8pt;
 }
 
+.livestats-button {
+    color: var(--color-primary);
+    background: transparent !important;
+    border-radius: 0;
+    border: none;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    height: 18px;
+    opacity: 0.4;
+    font-family: monospace;
+    font-size: x-small;
+    font-weight: bold;
+    text-shadow: 0 0 2px currentColor;
+}
+
 .persistent-shell-livestats {
     top: 50%;
     right: 0;

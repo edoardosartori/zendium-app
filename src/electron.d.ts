@@ -38,6 +38,9 @@ declare global {
           } | null;
         }>;
 
+        startStats(): void;
+        stopStats(): void;
+
         onStats(
           callback: (data: {
             cpuLoadPercent: number;
