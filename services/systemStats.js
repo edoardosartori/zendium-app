@@ -2,7 +2,7 @@ import si from "systeminformation";
 
 const POLL_INTERVAL_MS = 2500;
 const INITIAL_DELAY_MS = 30000;
-const TEMPERATURE_INTERVAL_MS = 30000;
+const TEMPERATURE_INTERVAL_MS = 60000; // kept high because this call lags the system
 
 let timeoutId = null;
 let prevNetSnapshot = null;

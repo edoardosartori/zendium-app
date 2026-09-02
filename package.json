@@ -46,6 +46,10 @@
       "target": "AppImage",
       "icon": "assets/logo.png",
       "category": "Utility"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico"
     }
   }
 }

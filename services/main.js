@@ -129,8 +129,12 @@ function createWindow() {
   });
 
   // --------------------------------------------------
-  // REAL BASH TERMINAL
-  const shell = process.env.SHELL || "/bin/bash";
+  // REAL TERMINAL
+
+  const shell =
+    process.platform === "win32"
+      ? "powershell.exe"
+      : process.env.SHELL || "/bin/bash";
 
   terminalProcess = pty.spawn(shell, [], {
     name: "xterm-color",
