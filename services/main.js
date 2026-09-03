@@ -6,7 +6,8 @@ import pty from "node-pty";
 import { getSystemInfo } from "./system.js";
 import { getCurrentLocation } from "./location.js";
 import { getLiveData } from "./liveData.js";
-import { getTerminalCwd, readDirectory } from "./fileExplorer.js";
+import * as fileExplorerLinux from "./fileExplorerLinux.js";
+import * as fileExplorerWindows from "./fileExplorerWindows.js";
 import {
   startSystemStatsPolling,
   stopSystemStatsPolling,
@@ -90,24 +91,22 @@ ipcMain.on("terminal:write", (_event, data) => {
 
 // --------------------------------------------------
 // FILEEXPLORER
+
+const fileExplorer =
+  process.platform === "win32"
+    ? fileExplorerWindows
+    : fileExplorerLinux;
+
 ipcMain.handle("terminal:getCwd", () => {
   if (!terminalProcess) {
     return { available: false, error: "NO_TERMINAL" };
   }
-  return getTerminalCwd(terminalProcess.pid);
+
+  return fileExplorer.getTerminalCwd(terminalProcess.pid);
 });
 
 ipcMain.handle("fs:readDir", (_event, dirPath) => {
-  return readDirectory(dirPath);
-});
-
-ipcMain.on("terminal:resize", (_event, { cols, rows }) => {
-  if (!terminalProcess) {
-    return;
-  }
-  if (cols > 0 && rows > 0) {
-    terminalProcess.resize(cols, rows);
-  }
+  return fileExplorer.readDirectory(dirPath);
 });
 
 // --------------------------------------------------
