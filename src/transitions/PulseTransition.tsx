@@ -22,7 +22,7 @@ export default function PulseTransition({ onComplete }: Props) {
       onComplete();
     }, 8000);
 
-    // Sequenza audio sincronizzata con i timing già definiti nel CSS.
+    // audio synced with timing defined in CSS
     const soundTimers = [
       setTimeout(powerOnSound, 0),
       setTimeout(pulseOneSound, 1000),
@@ -57,7 +57,7 @@ export default function PulseTransition({ onComplete }: Props) {
         <div className="pulse-wave pulse-wave-two" />
         <div className="pulse-wave pulse-wave-three" />
 
-        {/* ENERGY PARTICLES — nessun suono qui, come da piano */}
+        {/* ENERGY PARTICLES */}
         <div className="pulse-particles">
           {Array.from({ length: 24 }).map((_, index) => (
             <span

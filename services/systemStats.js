@@ -1,8 +1,8 @@
 import si from "systeminformation";
 
 const POLL_INTERVAL_MS = 2500;
-const INITIAL_DELAY_MS = 30000;
-const TEMPERATURE_INTERVAL_MS = 60000; // kept high because this call lags the system
+const INITIAL_DELAY_MS = 60000; // kept high because this call lags the app
+const TEMPERATURE_INTERVAL_MS = 30000;
 
 let timeoutId = null;
 let prevNetSnapshot = null;
@@ -20,7 +20,6 @@ async function collectStats() {
     si.networkStats(),
   ]);
 
-  // Read CPU temperature only every 30 seconds
   if (now - lastTemperatureUpdate >= TEMPERATURE_INTERVAL_MS) {
     try {
       const cpuTemp = await si.cpuTemperature();
@@ -98,7 +97,6 @@ export function startSystemStatsPolling(win) {
     }
 
     try {
-      // Network interfaces rarely change, so read them only once.
       const networkInterfaces = await si.networkInterfaces();
 
       relevantIfaces = new Set(
@@ -107,7 +105,6 @@ export function startSystemStatsPolling(win) {
           .map((iface) => iface.iface),
       );
 
-      // Start temperature timing from the first collection.
       lastTemperatureUpdate = 0;
 
       const poll = async () => {
