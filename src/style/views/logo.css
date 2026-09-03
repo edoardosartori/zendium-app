@@ -14,7 +14,7 @@
     filter:
         drop-shadow(0 0 0 transparent) drop-shadow(0 0 0 transparent);
 
-    animation: logo-scale-in-out 3.5s forwards;
+    animation: logo-scale-in-out 5s forwards;
 }
 
 /* ---------- LOGO ANIMATION ---------- */

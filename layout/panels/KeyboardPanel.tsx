@@ -153,3 +153,7 @@ export default function KeyboardPanel() {
     </div>
   );
 }
+
+if (import.meta.env.DEV) {
+  console.log("KeyboardPanel loaded");
+}

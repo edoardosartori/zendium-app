@@ -80,5 +80,5 @@ export default function DataStreamTransition({ onComplete }: Props) {
 }
 
 if (import.meta.env.DEV) {
-  console.log("data stream transition rendered");
+  console.log("data stream transition loaded");
 }

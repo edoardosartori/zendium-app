@@ -57,3 +57,7 @@ export async function getSystemInfo() {
       : null,
   };
 }
+
+export function getUsername() {
+  return os.userInfo().username;
+}

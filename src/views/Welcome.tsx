@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import TypingText from "@utils/TypingText";
+import "@style/views/welcome.css";
 
-type SystemInfoData = Awaited<ReturnType<typeof window.zendium.system.getInfo>>;
+type SystemInfoData = {
+  username: string;
+};
 
 type Props = {
   onComplete: () => void;
@@ -12,8 +15,8 @@ export default function Welcome({ onComplete }: Props) {
   const [step, setStep] = useState(0);
 
   useEffect(() => {
-    window.zendium.system.getInfo().then((data) => {
-      setInfo(data);
+    window.zendium.system.getUsername().then((username) => {
+      setInfo({ username });
     });
   }, []);
 
@@ -55,7 +58,7 @@ export default function Welcome({ onComplete }: Props) {
   const USERNAME = info?.username?.toUpperCase() ?? "...";
 
   return (
-    <div className="central-view">
+    <div className="central-view welcome-transition">
       {/* LOGO */}
 
       <div className="display-flex-center welcome-title">
@@ -85,6 +88,5 @@ export default function Welcome({ onComplete }: Props) {
 }
 
 if (import.meta.env.DEV) {
-  console.log("welcome rendered");
+  console.log("welcome loaded");
 }
-

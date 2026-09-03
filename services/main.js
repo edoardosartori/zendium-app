@@ -3,7 +3,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import pty from "node-pty";
 
-import { getSystemInfo } from "./system.js";
+import { getSystemInfo, getUsername } from "./system.js";
 import { getCurrentLocation } from "./location.js";
 import { getLiveData } from "./liveData.js";
 import * as fileExplorerLinux from "./fileExplorerLinux.js";
@@ -24,6 +24,10 @@ let isQuitting = false;
 // SYSTEM INFO
 ipcMain.handle("system:getInfo", () => {
   return getSystemInfo();
+});
+
+ipcMain.handle("system:getUsername", () => {
+  return getUsername();
 });
 
 // --------------------------------------------------
@@ -93,9 +97,7 @@ ipcMain.on("terminal:write", (_event, data) => {
 // FILEEXPLORER
 
 const fileExplorer =
-  process.platform === "win32"
-    ? fileExplorerWindows
-    : fileExplorerLinux;
+  process.platform === "win32" ? fileExplorerWindows : fileExplorerLinux;
 
 ipcMain.handle("terminal:getCwd", () => {
   if (!terminalProcess) {

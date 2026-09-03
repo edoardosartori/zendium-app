@@ -104,5 +104,5 @@ export default function PersistentShell({
 }
 
 if (import.meta.env.DEV) {
-  console.log("PersistentShell rendered");
+  console.log("PersistentShell loaded");
 }

@@ -62,5 +62,5 @@ export default function LowerLeftPanel() {
 }
 
 if (import.meta.env.DEV) {
-  console.log("LowerLeftPanel rendered");
+  console.log("LowerLeftPanel loaded");
 }

@@ -126,5 +126,5 @@ export default function Terminal() {
 }
 
 if (import.meta.env.DEV) {
-  console.log("terminal rendered");
+  console.log("terminal loaded");
 }

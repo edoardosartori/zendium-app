@@ -82,6 +82,6 @@ export default function UpperLeftPanel() {
 }
 
 if (import.meta.env.DEV) {
-  console.log("UpperLeftPanel rendered");
+  console.log("UpperLeftPanel loaded");
 }
 

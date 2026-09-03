@@ -37,6 +37,7 @@ declare global {
             timeRemaining: number | null;
           } | null;
         }>;
+        getUsername(): Promise<string>;
 
         startStats(): void;
         stopStats(): void;

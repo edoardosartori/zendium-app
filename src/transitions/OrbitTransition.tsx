@@ -46,4 +46,4 @@ export default function OrbitTransition({ onComplete }: Props) {
   );
 }
 
-console.log("orbit transition rendered");
+console.log("orbit transition loaded");

@@ -143,6 +143,6 @@ export default function UpperRightPanel() {
 }
 
 if (import.meta.env.DEV) {
-  console.log("UpperRightPanel rendered");
+  console.log("UpperRightPanel loaded");
 }
 

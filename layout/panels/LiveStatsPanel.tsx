@@ -135,5 +135,5 @@ export default function LiveStatsPanel() {
 }
 
 if (import.meta.env.DEV) {
-  console.log("LiveStatsPanel rendered");
+  console.log("LiveStatsPanel loaded");
 }

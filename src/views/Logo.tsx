@@ -9,9 +9,12 @@ type Props = {
 
 export default function Logo({ onComplete }: Props) {
   useEffect(() => {
+    //console.log("LOGO MOUNTED:", performance.now());
+
     const timer = setTimeout(() => {
+      //console.log("LOGO EXITED:", performance.now());
       onComplete();
-    }, 3600);
+    }, 5000);
 
     return () => clearTimeout(timer);
   }, [onComplete]);
@@ -24,5 +27,5 @@ export default function Logo({ onComplete }: Props) {
 }
 
 if (import.meta.env.DEV) {
-  console.log("logo rendered");
+  console.log("logo loaded");
 }

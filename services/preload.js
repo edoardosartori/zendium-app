@@ -8,6 +8,10 @@ contextBridge.exposeInMainWorld("zendium", {
       return ipcRenderer.invoke("system:getInfo");
     },
 
+    getUsername: () => {
+      return ipcRenderer.invoke("system:getUsername");
+    },
+
     startStats: () => ipcRenderer.send("system:startStats"),
     stopStats: () => ipcRenderer.send("system:stopStats"),
 

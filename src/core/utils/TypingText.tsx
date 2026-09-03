@@ -19,6 +19,10 @@ export default function TypingText({
   const [value, setValue] = useState("");
 
   useEffect(() => {
+    if (import.meta.env.DEV) {
+      console.log("TYPING START:", performance.now());
+    }
+    
     let i = 0;
     let displayed = "";
     let cancelled = false;

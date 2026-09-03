@@ -52,5 +52,5 @@ export default function ClockPanel() {
 }
 
 if (import.meta.env.DEV) {
-  console.log("ClockPanel rendered");
+  console.log("ClockPanel loaded");
 }
