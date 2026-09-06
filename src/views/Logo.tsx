@@ -14,7 +14,7 @@ export default function Logo({ onComplete }: Props) {
     const timer = setTimeout(() => {
       //console.log("LOGO EXITED:", performance.now());
       onComplete();
-    }, 5000);
+    }, 8000);
 
     return () => clearTimeout(timer);
   }, [onComplete]);
