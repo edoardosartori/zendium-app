@@ -1,3 +1,9 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 .system-text {
     font-size: x-large;
 }
@@ -10,39 +16,41 @@
     margin-bottom: 40pt;
 }
 
+/* ---------- TERMINAL CONTAINER ---------- */
 .terminal-container {
     width: min(900px, 90%);
     height: 500px;
     margin-top: 0;
     border: 2px solid var(--color-primary);
     border-radius: 5pt;
-    padding: 20px;
-    padding-top: 0;
+    padding: 15px; /* Fixed padding for outer frame */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ---------- TERMINAL INSTANCE (xterm mount target) ---------- */
+.terminal-instance {
+    padding: 0; /* MUST BE 0: xterm handles its own internal grid */
+    width: 100%;
+    height: 100%;
+    flex: 1;
     overflow: hidden;
 }
 
-.terminal-instance {
-    padding: 1%;
-    width: 100%;
-    height: 100%;
-}
-
-
-/* ---------- TERMINAL ICON ---------- */
+/* ---------- ANIMATIONS ---------- */
 .terminal-view-icon {
     transform: scale(0);
     transform-origin: center center;
     animation: terminal-icon-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-/* ---------- TERMINAL CONTAINER ---------- */
 .terminal-view-container {
     transform: scale(0);
     transform-origin: center center;
     animation: terminal-container-in 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
 }
 
-/* ---------- TERMINAL ICON IN ---------- */
 @keyframes terminal-icon-in {
     from {
         transform: scale(0);
@@ -52,7 +60,6 @@
     }
 }
 
-/* ---------- TERMINAL CONTAINER IN ---------- */
 @keyframes terminal-container-in {
     from {
         transform: scale(0);
