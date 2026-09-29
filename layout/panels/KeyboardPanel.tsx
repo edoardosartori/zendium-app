@@ -122,12 +122,17 @@ export default function KeyboardPanel() {
       });
     };
 
+    //handling ALT+TAB click
+    const handleBlur = () => setPressedKeys(new Set());
+    window.addEventListener("blur", handleBlur);
+
     window.addEventListener("keydown", handleKeyDown, true);
     window.addEventListener("keyup", handleKeyUp, true);
 
     return () => {
       window.removeEventListener("keydown", handleKeyDown, true);
       window.removeEventListener("keyup", handleKeyUp, true);
+      window.removeEventListener("blur", handleBlur);
     };
   }, []);
 
