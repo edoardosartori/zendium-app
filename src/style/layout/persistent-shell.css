@@ -12,3 +12,8 @@
     inset: 0;
     z-index: 1;
 }
+
+.hide-cursor,
+.hide-cursor * {
+    cursor: none !important;
+}

@@ -13,6 +13,8 @@ import PulseTransition from "@transitions/PulseTransition";
 // import OrbitTransition from "@transitions/OrbitTransition";
 // import MatrixRainTransition from "@transitions/MatrixRainTransition";
 
+import { useCursorVisibility } from "@utils/useCursorVisibility";
+
 // --------------------------------------------------
 // PANEL STATE
 type PanelState = {
@@ -38,6 +40,9 @@ export default function BootSequence({ onPanelsChange }: Props) {
   const advancingRef = useRef(false);
 
   const event = timeline[step];
+
+  // Cursor visibility handling (hidden until "terminal")
+  useCursorVisibility(event.type === "terminal");
 
   // --------------------------------------------------
   // PANEL TRIGGERS
