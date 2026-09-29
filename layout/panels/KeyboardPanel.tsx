@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from "react";
+import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { keyPressSound } from "@core/audio/Audio";
 import "@style/layout/keyboard-panel.css";
 
@@ -96,19 +96,80 @@ const KEY_ROWS: KeyConfig[][] = [
   ],
 ];
 
+// Non-printable keys -> sequence sent to the terminal
+const SPECIAL: Record<string, string> = {
+  Enter: "\r",
+  Backspace: "\x7f",
+  Tab: "\t",
+  Escape: "\x1b",
+  Space: " ",
+};
+
+// code -> [normal, shifted]
+const CHARS: Record<string, [string, string]> = {
+  Backquote: ["`", "~"],
+  Digit1: ["1", "!"],
+  Digit2: ["2", "@"],
+  Digit3: ["3", "#"],
+  Digit4: ["4", "$"],
+  Digit5: ["5", "%"],
+  Digit6: ["6", "^"],
+  Digit7: ["7", "&"],
+  Digit8: ["8", "*"],
+  Digit9: ["9", "("],
+  Digit0: ["0", ")"],
+  Minus: ["-", "_"],
+  Equal: ["=", "+"],
+  BracketLeft: ["[", "{"],
+  BracketRight: ["]", "}"],
+  Backslash: ["\\", "|"],
+  Semicolon: [";", ":"],
+  Quote: ["'", '"'],
+  Comma: [",", "<"],
+  Period: [".", ">"],
+  Slash: ["/", "?"],
+};
+for (const c of "ABCDEFGHIJKLMNOPQRSTUVWXYZ") {
+  CHARS[`Key${c}`] = [c.toLowerCase(), c];
+}
+
+// Modifiers that behave as toggles on the on-screen keyboard
+const LATCHABLE = new Set([
+  "ShiftLeft",
+  "ShiftRight",
+  "ControlLeft",
+  "ControlRight",
+  "AltLeft",
+  "AltRight",
+  "CapsLock",
+]);
+
 const Key = memo(function Key({
   label,
+  code,
   flex,
   active,
+  onPress,
+  onRelease,
 }: {
   label: string;
+  code: string;
   flex: number;
   active: boolean;
+  onPress: (code: string) => void;
+  onRelease: (code: string) => void;
 }) {
   return (
     <div
       style={{ flex }}
       className={`keyboard-key ${active ? "keyboard-key--active" : ""}`}
+      onMouseDown={(e) => {
+        e.preventDefault(); // keep the focus on the terminal
+        if (e.button !== 0) return; // left click only
+        onPress(code);
+      }}
+      onMouseUp={() => onRelease(code)}
+      onMouseLeave={() => onRelease(code)} // covers dragging the cursor off the key before release
     >
       {label}
     </div>
@@ -116,7 +177,89 @@ const Key = memo(function Key({
 });
 
 export default function KeyboardPanel() {
+  // Keys currently held down (physical keyboard or mouse)
   const [pressedKeys, setPressedKeys] = useState<Set<string>>(new Set());
+
+  // Modifiers currently "armed" via on-screen clicks
+  const [latched, setLatched] = useState<Set<string>>(new Set());
+
+  // Ref so pressKey can read the latest value without changing identity (keeps memo effective)
+  const latchedRef = useRef(latched);
+  latchedRef.current = latched;
+
+  const pressKey = useCallback((code: string) => {
+    keyPressSound(0.7);
+
+    // Modifiers: toggle on/off, never write anything
+    if (LATCHABLE.has(code)) {
+      setLatched((prev) => {
+        const next = new Set(prev);
+        if (next.has(code)) next.delete(code);
+        else next.add(code);
+        return next;
+      });
+      return;
+    }
+
+    setPressedKeys((prev) => {
+      if (prev.has(code)) return prev;
+      const next = new Set(prev);
+      next.add(code);
+      return next;
+    });
+
+    const l = latchedRef.current;
+    const shift = l.has("ShiftLeft") || l.has("ShiftRight");
+    const ctrl = l.has("ControlLeft") || l.has("ControlRight");
+    const alt = l.has("AltLeft") || l.has("AltRight");
+    const caps = l.has("CapsLock");
+
+    let data = SPECIAL[code];
+    if (data === undefined) {
+      const pair = CHARS[code];
+      if (!pair) return; // F1-F12, WIN, etc.: no output
+      const isLetter = code.startsWith("Key");
+      // Caps only affects letters; Shift + Caps cancel each other out
+      const useShift = isLetter ? shift !== caps : shift;
+      data = pair[useShift ? 1 : 0];
+    }
+
+    // Ctrl + letter -> control character (e.g. Ctrl+C = \x03)
+    if (ctrl && data.length === 1) {
+      const c = data.toUpperCase().charCodeAt(0);
+      if (c >= 64 && c <= 95) data = String.fromCharCode(c - 64);
+    }
+
+    // Alt -> ESC prefix
+    if (alt) data = "\x1b" + data;
+
+    window.zendium.terminal.write(data);
+
+    // Shift/Ctrl/Alt release after use, Caps stays on
+    if (shift || ctrl || alt) {
+      setLatched((prev) => {
+        const next = new Set(prev);
+        [
+          "ShiftLeft",
+          "ShiftRight",
+          "ControlLeft",
+          "ControlRight",
+          "AltLeft",
+          "AltRight",
+        ].forEach((k) => next.delete(k));
+        return next;
+      });
+    }
+  }, []);
+
+  const releaseKey = useCallback((code: string) => {
+    setPressedKeys((prev) => {
+      if (!prev.has(code)) return prev;
+      const next = new Set(prev);
+      next.delete(code);
+      return next;
+    });
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -141,7 +284,8 @@ export default function KeyboardPanel() {
       });
     };
 
-    //handling ALT+TAB click
+    // Clear all pressed keys when the window loses focus (e.g. Alt+Tab),
+    // since the keyup event never arrives in that case
     const handleBlur = () => setPressedKeys(new Set());
     window.addEventListener("blur", handleBlur);
 
@@ -163,9 +307,13 @@ export default function KeyboardPanel() {
             {row.map((key) => (
               <Key
                 key={key.code}
+                code={key.code}
                 label={key.label}
                 flex={key.flex ?? 1}
-                active={pressedKeys.has(key.code)}
+                // Stay lit while pressed or latched
+                active={pressedKeys.has(key.code) || latched.has(key.code)}
+                onPress={pressKey}
+                onRelease={releaseKey}
               />
             ))}
           </div>
