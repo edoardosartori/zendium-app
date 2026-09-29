@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { keyPressSound } from "@core/audio/Audio";
 import "@style/layout/keyboard-panel.css";
 
@@ -96,6 +96,25 @@ const KEY_ROWS: KeyConfig[][] = [
   ],
 ];
 
+const Key = memo(function Key({
+  label,
+  flex,
+  active,
+}: {
+  label: string;
+  flex: number;
+  active: boolean;
+}) {
+  return (
+    <div
+      style={{ flex }}
+      className={`keyboard-key ${active ? "keyboard-key--active" : ""}`}
+    >
+      {label}
+    </div>
+  );
+});
+
 export default function KeyboardPanel() {
   const [pressedKeys, setPressedKeys] = useState<Set<string>>(new Set());
 
@@ -142,15 +161,12 @@ export default function KeyboardPanel() {
         {KEY_ROWS.map((row, rowIndex) => (
           <div className="keyboard-row" key={rowIndex}>
             {row.map((key) => (
-              <div
+              <Key
                 key={key.code}
-                style={{ flex: key.flex ?? 1 }}
-                className={`keyboard-key ${
-                  pressedKeys.has(key.code) ? "keyboard-key--active" : ""
-                }`}
-              >
-                {key.label}
-              </div>
+                label={key.label}
+                flex={key.flex ?? 1}
+                active={pressedKeys.has(key.code)}
+              />
             ))}
           </div>
         ))}
