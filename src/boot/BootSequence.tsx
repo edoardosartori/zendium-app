@@ -6,12 +6,8 @@ import Logo from "@views/Logo";
 import Welcome from "@views/Welcome";
 import Terminal from "@views/Terminal";
 
-// import ScanTransition from "@transitions/ScanTransition";
-// import DataStreamTransition from "@transitions/DataStreamTransition";
 import GridTransition from "@transitions/GridTransition";
 import PulseTransition from "@transitions/PulseTransition";
-// import OrbitTransition from "@transitions/OrbitTransition";
-// import MatrixRainTransition from "@transitions/MatrixRainTransition";
 
 import { useCursorVisibility } from "@utils/useCursorVisibility";
 
@@ -142,24 +138,12 @@ export default function BootSequence({ onPanelsChange }: Props) {
 
     // --------------------------------------------------
     // TRANSITIONS
-    //case "scan-transition":
-    //  return <ScanTransition onComplete={handleComplete} />;
-
-    //case "data-stream-transition":
-    // return <DataStreamTransition onComplete={handleComplete} />;
-
     case "grid-transition":
       return <GridTransition onComplete={handleComplete} />;
 
     case "pulse-transition":
       return <PulseTransition onComplete={handleComplete} />;
-
-    //case "orbit-transition":
-    // return <OrbitTransition onComplete={handleComplete} />;
-
-    //case "matrix-rain-transition":
-    //  return <MatrixRainTransition onComplete={handleComplete} />;
-
+    
     default:
       return null;
   }
