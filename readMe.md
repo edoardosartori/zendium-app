@@ -1,74 +1,70 @@
 # Zendium
 
-Zendium - Boot & Desktop App (built for Linux/Ubuntu system, with Windows support via PowerShell).
+![Zendium demo](docs/demo.gif)
 
-A cyberpunk-style desktop environment and dashboard interface developed with Electron, React, Vite, and TypeScript for system monitoring, file management, and real-time data visualization.
+Zendium - Boot & Desktop App. A cyberpunk-style desktop environment and
+dashboard built with Electron, React, Vite and TypeScript, for system
+monitoring, file browsing and real-time data. Primary target: Linux (Ubuntu);
+Windows is also supported.
 
-## Main Features
+## Features
 
-* **System Info:** Real-time hardware monitoring (CPU, RAM, GPU, network, battery via `systeminformation`).
+- **Boot sequence:** about 30 seconds of sci-fi style boot screens, fully
+  skippable
+- **System info:** real-time hardware monitoring (CPU, RAM, GPU, network,
+  battery) via `systeminformation`
+- **Terminal:** integrated terminal powered by `@xterm/xterm` and `node-pty`
+- **File explorer:** read-only navigation of the local file system
+- **Live widgets:** weather, news and dynamic system metrics
+- **Themes:** 3 built-in color themes
 
-* **Terminal:** Integrated terminal powered by `@xterm/xterm` and `node-pty`.
+## Known limitations (Windows)
 
-* **File Explorer:** Local file system navigation.
+- CPU temperature reading does not work.
+- The file explorer does not follow directory changes made in the terminal
+  (it does on Linux).
 
-* **Live Data:** Integrated widgets for weather, news, and dynamic system metrics.
+## Download
 
-* **Keyboard & Panels:** Interface with status panels.
+Installers are available on the [Releases page](../../releases):
 
-* **Themes:** 3 built-in color themes.
+- **Linux:** AppImage
+- **Windows:** NSIS installer
 
-## Requirements
+## Run from source
 
-* **Node.js** (v18 or higher recommended)
+Requirements:
 
-* **npm**
+- **Node.js** (v18 or higher) and **npm**
+- Build tools for the native module `node-pty` (Linux: `python3`, `make`,
+  `g++`; Windows: Visual Studio Build Tools with the C++ workload)
 
-## Installation
-
-```
-git clone <REPOSITORY_URL>
-cd zendium
+```bash
+git clone <https://github.com/edoardosartori/Zendium.git>
+cd Zendium
 npm install
-
+npm run dev:electron   # Vite + Electron on localhost:8080
 ```
 
-## Development
+To start only the Vite dev server: `npm run dev`
 
-Run the application in development mode (Vite + Electron concurrently on `localhost:8080`):
+## Build
 
-```
-npm run dev:electron
+Packages are generated with `electron-builder` in the `release/` directory:
 
-```
-
-Alternatively, you can start only the Vite dev server:
-
-```
-npm run dev
-
+```bash
+npm run dist    # compile and package
+npm run build   # compile static assets only with Vite
 ```
 
-## Build and Distribution
+## Privacy
 
-Executable packages are generated using `electron-builder` in the `release/` directory:
+Zendium runs entirely on your machine: system data, terminal activity and
+file browsing never leave your computer. The only network requests are the
+ones needed to fetch news and weather.
 
-* **Linux (AppImage):** Primary target platform.
+## Status
 
-* **Windows (NSIS Installer):** Supported via PowerShell.
-
-To compile source files and generate the distribution package:
-
-```
-npm run dist
-
-```
-
-To compile static assets only with Vite:
-
-```
-npm run build
-
-```
-
-**this readMe was made with AI
+Completed. This project is no longer maintained or updated
+(last update: September 2026).
+This README was written with the assistance of AI.
