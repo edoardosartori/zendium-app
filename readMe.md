@@ -63,6 +63,14 @@ Zendium runs entirely on your machine: system data, terminal activity and
 file browsing never leave your computer. The only network requests are the
 ones needed to fetch news and weather.
 
+## Copyright
+
+Copyright (c) 2026 Edoardo Sartori
+All rights reserved.
+No permission is granted to use, copy, modify,
+distribute, or sell this software without
+prior written permission from the copyright owner.
+
 ## Status
 
 Completed. This project is no longer maintained or updated
