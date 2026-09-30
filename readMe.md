@@ -83,6 +83,5 @@ This README was written with the assistance of AI.
 ![Zendium demo](docs/screenshots/annotated.png)
 
 ## Themes
-![Zendium demo](docs/screenshots/theme1.png)
 ![Zendium demo](docs/screenshots/theme2.png)
 ![Zendium demo](docs/screenshots/theme3.png)
