@@ -1,4 +1,4 @@
-# Zendium - Linux(Ubuntu), Windows supported
+# Zendium - built for Linux(Ubuntu), Windows supported
 
 ![Zendium demo](docs/demo.gif)
 
