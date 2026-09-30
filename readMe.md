@@ -68,3 +68,7 @@ ones needed to fetch news and weather.
 Completed. This project is no longer maintained or updated
 (last update: September 2026).
 This README was written with the assistance of AI.
+
+![Zendium demo](docs/screenshots/theme1.png)
+![Zendium demo](docs/screenshots/theme2.png)
+![Zendium demo](docs/screenshots/theme3.png)
